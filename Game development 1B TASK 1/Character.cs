@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Game_development_1B_TASK_1
 {
-    abstract class Character:Tile
+    abstract class Character : Tile
     {
         private int hP;
 
@@ -30,7 +30,15 @@ namespace Game_development_1B_TASK_1
             set { damage = value; }
         }
 
-        public Tile[] vision = new Tile[4];
+        private Tile [] vision;
+
+        public Tile [] Vision
+        {
+            get { return vision; }
+            set { vision = value; }
+        }
+
+
 
         public enum movement
         {
@@ -41,7 +49,13 @@ namespace Game_development_1B_TASK_1
             Right
         }
 
-        public Character(int Xparameter, int Yparameter, Tiletype Symbol) : base(Xparameter, Yparameter, Symbol)
+        public Character(int Xposition,int Yposition,Tiletype Symbol)
+        {
+            Xposition = X;
+            Yposition = Y;
+            Symbol = tiletype;
+        }
+        public Character(Tiletype Symbol) : this(Symbol,Symbol)
         {
         }
 

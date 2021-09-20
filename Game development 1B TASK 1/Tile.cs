@@ -6,6 +6,7 @@ namespace Game_development_1B_TASK_1
 {
     abstract class Tile
     {
+        //fields
         private int x;
 
         public int X
@@ -31,10 +32,11 @@ namespace Game_development_1B_TASK_1
         }
 
         public Tiletype tiletype;
-        public Tile(int _xPosition, int _yPosition, Tiletype symbol)
+        //constructure
+        public Tile(int _xParameter, int _yParameter, Tiletype symbol)
         {
-            x = _xPosition;
-            y = _yPosition;
+            x = _xParameter;
+            y = _yParameter;
             tiletype = symbol;
         }
     }
