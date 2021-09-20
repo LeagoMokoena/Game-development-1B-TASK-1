@@ -22,9 +22,9 @@ namespace Game_development_1B_TASK_1
             set { theHero = value; }
         }
 
-        private Enemy [,] theEnemies;
+        private Enemy [] theEnemies;
 
-        public Enemy [,] TheEnemies
+        public Enemy [] TheEnemies
         {
             get { return theEnemies; }
             set { theEnemies = value; }
@@ -60,16 +60,21 @@ namespace Game_development_1B_TASK_1
             width = newItem.Next(minWidth, maxWidth);
             height = newItem.Next(minHeight, maxHeight);
             mapCharacter = new Tile[width, height];
-            theEnemies = new Enemy[width, height]; 
+            theEnemies = new Enemy[enemyNum]; 
+            for(int i = 0; i < enemyNum; i++)
+            {
+                Create();
+            }
+            UpdateVision();
         }
 
         public void UpdateVision()
         {
             foreach(Tile s in theHero.Vision)
-                
+                if(theHero.X -1 == )
         }
 
-        private Tile create()
+        private Tile Create()
         {
 
         }

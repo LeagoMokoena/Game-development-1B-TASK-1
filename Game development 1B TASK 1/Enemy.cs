@@ -9,12 +9,9 @@ namespace Game_development_1B_TASK_1
 
         private Random objectNum = new Random();
 
-        public Enemy(int xPosition,int yPosition,int enemyDamage,int startHP,int maxHP, Tiletype symbol):this(xPosition,yPosition)
+        protected Enemy(int _xPosition, int _yParameter, Tiletype symbol, int enemyDamage, int startHP, int maxHP) : base(_xPosition, _yParameter, symbol)
         {
-            
-            enemyDamage = Damage; 
-            xPosition = X;
-            yPosition = Y;
+            enemyDamage = Damage;
             maxHP = MaxHp;
             startHP = HP;
             symbol = tiletype;
@@ -22,7 +19,11 @@ namespace Game_development_1B_TASK_1
 
         public override string ToString()
         {
-            Console.WriteLine("at" + "[" + X + "," + Y + "]");
+            string EnemyInfo;
+            EnemyInfo = "Goblin at" + "[" + X.ToString() + "," + Y.ToString() + "]("+Damage+")";
+            return EnemyInfo;
+   
+
         }
     }
 }

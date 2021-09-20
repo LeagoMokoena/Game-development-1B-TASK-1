@@ -38,8 +38,6 @@ namespace Game_development_1B_TASK_1
             set { vision = value; }
         }
 
-
-
         public enum movement
         {
             noMovement,
@@ -49,13 +47,17 @@ namespace Game_development_1B_TASK_1
             Right
         }
 
-        public Character(int Xposition,int Yposition,Tiletype Symbol)
+       /* public Character(int Xposition,int Yposition,Tiletype Symbol)
         {
             Xposition = X;
             Yposition = Y;
             Symbol = tiletype;
-        }
-        public Character(Tiletype Symbol) : this(Symbol,Symbol)
+        }*/
+/*        public Character(Tiletype Symbol) : this(Symbol,Symbol)
+        {
+        }*/
+
+        protected Character(int _xPosition, int _yParameter, Tiletype symbol) : base(_xPosition, _yParameter, symbol)
         {
         }
 
@@ -78,23 +80,48 @@ namespace Game_development_1B_TASK_1
 
         public virtual bool CheckRange(Character target)
         {
-
+            int barehanded = 1;
+            if(DistanceTo(target) < barehanded)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private int DistanceTo(Character target)
         {
-
+            return Math.Abs(X - target.X) + Math.Abs(Y - target.Y);
         }
 
         public void Move(movement move)
         {
-
+            if(move == movement.noMovement)
+            {
+                X = X;
+                Y = Y;
+            }
+            else if(move == movement.Up)
+            {
+                Y += 1;
+            }
+            else if(move == movement.Down)
+            {
+                Y -= 1;
+            }
+            else if(move == movement.Left)
+            {
+                X -= 1;
+            }
+            else
+            {
+                X += 1;
+            }
         }
 
-        public abstract movement Returnmove(movement move = 0)
-        {
-
-        }
+        public abstract movement Returnmove(movement move = 0);
 
         public abstract override string ToString();
     }

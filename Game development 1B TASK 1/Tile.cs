@@ -33,10 +33,10 @@ namespace Game_development_1B_TASK_1
 
         public Tiletype tiletype;
         //constructure
-        public Tile(int _xParameter, int _yParameter, Tiletype symbol)
+        public Tile(int _xPosition, int _yPosition, Tiletype symbol)
         {
-            x = _xParameter;
-            y = _yParameter;
+            x = _xPosition;
+            y = _yPosition;
             tiletype = symbol;
         }
     }
