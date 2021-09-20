@@ -17,10 +17,17 @@ namespace Game_development_1B_TASK_1
             int direction;
             Random r = new Random();
             direction = r.Next(0,4);
+            move = (movement)direction;
             for (int i= 0; i < 4; i++)
             {
-                if(Vision(i) == Tiletype.Hero)
+                if(Vision[i].tiletype == Tiletype.Hero)
+                {
+                    direction = r.Next(0, 4);
+                    move = (movement)direction;
+                }
             }
+
+            return move;
             throw new NotImplementedException();
         }
 
