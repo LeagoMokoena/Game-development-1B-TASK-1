@@ -59,6 +59,7 @@ namespace Game_development_1B_TASK_1
 
         protected Character(int _xPosition, int _yParameter, Tiletype symbol) : base(_xPosition, _yParameter, symbol)
         {
+            Vision = new Tile[4];
         }
 
         public virtual void Attack(Character target)
