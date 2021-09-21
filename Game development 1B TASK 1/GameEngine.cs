@@ -24,5 +24,14 @@ namespace Game_development_1B_TASK_1
         {
             
         }
+
+        public override string ToString()
+        {
+            return base.ToString(area.MapCharacter[,]);
+        }
+
+        private static readonly char enemy = 'G';
+        private static readonly char Hero = 'H';
+        private static readonly char Obstacle = 'X';
     }
 }
