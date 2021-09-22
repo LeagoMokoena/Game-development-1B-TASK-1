@@ -47,19 +47,21 @@ namespace Game_development_1B_TASK_1
             Right
         }
 
-       /* public Character(int Xposition,int Yposition,Tiletype Symbol)
-        {
-            Xposition = X;
-            Yposition = Y;
-            Symbol = tiletype;
-        }*/
-/*        public Character(Tiletype Symbol) : this(Symbol,Symbol)
-        {
-        }*/
+        /* public Character(int Xposition,int Yposition,Tiletype Symbol)
+         {
+             Xposition = X;
+             Yposition = Y;
+             Symbol = tiletype;
+         }*/
+        /*        public Character(Tiletype Symbol) : this(Symbol,Symbol)
+                {
+                }*/
 
-        protected Character(int _xPosition, int _yParameter, Tiletype symbol) : base(_xPosition, _yParameter, symbol)
+        private char Symbol;
+        protected Character(int _xPosition, int _yPosition, Tiletype symbol,char characterSymbol) : base(_xPosition, _yPosition, symbol)
         {
             Vision = new Tile[4];
+            characterSymbol = Symbol;
         }
 
         public int north = 1;
