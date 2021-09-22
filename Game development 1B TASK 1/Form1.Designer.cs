@@ -43,6 +43,7 @@ namespace Game_development_1B_TASK_1
             this.btnUp.TabIndex = 0;
             this.btnUp.Text = "^";
             this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnLeft
             // 
@@ -52,6 +53,7 @@ namespace Game_development_1B_TASK_1
             this.btnLeft.TabIndex = 1;
             this.btnLeft.Text = "<";
             this.btnLeft.UseVisualStyleBackColor = true;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnRight
             // 
@@ -61,6 +63,7 @@ namespace Game_development_1B_TASK_1
             this.btnRight.TabIndex = 2;
             this.btnRight.Text = ">";
             this.btnRight.UseVisualStyleBackColor = true;
+            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // btnDown
             // 
@@ -70,6 +73,7 @@ namespace Game_development_1B_TASK_1
             this.btnDown.TabIndex = 3;
             this.btnDown.Text = "v";
             this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // Form1
             // 

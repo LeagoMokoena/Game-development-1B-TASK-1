@@ -15,6 +15,12 @@ namespace Game_development_1B_TASK_1
 
         public override movement Returnmove(movement move = movement.noMovement)
         {
+            if (Vision[(int)move].tiletype == Tiletype.Enemy || Vision[(int)move].tiletype == Tiletype.Gold || Vision[(int)move].tiletype == Tiletype.Weapon)
+            {
+                move = movement.noMovement;   
+            }
+
+            return move;
             throw new NotImplementedException();
         }
 

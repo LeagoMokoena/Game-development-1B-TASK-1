@@ -54,16 +54,16 @@ namespace Game_development_1B_TASK_1
             set { newItem = value; }
         }
 
-
         public Map(int minWidth,int maxWidth,int minHeight,int maxHeight,int enemyNum)
         {
             width = newItem.Next(minWidth, maxWidth);
             height = newItem.Next(minHeight, maxHeight);
             mapCharacter = new Tile[width, height];
-            theEnemies = new Enemy[enemyNum]; 
+            theEnemies = new Enemy[enemyNum];
+            Create(Tile.Tiletype.Hero);
             for(int i = 0; i < enemyNum; i++)
             {
-                Create();
+                Create(Tile.Tiletype.Enemy);
             }
             UpdateVision();
         }
@@ -74,9 +74,31 @@ namespace Game_development_1B_TASK_1
                 if(theHero.X -1 == )
         }
 
-        private Tile Create()
+        private Tile Create(Tile.Tiletype tiletype)
         {
+            Enemy newEnemy;
+            Character Gold;
+            Character MeleeWeapon;
+            switch (tiletype)
+            {
+                case Tile.Tiletype.Hero:
+                    theHero.X = newItem.Next(0, width);
+                    theHero.Y = newItem.Next(0, height);
+                    break;
+                case Tile.Tiletype.Enemy:
+                    newEnemy.X = newItem.Next(0, width);
+                    newEnemy.Y = newItem.Next(0, height);
+                    break;
+                case Tile.Tiletype.Gold:
+                    Gold.X = newItem.Next(0, width);
+                    Gold.Y = newItem.Next(0, height);
+                    break;
+                case Tile.Tiletype.Weapon:
+                    MeleeWeapon.X = newItem.Next(0, width);
+                    MeleeWeapon.Y = newItem.Next(0, height);
+                    break;
 
+            }
         }
 
 

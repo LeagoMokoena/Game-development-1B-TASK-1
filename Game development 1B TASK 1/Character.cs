@@ -62,6 +62,11 @@ namespace Game_development_1B_TASK_1
             Vision = new Tile[4];
         }
 
+        public int north = 1;
+        public int south = 2;
+        public int east = 3;
+        public int west = 4;
+
         public virtual void Attack(Character target)
         {
             target.hP -= damage;
