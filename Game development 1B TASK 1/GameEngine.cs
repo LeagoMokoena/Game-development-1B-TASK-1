@@ -16,13 +16,34 @@ namespace Game_development_1B_TASK_1
 
         public GameEngine()
         {
-            Map space = new Map();
+            Map space = new Map(6,6,7,5,2);
 
         }
 
         public bool MovePlayer(Character.movement direction)
         {
-            
+            bool move = false;
+            if (direction != Character.movement.noMovement)
+            {
+                switch (direction)
+                {
+                    case Character.movement.Up:
+                        area.mapCharacter[area.TheHero.X - 1, area.TheHero.Y] = new Obstacle(area.TheHero.X - 1, area.TheHero.Y, Tile.Tiletype.Gold, area.Width, area.Height);
+                        break;
+                    case Character.movement.Down:
+                        area.mapCharacter[area.TheHero.X + 1, area.TheHero.Y] = new Obstacle(area.TheHero.X + 1, area.TheHero.Y, Tile.Tiletype.Gold, area.Width, area.Height);
+                        break;
+                    case Character.movement.Right:
+                        area.mapCharacter[area.TheHero.X, area.TheHero.Y + 1] = new Obstacle(area.TheHero.X, area.TheHero.Y + 1, Tile.Tiletype.Gold, area.Width, area.Height);
+                        break;
+                    case Character.movement.Left:
+                        area.mapCharacter[area.TheHero.X, area.TheHero.Y - 1] = new Obstacle(area.TheHero.X, area.TheHero.Y - 1, Tile.Tiletype.Gold, area.Width, area.Height);
+                        break;
+                }
+                move = true;
+            }
+
+            return move;
         }
 
         public override string ToString()
