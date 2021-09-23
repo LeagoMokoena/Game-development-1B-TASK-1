@@ -6,14 +6,7 @@ namespace Game_development_1B_TASK_1
 {
     class Map
     {
-        private Tile [,]mapCharacter;
-
-        public Tile [,] MapCharacter
-        {
-            get { return mapCharacter; }
-            set { mapCharacter = value; }
-        }
-
+        public Tile[,] mapCharacter;
         private Hero theHero;
 
         public Hero TheHero
@@ -63,6 +56,7 @@ namespace Game_development_1B_TASK_1
             Create(Tile.Tiletype.Hero);
             for(int i = 0; i < enemyNum; i++)
             {
+                enemyNum = i;
                 Create(Tile.Tiletype.Enemy);
             }
             UpdateVision();
@@ -70,37 +64,92 @@ namespace Game_development_1B_TASK_1
 
         public void UpdateVision()
         {
-            foreach(Tile s in theHero.Vision)
-                if(theHero.X -1 == )
-        }
+            theHero.Vision[1] = mapCharacter[theHero.X - 1, theHero.Y];
+            theHero.Vision[2] = mapCharacter[theHero.X + 1, theHero.Y];
+            theHero.Vision[3] = mapCharacter[theHero.X, theHero.Y + 1];
+            theHero.Vision[4] = mapCharacter[theHero.X, theHero.Y - 1];
 
-        private Tile Create(Tile.Tiletype tiletype)
-        {
-            Enemy newEnemy;
-            Character Gold;
-            Character MeleeWeapon;
-            switch (tiletype)
+            for(int i = 0; i < theEnemies.Length; ++i)
             {
-                case Tile.Tiletype.Hero:
-                    theHero.X = newItem.Next(0, width);
-                    theHero.Y = newItem.Next(0, height);
-                    break;
-                case Tile.Tiletype.Enemy:
-                    newEnemy.X = newItem.Next(0, width);
-                    newEnemy.Y = newItem.Next(0, height);
-                    break;
-                case Tile.Tiletype.Gold:
-                    Gold.X = newItem.Next(0, width);
-                    Gold.Y = newItem.Next(0, height);
-                    break;
-                case Tile.Tiletype.Weapon:
-                    MeleeWeapon.X = newItem.Next(0, width);
-                    MeleeWeapon.Y = newItem.Next(0, height);
-                    break;
-
+                theEnemies[i].Vision[1] = mapCharacter[theEnemies[i].X - 1, theEnemies[i].Y];
+                theEnemies[i].Vision[2] = mapCharacter[theEnemies[i].X + 1, theEnemies[i].Y];
+                theEnemies[i].Vision[3] = mapCharacter[theEnemies[i].X, theEnemies[i].Y + 1];
+                theEnemies[i].Vision[4] = mapCharacter[theEnemies[i].X, theEnemies[i].Y - 1];
             }
         }
 
+        private Enemy newEnemy;
 
+        public Enemy NewEnemy
+        {
+            get { return newEnemy; }
+            set { newEnemy = value; }
+        }
+
+
+        private Tile Create(Tile.Tiletype tiletype)
+        {
+            int xpoint = newItem.Next(0, width);
+            int ypoint = newItem.Next(0, height);
+
+            mapCharacter[1,0] = new Hero(6, 7, tiletype, 6, 7, 8, 's');
+            switch (tiletype)
+            {
+                case Tile.Tiletype.Hero:
+                    theHero.X = xpoint;
+                    theHero.Y = ypoint;
+                    mapCharacter[xpoint, ypoint] = theHero;
+                    break;
+                case Tile.Tiletype.Enemy:
+                    theEnemies[Enemynum].X = xpoint;
+                    theEnemies[Enemynum].Y = ypoint;
+                    mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
+                    break;
+            }
+            // case Tile.Tiletype.Enemy:
+            // newEnemy.X = newItem.Next(0, width);
+            // newEnemy.Y = newItem.Next(0, height);
+            //  break;
+            //case Tile.Tiletype.Gold:
+            //  Gold.X = newItem.Next(0, width);
+            //Gold.Y = newItem.Next(0, height);
+            //break;
+            //case Tile.Tiletype.Weapon:
+            //  MeleeWeapon.X = newItem.Next(0, width);
+            //MeleeWeapon.Y = newItem.Next(0, height);
+            //break;
+
+            return mapCharacter[xpoint, ypoint];
+        }
+
+        private void creatObstacle()
+        {
+            for (int Xvalues = 0; Xvalues <= width; Xvalues++)
+            {
+                for (int Yvalues = 0; Yvalues <= height; Yvalues++)
+                {
+                    if (((Yvalues == 0 || Yvalues < height) && Xvalues >= 0 || Xvalues < width))
+                    {
+                        mapCharacter[Xvalues, Yvalues] = new Obstacle(Xvalues, Yvalues, Tile.Tiletype.Gold, width, height);
+                    }
+                }
+            }
+        }
+
+        private void createEmptyTile()
+        {
+            for (int Xvalues = 0; Xvalues <= width; Xvalues++)
+            {
+                for (int Yvalues = 0; Yvalues <= height; Yvalues++)
+                {
+                    if (((Yvalues > 0 || Yvalues < height - 1) && Xvalues > 0 || Xvalues < width - 1))
+                    {
+                        mapCharacter[Xvalues, Yvalues] = new Obstacle(Xvalues, Yvalues, Tile.Tiletype.Gold, width, height);
+                    }
+                }
+            }
+        }
+
+        public int Enemynum;
     }
 }
