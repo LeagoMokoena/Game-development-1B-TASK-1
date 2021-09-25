@@ -34,6 +34,7 @@ namespace Game_development_1B_TASK_1
             this.btnRight = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.Mapdisplay = new System.Windows.Forms.Label();
+            this.txtPlayerStatus = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // btnUp
@@ -85,11 +86,20 @@ namespace Game_development_1B_TASK_1
             this.Mapdisplay.TabIndex = 4;
             this.Mapdisplay.Text = "label1";
             // 
+            // txtPlayerStatus
+            // 
+            this.txtPlayerStatus.Location = new System.Drawing.Point(592, 93);
+            this.txtPlayerStatus.Name = "txtPlayerStatus";
+            this.txtPlayerStatus.Size = new System.Drawing.Size(100, 96);
+            this.txtPlayerStatus.TabIndex = 5;
+            this.txtPlayerStatus.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtPlayerStatus);
             this.Controls.Add(this.Mapdisplay);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnRight);
@@ -110,6 +120,7 @@ namespace Game_development_1B_TASK_1
         private System.Windows.Forms.Button btnRight;
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Label Mapdisplay;
+        private System.Windows.Forms.RichTextBox txtPlayerStatus;
     }
 }
 

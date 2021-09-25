@@ -22,6 +22,20 @@ namespace Game_development_1B_TASK_1
 
         }
 
+        private void createMap()
+        {
+            GameEngine m = new GameEngine();
+
+            Mapdisplay.Text = "";
+            Mapdisplay.Text = m.ToString();
+        }
+
+        private void playerStats()
+        {
+            Hero h = new Hero(5,8,Tile.Tiletype.Hero,20,20,2,'X');
+            txtPlayerStatus.Text = h.ToString();
+        }
+
         private void btnUp_Click(object sender, EventArgs e)
         {
             Hero.movement move = Character.movement.Up;
