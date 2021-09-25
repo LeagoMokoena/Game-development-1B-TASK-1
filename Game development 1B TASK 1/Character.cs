@@ -58,7 +58,7 @@ namespace Game_development_1B_TASK_1
                 }*/
 
         private char Symbol;
-        protected Character(int _xPosition, int _yPosition, Tiletype symbol,char characterSymbol) : base(_xPosition, _yPosition, symbol)
+        protected Character(int _xPosition, int _yPosition, Tiletype type,char characterSymbol) : base(_xPosition, _yPosition, type)
         {
             Vision = new Tile[4];
             characterSymbol = Symbol;

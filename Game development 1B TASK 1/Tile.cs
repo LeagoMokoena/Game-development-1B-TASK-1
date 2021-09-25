@@ -7,6 +7,15 @@ namespace Game_development_1B_TASK_1
     abstract class Tile
     {
         //fields
+        private char symbol;
+
+        public char Symbol
+        {
+            get { return symbol; }
+            set { symbol = value; }
+        }
+
+
         private int x;
 
         public int X
@@ -33,11 +42,11 @@ namespace Game_development_1B_TASK_1
 
         public Tiletype tiletype;
         //constructure
-        public Tile(int _xPosition, int _yPosition, Tiletype symbol)
+        public Tile(int _xPosition, int _yPosition, Tiletype type)
         {
             x = _xPosition;
             y = _yPosition;
-            tiletype = symbol;
+            tiletype = type;
         }
     }
 }
