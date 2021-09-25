@@ -6,11 +6,11 @@ namespace Game_development_1B_TASK_1
 {
     class Hero : Character
     {
-        public Hero(int _xPosition, int _yParameter, Tiletype symbol,int _hp,int _maxHp) : base(_xPosition, _yParameter, symbol)
+        public Hero(int _xPosition, int _yParameter, Tiletype symbol,int _hp,int _maxHp,int _damage, char characterSymbol) : base(_xPosition, _yParameter, symbol,characterSymbol)
         {
             MaxHp = _maxHp;
             HP=_hp;
-            Damage = 2;
+            Damage= _damage = 2;
         }
 
         public override movement Returnmove(movement move = movement.noMovement)

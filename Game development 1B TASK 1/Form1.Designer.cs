@@ -33,6 +33,7 @@ namespace Game_development_1B_TASK_1
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
+            this.Mapdisplay = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnUp
@@ -75,11 +76,21 @@ namespace Game_development_1B_TASK_1
             this.btnDown.UseVisualStyleBackColor = true;
             this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
+            // Mapdisplay
+            // 
+            this.Mapdisplay.AutoSize = true;
+            this.Mapdisplay.Location = new System.Drawing.Point(132, 78);
+            this.Mapdisplay.Name = "Mapdisplay";
+            this.Mapdisplay.Size = new System.Drawing.Size(38, 15);
+            this.Mapdisplay.TabIndex = 4;
+            this.Mapdisplay.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Mapdisplay);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnRight);
             this.Controls.Add(this.btnLeft);
@@ -88,6 +99,7 @@ namespace Game_development_1B_TASK_1
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -97,6 +109,7 @@ namespace Game_development_1B_TASK_1
         private System.Windows.Forms.Button btnLeft;
         private System.Windows.Forms.Button btnRight;
         private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.Label Mapdisplay;
     }
 }
 
