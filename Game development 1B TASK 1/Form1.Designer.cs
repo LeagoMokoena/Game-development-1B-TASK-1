@@ -35,11 +35,14 @@ namespace Game_development_1B_TASK_1
             this.btnDown = new System.Windows.Forms.Button();
             this.Mapdisplay = new System.Windows.Forms.Label();
             this.txtPlayerStatus = new System.Windows.Forms.RichTextBox();
+            this.btnSelectEnemy = new System.Windows.Forms.ComboBox();
+            this.btnAttack = new System.Windows.Forms.Button();
+            this.txtAttackStatus = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // btnUp
             // 
-            this.btnUp.Location = new System.Drawing.Point(608, 278);
+            this.btnUp.Location = new System.Drawing.Point(608, 357);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(75, 23);
             this.btnUp.TabIndex = 0;
@@ -49,7 +52,7 @@ namespace Game_development_1B_TASK_1
             // 
             // btnLeft
             // 
-            this.btnLeft.Location = new System.Drawing.Point(539, 307);
+            this.btnLeft.Location = new System.Drawing.Point(535, 386);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(75, 23);
             this.btnLeft.TabIndex = 1;
@@ -59,7 +62,7 @@ namespace Game_development_1B_TASK_1
             // 
             // btnRight
             // 
-            this.btnRight.Location = new System.Drawing.Point(676, 307);
+            this.btnRight.Location = new System.Drawing.Point(679, 386);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(75, 23);
             this.btnRight.TabIndex = 2;
@@ -69,7 +72,7 @@ namespace Game_development_1B_TASK_1
             // 
             // btnDown
             // 
-            this.btnDown.Location = new System.Drawing.Point(608, 337);
+            this.btnDown.Location = new System.Drawing.Point(608, 415);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(75, 23);
             this.btnDown.TabIndex = 3;
@@ -88,17 +91,47 @@ namespace Game_development_1B_TASK_1
             // 
             // txtPlayerStatus
             // 
-            this.txtPlayerStatus.Location = new System.Drawing.Point(592, 93);
+            this.txtPlayerStatus.Location = new System.Drawing.Point(535, 95);
             this.txtPlayerStatus.Name = "txtPlayerStatus";
-            this.txtPlayerStatus.Size = new System.Drawing.Size(100, 96);
+            this.txtPlayerStatus.Size = new System.Drawing.Size(219, 96);
             this.txtPlayerStatus.TabIndex = 5;
             this.txtPlayerStatus.Text = "";
+            // 
+            // btnSelectEnemy
+            // 
+            this.btnSelectEnemy.FormattingEnabled = true;
+            this.btnSelectEnemy.Location = new System.Drawing.Point(535, 197);
+            this.btnSelectEnemy.Name = "btnSelectEnemy";
+            this.btnSelectEnemy.Size = new System.Drawing.Size(219, 23);
+            this.btnSelectEnemy.TabIndex = 6;
+            this.btnSelectEnemy.SelectedIndexChanged += new System.EventHandler(this.btnSelectEnemy_SelectedIndexChanged);
+            // 
+            // btnAttack
+            // 
+            this.btnAttack.Location = new System.Drawing.Point(535, 226);
+            this.btnAttack.Name = "btnAttack";
+            this.btnAttack.Size = new System.Drawing.Size(219, 23);
+            this.btnAttack.TabIndex = 7;
+            this.btnAttack.Text = "Attack";
+            this.btnAttack.UseVisualStyleBackColor = true;
+            this.btnAttack.Click += new System.EventHandler(this.btnAttack_Click);
+            // 
+            // txtAttackStatus
+            // 
+            this.txtAttackStatus.Location = new System.Drawing.Point(535, 255);
+            this.txtAttackStatus.Name = "txtAttackStatus";
+            this.txtAttackStatus.Size = new System.Drawing.Size(219, 96);
+            this.txtAttackStatus.TabIndex = 8;
+            this.txtAttackStatus.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(773, 528);
+            this.Controls.Add(this.txtAttackStatus);
+            this.Controls.Add(this.btnAttack);
+            this.Controls.Add(this.btnSelectEnemy);
             this.Controls.Add(this.txtPlayerStatus);
             this.Controls.Add(this.Mapdisplay);
             this.Controls.Add(this.btnDown);
@@ -121,6 +154,9 @@ namespace Game_development_1B_TASK_1
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Label Mapdisplay;
         private System.Windows.Forms.RichTextBox txtPlayerStatus;
+        private System.Windows.Forms.ComboBox btnSelectEnemy;
+        private System.Windows.Forms.Button btnAttack;
+        private System.Windows.Forms.RichTextBox txtAttackStatus;
     }
 }
 

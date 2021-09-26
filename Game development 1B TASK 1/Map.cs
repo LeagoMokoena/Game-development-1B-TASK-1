@@ -4,15 +4,16 @@ using System.Text;
 
 namespace Game_development_1B_TASK_1
 {
-    class Map
+    class Map 
     {
         public Tile[,] mapCharacter;
         private Hero theHero;
 
+
         public Hero TheHero
         {
             get { return theHero; }
-            set { theHero = value; }
+            set { theHero = value;}
         }
 
         private Enemy [] theEnemies;
@@ -49,10 +50,14 @@ namespace Game_development_1B_TASK_1
 
         public Map(int minWidth,int maxWidth,int minHeight,int maxHeight,int enemyNum)
         {
+            newItem = new Random();
+            theHero = new Hero(1,5,Tile.Tiletype.Hero,10,10,2,'H');
             width = newItem.Next(minWidth, maxWidth);
             height = newItem.Next(minHeight, maxHeight);
             mapCharacter = new Tile[width, height];
             theEnemies = new Enemy[enemyNum];
+            creatObstacle();
+            createEmptyTile();
             Create(Tile.Tiletype.Hero);
             for(int i = 0; i < enemyNum; i++)
             {
@@ -89,9 +94,9 @@ namespace Game_development_1B_TASK_1
 
         private Tile Create(Tile.Tiletype tiletype)
         {
+            bool found = false;
             int xpoint = newItem.Next(0, width);
             int ypoint = newItem.Next(0, height);
-
             mapCharacter[1,0] = new Hero(6, 7, tiletype, 6, 7, 8, 's');
             switch (tiletype)
             {
@@ -99,11 +104,40 @@ namespace Game_development_1B_TASK_1
                     theHero.X = xpoint;
                     theHero.Y = ypoint;
                     mapCharacter[xpoint, ypoint] = theHero;
+                    while (found == false)
+                    {
+                        if (mapCharacter[xpoint, ypoint] != empty_Tile)
+                        {
+                            xpoint = newItem.Next(0, width);
+                            ypoint = newItem.Next(0, height);
+                            theHero.X = xpoint;
+                            theHero.Y = ypoint;
+                            mapCharacter[xpoint, ypoint] = theHero;
+                        }
+                        else
+                        {
+                            found = true;
+                        }
+                    }
                     break;
                 case Tile.Tiletype.Enemy:
                     theEnemies[Enemynum].X = xpoint;
                     theEnemies[Enemynum].Y = ypoint;
                     mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
+                    while (found == false)
+                    { if (mapCharacter[xpoint, ypoint] != empty_Tile)
+                        {
+                            xpoint = newItem.Next(0, width);
+                            ypoint = newItem.Next(0, height);
+                            theEnemies[Enemynum].X = xpoint;
+                            theEnemies[Enemynum].Y = ypoint;
+                            mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
+                        }
+                        else
+                        {
+                            found = true;
+                        }
+                    }
                     break;
             }
             // case Tile.Tiletype.Enemy:
@@ -122,15 +156,32 @@ namespace Game_development_1B_TASK_1
             return mapCharacter[xpoint, ypoint];
         }
 
+        private Obstacle obstacleX;
+
+        public Obstacle ObstacleX
+        {
+            get { return obstacleX; }
+            set { obstacleX = value; }
+        }
+
+        private EmptyTile empty_Tile;
+
+        public EmptyTile Empty_Tile
+        {
+            get { return empty_Tile; }
+            set { empty_Tile = value; }
+        }
+
+
         private void creatObstacle()
         {
-            for (int Xvalues = 0; Xvalues <= width; Xvalues++)
+            for (int Xvalues = 0; Xvalues < width; Xvalues++)
             {
-                for (int Yvalues = 0; Yvalues <= height; Yvalues++)
+                for (int Yvalues = 0; Yvalues < height; Yvalues++)
                 {
                     if (((Yvalues == 0 || Yvalues < height) && Xvalues >= 0 || Xvalues < width))
                     {
-                        mapCharacter[Xvalues, Yvalues] = new Obstacle(Xvalues, Yvalues, Tile.Tiletype.Gold, width, height);
+                        mapCharacter[Xvalues, Yvalues] = obstacleX;
                     }
                 }
             }
@@ -138,13 +189,13 @@ namespace Game_development_1B_TASK_1
 
         private void createEmptyTile()
         {
-            for (int Xvalues = 0; Xvalues <= width; Xvalues++)
+            for (int Xvalues = 0; Xvalues < width; Xvalues++)
             {
-                for (int Yvalues = 0; Yvalues <= height; Yvalues++)
+                for (int Yvalues = 0; Yvalues < height; Yvalues++)
                 {
                     if (((Yvalues > 0 || Yvalues < height - 1) && Xvalues > 0 || Xvalues < width - 1))
                     {
-                        mapCharacter[Xvalues, Yvalues] = new Obstacle(Xvalues, Yvalues, Tile.Tiletype.Gold, width, height);
+                        mapCharacter[Xvalues, Yvalues] = null;
                     }
                 }
             }

@@ -11,15 +11,54 @@ namespace Game_development_1B_TASK_1
             MaxHp = _maxHp;
             HP=_hp;
             Damage= _damage = 2;
+            characterSymbol = 'X';
         }
 
         public override movement Returnmove(movement move = movement.noMovement)
         {
-            if (Vision[(int)move].tiletype == Tiletype.Enemy || Vision[(int)move].tiletype == Tiletype.Gold || Vision[(int)move].tiletype == Tiletype.Weapon)
+            switch (move)
             {
-                move = movement.noMovement;   
+                case movement.Up:
+                    if(Vision[north] != null)
+                    {
+                        move = movement.noMovement;
+                    }
+                    else
+                    {
+                        move = movement.Up;
+                    }
+                    break;
+                case movement.Down:
+                    if (Vision[south] != null)
+                    {
+                        move = movement.noMovement;
+                    }
+                    else
+                    {
+                        move = movement.Down;
+                    }
+                    break;
+                case movement.Left:
+                    if (Vision[west] != null)
+                    {
+                        move = movement.noMovement;
+                    }
+                    else
+                    {
+                        move = movement.Left;
+                    }
+                    break;
+                case movement.Right:
+                    if (Vision[east] != null)
+                    {
+                        move = movement.noMovement;
+                    }
+                    else
+                    {
+                        move = movement.Right;
+                    }
+                    break;
             }
-
             return move;
             throw new NotImplementedException();
         }
@@ -27,10 +66,10 @@ namespace Game_development_1B_TASK_1
         public override string ToString()
         {
             string playerInfo;
-            playerInfo = "Player Stats:" +
-                "HP:" + HP / MaxHp +
-                "Damage:" + Damage +
-                "[" + X + "," + Y + "]";
+            playerInfo = "Player Stats:\n" +
+                "HP:" + HP / MaxHp + "\n"+
+                "Damage:" + Damage +"\n"+
+                "[" + X + "," + Y + "]\n";
             return playerInfo;
             throw new NotImplementedException();
         }

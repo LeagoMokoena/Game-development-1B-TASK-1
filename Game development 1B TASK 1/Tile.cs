@@ -42,11 +42,12 @@ namespace Game_development_1B_TASK_1
 
         public Tiletype tiletype;
         //constructure
-        public Tile(int _xPosition, int _yPosition, Tiletype type)
+        public Tile(int _xPosition, int _yPosition, Tiletype type,char _symbol)
         {
             x = _xPosition;
             y = _yPosition;
             tiletype = type;
+            symbol = _symbol;
         }
     }
 }
