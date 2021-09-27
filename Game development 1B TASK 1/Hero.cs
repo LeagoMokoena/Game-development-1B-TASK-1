@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Game_development_1B_TASK_1
 {
-    class Hero : Character
+    public class Hero : Character
     {
         public Hero(int _xPosition, int _yParameter, Tiletype symbol,int _hp,int _maxHp,int _damage, char characterSymbol) : base(_xPosition, _yParameter, symbol,characterSymbol)
         {
@@ -14,12 +15,12 @@ namespace Game_development_1B_TASK_1
             characterSymbol = 'X';
         }
 
-        public override movement Returnmove(movement move = movement.noMovement)
+        public override movement Returnmove(movement move)
         {
             switch (move)
             {
                 case movement.Up:
-                    if(Vision[north] != null)
+                    if(Vision[north].tiletype != Tile.Tiletype.empty)
                     {
                         move = movement.noMovement;
                     }
@@ -29,7 +30,7 @@ namespace Game_development_1B_TASK_1
                     }
                     break;
                 case movement.Down:
-                    if (Vision[south] != null)
+                    if (Vision[south].tiletype != Tiletype.empty)
                     {
                         move = movement.noMovement;
                     }
@@ -39,7 +40,7 @@ namespace Game_development_1B_TASK_1
                     }
                     break;
                 case movement.Left:
-                    if (Vision[west] != null)
+                    if (Vision[west].tiletype != Tiletype.empty)
                     {
                         move = movement.noMovement;
                     }
@@ -49,7 +50,7 @@ namespace Game_development_1B_TASK_1
                     }
                     break;
                 case movement.Right:
-                    if (Vision[east] != null)
+                    if (Vision[east].tiletype != Tiletype.empty)
                     {
                         move = movement.noMovement;
                     }

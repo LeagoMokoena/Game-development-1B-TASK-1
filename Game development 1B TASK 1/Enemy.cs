@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Game_development_1B_TASK_1
 {
-    abstract class Enemy : Character
+   public abstract class Enemy : Character
     {
 
         private Random objectNum = new Random();

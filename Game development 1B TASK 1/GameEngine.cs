@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace Game_development_1B_TASK_1
 {
-    class GameEngine
+    public class GameEngine
     {
         private Map game;
 
@@ -29,24 +32,28 @@ namespace Game_development_1B_TASK_1
 
             if (direction != Character.movement.noMovement)
             {
+                game.UpdateVision();
                 game.mapCharacter[game.TheHero.X, game.TheHero.Y] = game.Empty_Tile;
-                game.TheHero.Move(direction);
+                move = true;
             }
-
-            game.UpdateVision();
-                return move;
+            else
+            {
+                move = false;
+            }
+               
+            return move;
         }
 
         public override string ToString()
         {
             string mapDesign = "";
 
-            game.TheHero.Symbol = Hero;
-            game.ObstacleX.Symbol = Obstacle;
-            game.Empty_Tile.Symbol = Emptytile;
-            for(int x = 0; x < game.TheEnemies.Length; x++)
+            //game.TheHero.Symbol = Hero;
+            //game.ObstacleX.Symbol = Obstacle;
+            //game.Empty_Tile.Symbol = Emptytile;
+           // for(int x = 0; x < game.TheEnemies.Length; x++)
             {
-                game.TheEnemies[x].Symbol = enemy;
+               // game.TheEnemies[x].Symbol = enemy;
             }
 
             for (int i = 0; i < game.Width; i++)//for loop displaying the values in the map array in the game map
@@ -63,9 +70,5 @@ namespace Game_development_1B_TASK_1
             return mapDesign;
         }
 
-        private static readonly char enemy = 'G';
-        private static readonly char Hero = 'H';
-        private static readonly char Obstacle = 'X';
-        private static readonly char Emptytile = '.';
     }
 }

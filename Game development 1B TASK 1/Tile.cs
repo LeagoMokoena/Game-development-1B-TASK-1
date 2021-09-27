@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Game_development_1B_TASK_1
 {
-    abstract class Tile
+    public abstract class Tile
     {
         //fields
         private char symbol;
@@ -37,7 +38,9 @@ namespace Game_development_1B_TASK_1
             Hero,
             Enemy,
             Gold,
-            Weapon
+            Weapon,
+            empty,
+            obstacle
         }
 
         public Tiletype tiletype;

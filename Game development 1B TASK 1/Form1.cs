@@ -5,40 +5,43 @@ namespace Game_development_1B_TASK_1
 {
     public partial class Form1 : Form
     {
-
-        GameEngine game = new GameEngine(6,17,5,13,5);
-       
         string Selected;
         public Form1()
         {
             InitializeComponent();
-            createMap();
-            playerStats();
-            selectEnemy();
-
         }
+
+        private GameEngine gameArea;
+
+        public GameEngine GameArea
+        {
+            get { return gameArea; }
+            set { gameArea = value; }
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            createMap();
-            playerStats();
-            selectEnemy();
+            this.Show();
+            gameArea = new GameEngine(6, 17, 5, 13, 5);
+            createMap(gameArea);
+            playerStats(gameArea);
+            //selectEnemy(gameArea);
         }
 
-        private void createMap()
+        private void createMap(GameEngine game)
         {
-
             Mapdisplay.Text = "";
             Mapdisplay.Text = game.ToString();
         }
 
-        private void playerStats()
+        private void playerStats(GameEngine game)
         {
             txtPlayerStatus.Text = game.Game.TheHero.ToString();
         }
 
 
-        private void selectEnemy()
+        private void selectEnemy(GameEngine game)
         {
             btnAttack.Enabled = false;
             for (int i = 0; i < game.Game.TheEnemies.Length; i++)
@@ -49,6 +52,7 @@ namespace Game_development_1B_TASK_1
 
         private bool attack(string selected)
         {
+            GameEngine game = new GameEngine(6, 17, 5, 13, 5);
             int up = game.Game.TheHero.X - 1;
             int down = game.Game.TheHero.X + 1;
             int left = game.Game.TheHero.Y - 1;
@@ -92,6 +96,7 @@ namespace Game_development_1B_TASK_1
 
         private void btnUp_Click(object sender, EventArgs e)
         {
+            GameEngine game = new GameEngine(6, 17, 5, 13, 5);
             Hero.movement move = Character.movement.Up;
             Hero.movement direction;
             direction = game.Game.TheHero.Returnmove(move);
@@ -101,6 +106,7 @@ namespace Game_development_1B_TASK_1
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
+            GameEngine game = new GameEngine(6, 17, 5, 13, 5);
             Hero.movement move = Character.movement.Left;
             Hero.movement direction;
             direction = game.Game.TheHero.Returnmove(move);
@@ -110,6 +116,7 @@ namespace Game_development_1B_TASK_1
 
         private void btnRight_Click(object sender, EventArgs e)
         {
+            GameEngine game = new GameEngine(6, 17, 5, 13, 5);
             Hero.movement move = Character.movement.Right;
             Hero.movement direction;
             direction = game.Game.TheHero.Returnmove(move);
@@ -119,21 +126,25 @@ namespace Game_development_1B_TASK_1
 
         private void btnDown_Click(object sender, EventArgs e)
         {
+            bool movement = false;
             Hero.movement move = Character.movement.Down;
-            Hero.movement direction;
-            direction = game.Game.TheHero.Returnmove(move);
-            game.Game.TheHero.Move(direction);
-            game.MovePlayer(direction);
+            movement = gameArea.MovePlayer(move);
+            if(movement == true)
+            {
+                gameArea.Game.TheHero.Move(move);
+            }
         }
 
         private void btnSelectEnemy_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             int selected = btnSelectEnemy.SelectedIndex;
             Selected = this.Text = btnSelectEnemy.Items[selected].ToString();
         }
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
+            GameEngine game = new GameEngine(6, 17, 5, 13, 5);
             bool enemyDead;
             enemyDead=attack(Selected);
             if(enemyDead == true)

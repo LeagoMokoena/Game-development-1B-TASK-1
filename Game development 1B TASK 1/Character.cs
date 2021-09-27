@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Game_development_1B_TASK_1
 {
-    abstract class Character : Tile
+    public abstract class Character : Tile
     {
         private int hP;
 
@@ -62,10 +63,10 @@ namespace Game_development_1B_TASK_1
             characterSymbol = Symbol;
         }
 
-        public int north = 1;
-        public int south = 2;
-        public int east = 3;
-        public int west = 4;
+        public int north = 0;
+        public int south = 1;
+        public int east = 2;
+        public int west = 3;
 
         public virtual void Attack(Character target)
         {
@@ -127,7 +128,7 @@ namespace Game_development_1B_TASK_1
             }
         }
 
-        public abstract movement Returnmove(movement move = 0);
+        public abstract movement Returnmove(movement move);
 
         public abstract override string ToString();
     }
