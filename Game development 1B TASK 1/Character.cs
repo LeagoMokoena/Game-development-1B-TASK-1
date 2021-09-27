@@ -59,7 +59,6 @@ namespace Game_development_1B_TASK_1
                 }*/
         protected Character(int _xPosition, int _yPosition, Tiletype type,char characterSymbol) : base(_xPosition, _yPosition, type,characterSymbol)
         {
-            Vision = new Tile[4];
             characterSymbol = Symbol;
         }
 

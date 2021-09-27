@@ -13,6 +13,7 @@ namespace Game_development_1B_TASK_1
             HP=_hp;
             Damage= _damage = 2;
             characterSymbol = 'X';
+            Vision = new Tile[4];
         }
 
         public override movement Returnmove(movement move)

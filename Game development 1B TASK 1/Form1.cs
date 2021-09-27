@@ -26,7 +26,7 @@ namespace Game_development_1B_TASK_1
             gameArea = new GameEngine(6, 17, 5, 13, 5);
             createMap(gameArea);
             playerStats(gameArea);
-            //selectEnemy(gameArea);
+            selectEnemy(gameArea);
         }
 
         private void createMap(GameEngine game)
@@ -44,7 +44,7 @@ namespace Game_development_1B_TASK_1
         private void selectEnemy(GameEngine game)
         {
             btnAttack.Enabled = false;
-            for (int i = 0; i < game.Game.TheEnemies.Length; i++)
+            for (int i = 0; i < game.Game.Enemynum; i++)
             {
                 btnSelectEnemy.Items.Add(game.Game.TheEnemies[i].ToString() + "\n");
             }

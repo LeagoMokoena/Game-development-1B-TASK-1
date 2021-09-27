@@ -56,15 +56,16 @@ namespace Game_development_1B_TASK_1
             height = newItem.Next(minHeight, maxHeight);
             mapCharacter = new Tile[width, height];
             theEnemies = new Enemy[enemyNum];
-            creatObstacle();
             createEmptyTile();
+            creatObstacle();
             Create(Tile.Tiletype.Hero);
             for (int i = 0; i < enemyNum; i++)
             {
                 enemyNum = i;
                 Create(Tile.Tiletype.Enemy);
             }
-            //UpdateVision();
+         
+           // UpdateVision();
         }
 
         public void UpdateVision()
@@ -189,7 +190,7 @@ namespace Game_development_1B_TASK_1
             {
                 for (int Yvalues = 0; Yvalues < height; Yvalues++)
                 {
-                    if (((Xvalues == 0 && Yvalues == 0) && Xvalues == width ||  Yvalues == height))
+                    if (Xvalues >= 0 && Xvalues <= width-1 && Yvalues == 0 || Yvalues >= height - 1)
                     {
                         mapCharacter[Xvalues, Yvalues] = new Obstacle(Xvalues,Yvalues,Tile.Tiletype.obstacle,'X');
                     }
