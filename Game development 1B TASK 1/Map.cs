@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Game_development_1B_TASK_1
 {
-    public class Map 
+    public class Map
     {
         public Tile[,] mapCharacter;
         private Hero theHero;
@@ -14,12 +14,12 @@ namespace Game_development_1B_TASK_1
         public Hero TheHero
         {
             get { return theHero; }
-            set { theHero = value;}
+            set { theHero = value; }
         }
 
-        private Enemy [] theEnemies;
+        private Enemy[] theEnemies;
 
-        public Enemy [] TheEnemies
+        public Enemy[] TheEnemies
         {
             get { return theEnemies; }
             set { theEnemies = value; }
@@ -49,7 +49,7 @@ namespace Game_development_1B_TASK_1
             set { newItem = value; }
         }
 
-        public Map(int minWidth,int maxWidth,int minHeight,int maxHeight,int enemyNum)
+        public Map(int minWidth, int maxWidth, int minHeight, int maxHeight, int enemyNum)
         {
             newItem = new Random();
             width = newItem.Next(minWidth, maxWidth);
@@ -61,32 +61,23 @@ namespace Game_development_1B_TASK_1
             Create(Tile.Tiletype.Hero);
             for (int i = 0; i < enemyNum; i++)
             {
-                enemyNum = i;
+                Enemynum = i;
                 Create(Tile.Tiletype.Enemy);
             }
-         
-           // UpdateVision();
+
+            UpdateVision();
         }
+
+
 
         public void UpdateVision()
         {
-            if (theHero.X != 0 || theHero.X != width && theHero.Y != 0 || theHero.Y != height)
+            if (theHero.X > 0 && theHero.X < width - 1 && theHero.Y > 0 && theHero.Y < height - 1)
             {
                 theHero.Vision[0] = mapCharacter[theHero.X - 1, theHero.Y];
                 theHero.Vision[1] = mapCharacter[theHero.X + 1, theHero.Y];
                 theHero.Vision[2] = mapCharacter[theHero.X, theHero.Y + 1];
                 theHero.Vision[3] = mapCharacter[theHero.X, theHero.Y - 1];
-            }
-
-            for(int i = 0; i < theEnemies.Length; i++)
-            {
-                if (theEnemies[i].X != 0 || theEnemies[i].Y != width && theEnemies[i].Y != 0 || theEnemies[i].Y != height)
-                {
-                    theEnemies[i].Vision[0] = mapCharacter[theEnemies[i].X - 1, theEnemies[i].Y];
-                    theEnemies[i].Vision[1] = mapCharacter[theEnemies[i].X + 1, theEnemies[i].Y];
-                    theEnemies[i].Vision[2] = mapCharacter[theEnemies[i].X, theEnemies[i].Y + 1];
-                    theEnemies[i].Vision[3] = mapCharacter[theEnemies[i].X, theEnemies[i].Y - 1];
-                }
             }
         }
 
@@ -99,7 +90,7 @@ namespace Game_development_1B_TASK_1
         }
 
 
-        private Tile Create(Tile.Tiletype tiletype)
+        public Tile Create(Tile.Tiletype tiletype)
         {
             bool found = false;
             int xpoint = newItem.Next(0, width);
@@ -122,7 +113,7 @@ namespace Game_development_1B_TASK_1
                         }
                         else
                         {
-                            theHero = new Hero(xpoint,ypoint,Tile.Tiletype.Hero,100,100,10,'H');
+                            theHero = new Hero(xpoint, ypoint, Tile.Tiletype.Hero, 100, 100, 10, 'H');
                             mapCharacter[xpoint, ypoint] = theHero;
                             found = true;
                         }
@@ -131,7 +122,7 @@ namespace Game_development_1B_TASK_1
                 case Tile.Tiletype.Enemy:
                     //theEnemies[Enemynum].X = xpoint;
                     //theEnemies[Enemynum].Y = ypoint;
-//mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
+                    //mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
                     while (found == false)
                     {
                         if (mapCharacter[xpoint, ypoint].tiletype != Tile.Tiletype.empty)
@@ -139,12 +130,12 @@ namespace Game_development_1B_TASK_1
                             xpoint = newItem.Next(0, width);
                             ypoint = newItem.Next(0, height);
                             //theEnemies[Enemynum].X = xpoint;
-                           // theEnemies[Enemynum].Y = ypoint;
-                           // mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
+                            // theEnemies[Enemynum].Y = ypoint;
+                            // mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
                         }
                         else
                         {
-                            theEnemies[Enemynum] = new Goblin(xpoint,ypoint,Tile.Tiletype.Enemy,'G',10,100,100);
+                            theEnemies[Enemynum] = new Goblin(xpoint, ypoint, Tile.Tiletype.Enemy, 'G', 10, 100, 100);
                             mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
                             found = true;
                         }
@@ -190,9 +181,9 @@ namespace Game_development_1B_TASK_1
             {
                 for (int Yvalues = 0; Yvalues < height; Yvalues++)
                 {
-                    if (Xvalues >= 0 && Xvalues <= width-1 && Yvalues == 0 || Yvalues >= height - 1)
+                    if (Xvalues == 0 && Yvalues >= 0 || Xvalues < width && Yvalues == 0 || Xvalues > 0 && Yvalues == height - 1 || Xvalues == width - 1 && Yvalues >= 0)
                     {
-                        mapCharacter[Xvalues, Yvalues] = new Obstacle(Xvalues,Yvalues,Tile.Tiletype.obstacle,'X');
+                        mapCharacter[Xvalues, Yvalues] = new Obstacle(Xvalues, Yvalues, Tile.Tiletype.obstacle, 'X');
                     }
                 }
             }
@@ -204,15 +195,46 @@ namespace Game_development_1B_TASK_1
             {
                 for (int Yvalues = 0; Yvalues < height; Yvalues++)
                 {
-                    if (((Yvalues > 0 || Yvalues < height - 1) && Xvalues > 0 || Xvalues < width - 1))
+                    if (Xvalues > 0 && Yvalues > 0 || Xvalues < width - 1 && Yvalues < height - 1)
                     {
-                        
-                        mapCharacter[Xvalues, Yvalues] = new EmptyTile(Xvalues,Yvalues,Tile.Tiletype.empty,'.');
+
+                        mapCharacter[Xvalues, Yvalues] = new EmptyTile(Xvalues, Yvalues, Tile.Tiletype.empty, '.');
                     }
                 }
             }
         }
 
         public int Enemynum;
+
+        public string attack(string enemy)
+        {
+            string display = "";
+            int i = 0;
+            while (i < theEnemies.Length)
+            {
+                if (theEnemies[i].X == theHero.X - 1 || theEnemies[i].X == theHero.X + 1 || theEnemies[i].Y == theHero.Y - 1 || theHero.Y == theHero.Y + 1 || theEnemies[i].X == theHero.X - 1 && theEnemies[i].Y == theHero.Y - 1 || theEnemies[i].X == theHero.X + 1 && theEnemies[i].Y == theHero.Y - 1 || theEnemies[i].X == theHero.X - 1 && theEnemies[i].Y == theHero.Y + 1 || theEnemies[i].X == theHero.X + 1 && theEnemies[i].Y == theHero.Y + 1)
+                {
+                    theEnemies[i].HP -= theHero.Damage;
+                    if (theEnemies[i].HP <= 0)
+                    {
+                        display = "----------------------------------------------------------------------------\n You have killed a goblin at [" + theEnemies[i].X + "," + theEnemies[i].Y + "\n" + "----------------------------------------------------------------------------\n";
+                        i = theEnemies.Length;
+                    }
+                    else
+                    {
+                        display = "----------------------------------------------------------------------------\n You have attacked  the goblin at [" + theHero.X + "," + theHero.Y + "]" + " The goblin takes " + theHero.Damage + " damage and is now at " + theEnemies[i].HP + " HP\n ----------------------------------------------------------------------------\n";
+                        i = theEnemies.Length;
+                    }
+                }
+                else
+                {
+                    display = "----------------------------------------------------------------------------\n The goblin you are trying to attack is to far away \n----------------------------------------------------------------------------\n";
+                    i += 1;
+                }
+            }
+                return display;
+
+        }
     }
 }
+

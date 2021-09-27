@@ -104,26 +104,22 @@ namespace Game_development_1B_TASK_1
 
         public void Move(movement move)
         {
-            if(move == movement.noMovement)
+            switch (move)
             {
-                X = X;
-                Y = Y;
-            }
-            else if(move == movement.Up)
-            {
-                Y += 1;
-            }
-            else if(move == movement.Down)
-            {
-                Y -= 1;
-            }
-            else if(move == movement.Left)
-            {
-                X -= 1;
-            }
-            else
-            {
-                X += 1;
+                case Character.movement.Up:
+                        X -= 1;
+                       
+                    break;
+                case Character.movement.Left:
+                        Y -= 1;
+                    break;
+                case Character.movement.Right:
+                        Y += 1;
+ 
+                    break;
+                case Character.movement.Down:
+                        X += 1;
+                    break;
             }
         }
 

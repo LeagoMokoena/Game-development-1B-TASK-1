@@ -28,12 +28,14 @@ namespace Game_development_1B_TASK_1
         public bool MovePlayer(Character.movement direction)
         {
             bool move = false;
+            game.UpdateVision();
             direction = game.TheHero.Returnmove(direction);
 
             if (direction != Character.movement.noMovement)
             {
-                game.UpdateVision();
-                game.mapCharacter[game.TheHero.X, game.TheHero.Y] = game.Empty_Tile;
+                game.mapCharacter[game.TheHero.X, game.TheHero.Y] = new EmptyTile(game.TheHero.X, game.TheHero.Y, Tile.Tiletype.empty, '.');
+                game.TheHero.Move(direction);
+                game.mapCharacter[game.TheHero.X, game.TheHero.Y] = game.TheHero;
                 move = true;
             }
             else
