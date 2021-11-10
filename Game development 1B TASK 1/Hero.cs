@@ -13,56 +13,79 @@ namespace Game_development_1B_TASK_1
             HP=_hp;
             Damage= _damage = 2;
             characterSymbol = 'X';
-            Vision = new Tile[4];
+            Vision = new Tile[8];
         }
 
-        public override movement Returnmove(movement move)
+        public override movement Returnmove(movement move = movement.noMovement)
         {
             switch (move)
             {
                 case movement.Up:
-                    if(Vision[north].tiletype != Tile.Tiletype.empty)
+                    foreach(Tile tile in Vision)
                     {
-                        move = movement.noMovement;
-                    }
-                    else
-                    {
-                        move = movement.Up;
+                        if(tile.Y == Y + 1)
+                        {
+                            if(tile.tiletype == Tiletype.obstacle)
+                            {
+                                move = movement.noMovement;
+                            }
+                            else
+                            {
+                                move = movement.Up;
+                            }
+                        }
                     }
                     break;
                 case movement.Down:
-                    if (Vision[south].tiletype != Tiletype.empty)
+                    foreach (Tile tile in Vision)
                     {
-                        move = movement.noMovement;
-                    }
-                    else
-                    {
-                        move = movement.Down;
+                        if (tile.Y == Y - 1)
+                        {
+                            if (tile.tiletype == Tiletype.obstacle)
+                            {
+                                move = movement.noMovement;
+                            }
+                            else
+                            {
+                                move = movement.Down;
+                            }
+                        }
                     }
                     break;
                 case movement.Left:
-                    if (Vision[west].tiletype != Tiletype.empty)
+                    foreach (Tile tile in Vision)
                     {
-                        move = movement.noMovement;
-                    }
-                    else
-                    {
-                        move = movement.Left;
+                        if (tile.X == X - 1)
+                        {
+                            if (tile.tiletype == Tiletype.obstacle)
+                            {
+                                move = movement.noMovement;
+                            }
+                            else
+                            {
+                                move = movement.Left;
+                            }
+                        }
                     }
                     break;
                 case movement.Right:
-                    if (Vision[east].tiletype != Tiletype.empty)
+                    foreach (Tile tile in Vision)
                     {
-                        move = movement.noMovement;
-                    }
-                    else
-                    {
-                        move = movement.Right;
+                        if (tile.X == X + 1)
+                        {
+                            if (tile.tiletype == Tiletype.obstacle)
+                            {
+                                move = movement.noMovement;
+                            }
+                            else
+                            {
+                                move = movement.Right;
+                            }
+                        }
                     }
                     break;
             }
             return move;
-            throw new NotImplementedException();
         }
 
         public override string ToString()
@@ -71,7 +94,8 @@ namespace Game_development_1B_TASK_1
             playerInfo = "Player Stats:\n" +
                 "HP:" + HP / MaxHp + "\n"+
                 "Damage:" + Damage +"\n"+
-                "[" + X + "," + Y + "]\n";
+                "[" + X + "," + Y + "]\n"
+                + " Amount of gold: " + GoldPurse.Count + "\n";
             return playerInfo;
             throw new NotImplementedException();
         }

@@ -39,6 +39,15 @@ namespace Game_development_1B_TASK_1
             set { vision = value; }
         }
 
+        private List<Item> goldPurse;
+
+        public List<Item> GoldPurse
+        {
+            get { return goldPurse; }
+            set { goldPurse = value; }
+        }
+
+
         public enum movement
         {
             noMovement,
@@ -60,6 +69,8 @@ namespace Game_development_1B_TASK_1
         protected Character(int _xPosition, int _yPosition, Tiletype type,char characterSymbol) : base(_xPosition, _yPosition, type,characterSymbol)
         {
             characterSymbol = Symbol;
+            goldPurse = new List<Item>();
+            Vision = new Tile[8];
         }
 
         public int north = 0;
@@ -120,6 +131,14 @@ namespace Game_development_1B_TASK_1
                 case Character.movement.Down:
                         X += 1;
                     break;
+            }
+        }
+
+        public void Pickup(Item i)
+        {
+            if(i.Symbol == 'A')
+            {
+                goldPurse.Add(i);
             }
         }
 

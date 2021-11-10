@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
+
 namespace Game_development_1B_TASK_1
 {
     public partial class Form1 : Form
@@ -9,9 +10,11 @@ namespace Game_development_1B_TASK_1
         public Form1()
         {
             InitializeComponent();
+
+
         }
 
-        private GameEngine gameArea;
+        protected private GameEngine gameArea;
 
         public GameEngine GameArea
         {
@@ -19,11 +22,22 @@ namespace Game_development_1B_TASK_1
             set { gameArea = value; }
         }
 
+        public Random r = new Random();
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            int goldNumber = r.Next(0, 5);
+            gameArea = new GameEngine(10, 17, 10, 13, 5, goldNumber);
+
+            foreach (Enemy g in gameArea.Game.TheEnemies)
+            {
+                btnSelectEnemy.Items.Add(g.ToString());
+            }
+
+            btnSelectEnemy.SelectedIndex = 0;
+            enemyStatus.Text = gameArea.Game.TheEnemies[btnSelectEnemy.SelectedIndex].ToString();
             this.Show();
-            gameArea = new GameEngine(6, 17, 5, 13, 5);
+            gameArea = new GameEngine(10, 17, 10, 13, 5,goldNumber);
             createMap(gameArea);
             playerStats(gameArea);
             selectEnemy(gameArea);
@@ -95,32 +109,32 @@ namespace Game_development_1B_TASK_1
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            Hero.movement move = Character.movement.Up;
-            gameArea.MovePlayer(move);
+            gameArea.MovePlayer(Character.movement.Up);
+            gameArea.MoveEnemies();
             createMap(GameArea);
             playerStats(gameArea);
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            Hero.movement move = Character.movement.Left;
-            gameArea.MovePlayer(move);
+            gameArea.MovePlayer(Character.movement.Left);
+            gameArea.MoveEnemies();
             createMap(GameArea);
             playerStats(gameArea);
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            Hero.movement move = Character.movement.Right;
-            gameArea.MovePlayer(move);
+            gameArea.MovePlayer(Character.movement.Right);
+            gameArea.MoveEnemies();
             createMap(GameArea);
             playerStats(gameArea);
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            Hero.movement move = Character.movement.Down;
-            gameArea.MovePlayer(move);
+            gameArea.MovePlayer(Character.movement.Down);
+            gameArea.MoveEnemies();
             createMap(GameArea);
             playerStats(gameArea);
         }
@@ -135,18 +149,18 @@ namespace Game_development_1B_TASK_1
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
-                txtAttackStatus.Text += gameArea.Game.attack(Selected);
-                foreach (Enemy en in gameArea.Game.TheEnemies)
-                    if(en.HP <= 0)
-                    {
-                        gameArea.Game.mapCharacter[en.X, en.Y] = gameArea.Game.Empty_Tile;
-                        btnSelectEnemy.Items.Remove(btnSelectEnemy.Text);
-                    }
-                    else
-                    {
-                    txtAttackStatus.Text += gameArea.Game.attack(Selected);
-                    btnSelectEnemy.Text = "";
-                    }
+                txtAttackStatus.Text += gameArea.heroAttack(btnSelectEnemy.SelectedIndex) + "\n \n";
+                enemyStatus.Text = gameArea.Game.TheEnemies[btnSelectEnemy.SelectedIndex].ToString();
+        }
+
+        private void Mapdisplay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPlayerStatus_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

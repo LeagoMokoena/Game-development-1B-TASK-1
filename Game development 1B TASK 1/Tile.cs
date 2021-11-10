@@ -17,7 +17,7 @@ namespace Game_development_1B_TASK_1
         }
 
 
-        private int x;
+        protected private int x;
 
         public int X
         {
@@ -25,7 +25,7 @@ namespace Game_development_1B_TASK_1
             set { x = value; }
         }
 
-        private int y;
+        protected private int y;
 
         public int Y
         {

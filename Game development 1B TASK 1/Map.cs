@@ -8,14 +8,27 @@ namespace Game_development_1B_TASK_1
     public class Map
     {
         public Tile[,] mapCharacter;
-        private Hero theHero;
 
+        private Item[] mapItems;
+
+        public Item[] MapItems
+        {
+            get { return mapItems; }
+            set { mapItems = value; }
+        }
+
+        public int goldnum;
+
+        public int enemyDigit;
+
+        private Hero theHero;
 
         public Hero TheHero
         {
             get { return theHero; }
             set { theHero = value; }
         }
+
 
         private Enemy[] theEnemies;
 
@@ -49,22 +62,28 @@ namespace Game_development_1B_TASK_1
             set { newItem = value; }
         }
 
-        public Map(int minWidth, int maxWidth, int minHeight, int maxHeight, int enemyNum)
+        public Map(int minWidth, int maxWidth, int minHeight, int maxHeight, int enemyNum, int goldDrops)
         {
             newItem = new Random();
             width = newItem.Next(minWidth, maxWidth);
             height = newItem.Next(minHeight, maxHeight);
             mapCharacter = new Tile[width, height];
             theEnemies = new Enemy[enemyNum];
+            mapItems = new Item[goldDrops];
             createEmptyTile();
             creatObstacle();
             Create(Tile.Tiletype.Hero);
             for (int i = 0; i < enemyNum; i++)
             {
+                enemyDigit = newItem.Next(0, 2);
                 Enemynum = i;
                 Create(Tile.Tiletype.Enemy);
             }
-
+            for (int j = 0; j < goldDrops; j++)
+            {
+                goldnum = j;
+                Create(Tile.Tiletype.Gold);
+            }
             UpdateVision();
         }
 
@@ -72,13 +91,26 @@ namespace Game_development_1B_TASK_1
 
         public void UpdateVision()
         {
-            if (theHero.X > 0 && theHero.X < width - 1 && theHero.Y > 0 && theHero.Y < height - 1)
+            foreach(Enemy en in theEnemies)
             {
-                theHero.Vision[0] = mapCharacter[theHero.X - 1, theHero.Y];
-                theHero.Vision[1] = mapCharacter[theHero.X + 1, theHero.Y];
-                theHero.Vision[2] = mapCharacter[theHero.X, theHero.Y + 1];
-                theHero.Vision[3] = mapCharacter[theHero.X, theHero.Y - 1];
+                en.Vision[0] = mapCharacter[en.X - 1, en.Y - 1];
+                en.Vision[1] = mapCharacter[en.X - 1, en.Y];
+                en.Vision[2] = mapCharacter[en.X - 1, en.Y + 1];
+                en.Vision[3] = mapCharacter[en.X, en.Y - 1];
+                en.Vision[4] = mapCharacter[en.X, en.Y + 1];
+                en.Vision[5] = mapCharacter[en.X + 1, en.Y - 1];
+                en.Vision[6] = mapCharacter[en.X + 1, en.Y];
+                en.Vision[7] = mapCharacter[en.X + 1, en.Y + 1];
             }
+
+            theHero.Vision[0] = mapCharacter[theHero.X - 1, theHero.Y - 1];
+            theHero.Vision[1] = mapCharacter[theHero.X - 1, theHero.Y];
+            theHero.Vision[2] = mapCharacter[theHero.X - 1, theHero.Y + 1];
+            theHero.Vision[3] = mapCharacter[theHero.X, theHero.Y - 1];
+            theHero.Vision[4] = mapCharacter[theHero.X, theHero.Y + 1];
+            theHero.Vision[5] = mapCharacter[theHero.X + 1, theHero.Y - 1];
+            theHero.Vision[6] = mapCharacter[theHero.X + 1, theHero.Y];
+            theHero.Vision[7] = mapCharacter[theHero.X + 1, theHero.Y + 1];
         }
 
         private Enemy newEnemy;
@@ -133,10 +165,32 @@ namespace Game_development_1B_TASK_1
                             // theEnemies[Enemynum].Y = ypoint;
                             // mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
                         }
+                        else if (enemyDigit == 1)
+                        {
+                            theEnemies[Enemynum] = new Goblin(xpoint, ypoint, Tile.Tiletype.Enemy, 'G', 1, 10, 10);
+                            mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
+                            found = true;
+                        }
                         else
                         {
-                            theEnemies[Enemynum] = new Goblin(xpoint, ypoint, Tile.Tiletype.Enemy, 'G', 10, 100, 100);
+                            theEnemies[Enemynum] = new Mage(xpoint, ypoint, Tile.Tiletype.Enemy, 'M', 10, 5, 5);
                             mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
+                            found = true;
+                        }
+                    }
+                    break;
+                case Tile.Tiletype.Gold:
+                    while(found == false)
+                    {
+                        if(mapCharacter[xpoint,ypoint].tiletype != Tile.Tiletype.empty)
+                        {
+                            xpoint = newItem.Next(0, width);
+                            ypoint = newItem.Next(0, height);
+                        }
+                        else
+                        {
+                            mapItems[goldnum] = new Gold(xpoint, ypoint, Tile.Tiletype.Gold, 'A');
+                            mapCharacter[xpoint, ypoint] = mapItems[goldnum];
                             found = true;
                         }
                     }
@@ -155,6 +209,7 @@ namespace Game_development_1B_TASK_1
             //MeleeWeapon.Y = newItem.Next(0, height);
             //break;
 
+            enemyDigit = newItem.Next(1, 2);
             return mapCharacter[xpoint, ypoint];
         }
 
@@ -234,6 +289,30 @@ namespace Game_development_1B_TASK_1
             }
                 return display;
 
+        }
+
+        public Item GetItemAtPosition(int x, int y)
+        {
+            bool found = false;
+            Item artifact = null;
+            for (int i = 0; i < mapItems.Length; i++)
+            {
+                if (mapItems[i].X == x && mapItems[i].Y == y)
+                {
+                    artifact = mapItems[i];
+                    mapItems[i] = null;
+                    found = true;
+                }
+            }
+
+            if(found == true)
+            {
+                return artifact;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

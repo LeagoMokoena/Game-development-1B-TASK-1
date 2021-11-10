@@ -38,11 +38,12 @@ namespace Game_development_1B_TASK_1
             this.btnSelectEnemy = new System.Windows.Forms.ComboBox();
             this.btnAttack = new System.Windows.Forms.Button();
             this.txtAttackStatus = new System.Windows.Forms.RichTextBox();
+            this.enemyStatus = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // btnUp
             // 
-            this.btnUp.Location = new System.Drawing.Point(608, 357);
+            this.btnUp.Location = new System.Drawing.Point(608, 435);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(75, 23);
             this.btnUp.TabIndex = 0;
@@ -52,7 +53,7 @@ namespace Game_development_1B_TASK_1
             // 
             // btnLeft
             // 
-            this.btnLeft.Location = new System.Drawing.Point(535, 386);
+            this.btnLeft.Location = new System.Drawing.Point(535, 464);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(75, 23);
             this.btnLeft.TabIndex = 1;
@@ -62,7 +63,7 @@ namespace Game_development_1B_TASK_1
             // 
             // btnRight
             // 
-            this.btnRight.Location = new System.Drawing.Point(679, 386);
+            this.btnRight.Location = new System.Drawing.Point(679, 464);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(75, 23);
             this.btnRight.TabIndex = 2;
@@ -72,7 +73,7 @@ namespace Game_development_1B_TASK_1
             // 
             // btnDown
             // 
-            this.btnDown.Location = new System.Drawing.Point(608, 415);
+            this.btnDown.Location = new System.Drawing.Point(608, 493);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(75, 23);
             this.btnDown.TabIndex = 3;
@@ -83,11 +84,13 @@ namespace Game_development_1B_TASK_1
             // Mapdisplay
             // 
             this.Mapdisplay.AutoSize = true;
+            this.Mapdisplay.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Mapdisplay.Location = new System.Drawing.Point(132, 78);
             this.Mapdisplay.Name = "Mapdisplay";
-            this.Mapdisplay.Size = new System.Drawing.Size(38, 15);
+            this.Mapdisplay.Size = new System.Drawing.Size(68, 18);
             this.Mapdisplay.TabIndex = 4;
             this.Mapdisplay.Text = "label1";
+            this.Mapdisplay.Click += new System.EventHandler(this.Mapdisplay_Click);
             // 
             // txtPlayerStatus
             // 
@@ -96,6 +99,7 @@ namespace Game_development_1B_TASK_1
             this.txtPlayerStatus.Size = new System.Drawing.Size(219, 96);
             this.txtPlayerStatus.TabIndex = 5;
             this.txtPlayerStatus.Text = "";
+            this.txtPlayerStatus.TextChanged += new System.EventHandler(this.txtPlayerStatus_TextChanged);
             // 
             // btnSelectEnemy
             // 
@@ -108,7 +112,7 @@ namespace Game_development_1B_TASK_1
             // 
             // btnAttack
             // 
-            this.btnAttack.Location = new System.Drawing.Point(535, 226);
+            this.btnAttack.Location = new System.Drawing.Point(535, 304);
             this.btnAttack.Name = "btnAttack";
             this.btnAttack.Size = new System.Drawing.Size(219, 23);
             this.btnAttack.TabIndex = 7;
@@ -118,17 +122,26 @@ namespace Game_development_1B_TASK_1
             // 
             // txtAttackStatus
             // 
-            this.txtAttackStatus.Location = new System.Drawing.Point(535, 255);
+            this.txtAttackStatus.Location = new System.Drawing.Point(535, 333);
             this.txtAttackStatus.Name = "txtAttackStatus";
             this.txtAttackStatus.Size = new System.Drawing.Size(219, 96);
             this.txtAttackStatus.TabIndex = 8;
             this.txtAttackStatus.Text = "";
+            // 
+            // enemyStatus
+            // 
+            this.enemyStatus.Location = new System.Drawing.Point(535, 227);
+            this.enemyStatus.Name = "enemyStatus";
+            this.enemyStatus.Size = new System.Drawing.Size(219, 71);
+            this.enemyStatus.TabIndex = 9;
+            this.enemyStatus.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(773, 528);
+            this.Controls.Add(this.enemyStatus);
             this.Controls.Add(this.txtAttackStatus);
             this.Controls.Add(this.btnAttack);
             this.Controls.Add(this.btnSelectEnemy);
@@ -157,6 +170,7 @@ namespace Game_development_1B_TASK_1
         private System.Windows.Forms.ComboBox btnSelectEnemy;
         private System.Windows.Forms.Button btnAttack;
         private System.Windows.Forms.RichTextBox txtAttackStatus;
+        private System.Windows.Forms.RichTextBox enemyStatus;
     }
 }
 

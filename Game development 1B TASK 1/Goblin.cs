@@ -16,11 +16,128 @@ namespace Game_development_1B_TASK_1
 
         public override movement Returnmove(movement move = movement.noMovement)
         {
+            switch (move)
+            {
+                case movement.Up:
+                    foreach (Tile tile in Vision)
+                    {
+                        if (tile.Y == Y + 1)
+                        {
+                            if (tile.tiletype == Tiletype.obstacle)
+                            {
+                                move = movement.noMovement;
+                            }
+                            else
+                            {
+                                move = movement.Up;
+                            }
+                        }
+                    }
+                    break;
+                case movement.Down:
+                    foreach (Tile tile in Vision)
+                    {
+                        if (tile.Y == Y - 1)
+                        {
+                            if (tile.tiletype == Tiletype.obstacle)
+                            {
+                                move = movement.noMovement;
+                            }
+                            else
+                            {
+                                move = movement.Down;
+                            }
+                        }
+                    }
+                    break;
+                case movement.Left:
+                    foreach (Tile tile in Vision)
+                    {
+                        if (tile.X == X - 1)
+                        {
+                            if (tile.tiletype == Tiletype.obstacle)
+                            {
+                                move = movement.noMovement;
+                            }
+                            else
+                            {
+                                move = movement.Left;
+                            }
+                        }
+                    }
+                    break;
+                case movement.Right:
+                    foreach (Tile tile in Vision)
+                    {
+                        if (tile.X == X + 1)
+                        {
+                            if (tile.tiletype == Tiletype.obstacle)
+                            {
+                                move = movement.noMovement;
+                            }
+                            else
+                            {
+                                move = movement.Right;
+                            }
+                        }
+                    }
+                    break;
+            }
+            return move;
+        }
+
+        /*public override movement Returnmove(movement move)
+        {
             bool _move = false;
             int direction;
             Random r = new Random();
-            direction = r.Next(0,4);
-            while (_move == false)
+            direction = r.Next(0, 4);
+            /*switch (move)
+            {
+                case movement.Up:
+                    if (Vision[north].tiletype != Tile.Tiletype.empty)
+                    {
+                        move = movement.noMovement;
+                    }
+                    else
+                    {
+                        move = movement.Up;
+                    }
+                    break;
+                case movement.Down:
+                    if (Vision[south].tiletype != Tiletype.empty)
+                    {
+                        move = movement.noMovement;
+                    }
+                    else
+                    {
+                        move = movement.Down;
+                    }
+                    break;
+                case movement.Left:
+                    if (Vision[west].tiletype != Tiletype.empty)
+                    {
+                        move = movement.noMovement;
+                    }
+                    else
+                    {
+                        move = movement.Left;
+                    }
+                    break;
+                case movement.Right:
+                    if (Vision[east].tiletype != Tiletype.empty)
+                    {
+                        move = movement.noMovement;
+                    }
+                    else
+                    {
+                        move = movement.Right;
+                    }
+                    break;
+            }
+            /*
+            return move;
+            /*while (_move == false)
             {
                 if (Vision[direction] != null)
                 {
