@@ -109,34 +109,84 @@ namespace Game_development_1B_TASK_1
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            gameArea.MovePlayer(Character.movement.Up);
-            gameArea.MoveEnemies();
-            createMap(GameArea);
-            playerStats(gameArea);
+            bool move;
+            move = gameArea.MovePlayer(Character.movement.Up);
+            if (move == true)
+            {
+                gameArea.Game.TheHero.Move(Character.movement.Up);
+                foreach (Item i in gameArea.Game.MapItems)
+                    if (i.X == gameArea.Game.TheHero.X && i.Y == gameArea.Game.TheHero.Y)
+                    {
+                        gameArea.Game.TheHero.Pickup(i);
+                    }
+                gameArea.Game.mapCharacter[gameArea.Game.TheHero.X, gameArea.Game.TheHero.Y] = gameArea.Game.TheHero;
+                gameArea.MoveEnemies();
+                createMap(GameArea);
+                playerStats(gameArea);
+            }
+            gameArea.enemyAttack();
+            gameArea.Game.UpdateVision();
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            gameArea.MovePlayer(Character.movement.Left);
-            gameArea.MoveEnemies();
-            createMap(GameArea);
-            playerStats(gameArea);
+            bool move;
+            move = gameArea.MovePlayer(Character.movement.Left);
+            if (move == true)
+            {
+                gameArea.Game.TheHero.Move(Character.movement.Left);
+                foreach (Item i in gameArea.Game.MapItems)
+                    if (i.X == gameArea.Game.TheHero.X && i.Y == gameArea.Game.TheHero.Y)
+                    {
+                        gameArea.Game.TheHero.Pickup(i);
+                    }
+                gameArea.Game.mapCharacter[gameArea.Game.TheHero.X, gameArea.Game.TheHero.Y] = gameArea.Game.TheHero;
+                gameArea.MoveEnemies();
+                createMap(GameArea);
+                playerStats(gameArea);
+            }
+            gameArea.Game.UpdateVision();
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            gameArea.MovePlayer(Character.movement.Right);
-            gameArea.MoveEnemies();
-            createMap(GameArea);
-            playerStats(gameArea);
+            bool move;
+            move = gameArea.MovePlayer(Character.movement.Right);
+            if (move == true)
+            {
+                gameArea.Game.TheHero.Move(Character.movement.Right);
+                foreach (Item i in gameArea.Game.MapItems)
+                    if (i.X == gameArea.Game.TheHero.X && i.Y == gameArea.Game.TheHero.Y)
+                    {
+                        gameArea.Game.TheHero.Pickup(i);
+                    }
+                gameArea.Game.mapCharacter[gameArea.Game.TheHero.X, gameArea.Game.TheHero.Y] = gameArea.Game.TheHero;
+                gameArea.MoveEnemies();
+                createMap(GameArea);
+                playerStats(gameArea);
+            }
+            gameArea.Game.UpdateVision();
+
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            gameArea.MovePlayer(Character.movement.Down);
-            gameArea.MoveEnemies();
-            createMap(GameArea);
-            playerStats(gameArea);
+            bool move;
+            move = gameArea.MovePlayer(Character.movement.Down);
+            if (move == true)
+            {
+                gameArea.Game.TheHero.Move(Character.movement.Down);
+                foreach (Item i in gameArea.Game.MapItems)
+                    if (i.X == gameArea.Game.TheHero.X && i.Y == gameArea.Game.TheHero.Y)
+                    {
+                        gameArea.Game.TheHero.Pickup(i);
+                    }
+                gameArea.Game.mapCharacter[gameArea.Game.TheHero.X, gameArea.Game.TheHero.Y] = gameArea.Game.TheHero;
+                gameArea.MoveEnemies();
+                createMap(GameArea);
+                playerStats(gameArea);
+            }
+            gameArea.Game.UpdateVision();
         }
 
         private void btnSelectEnemy_SelectedIndexChanged(object sender, EventArgs e)

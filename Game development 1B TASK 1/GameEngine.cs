@@ -32,20 +32,14 @@ namespace Game_development_1B_TASK_1
             bool move = false;
             if (game.TheHero.Returnmove(direction) == direction)
             {
+                move = true;
                 game.mapCharacter[game.TheHero.X, game.TheHero.Y] = new EmptyTile(game.TheHero.X, game.TheHero.Y, Tile.Tiletype.empty, '.');
-                game.TheHero.Move(direction);
-                foreach (Item i in game.MapItems)
-                    if (i.X == game.TheHero.X && i.Y == game.TheHero.Y)
-                    {
-                        game.TheHero.Pickup(i);
-                    }
-                game.mapCharacter[game.TheHero.X, game.TheHero.Y] = game.TheHero;
+                
             }
             else
             {
                 move = false;
             }
-            game.UpdateVision();
             return move;
         }
 
@@ -88,7 +82,7 @@ namespace Game_development_1B_TASK_1
                 }
             }
 
-            if (range)
+            if (range == true)
             {
                 game.TheHero.Attack(game.TheEnemies[index]);
                 return "You have attacked a " + game.TheEnemies[index] + "by hitting it with " + game.TheHero.Damage.ToString() + "damage and" +
@@ -158,7 +152,7 @@ namespace Game_development_1B_TASK_1
             }
         }
 
-        public void enemyAttack(int attackDamage)
+        public void enemyAttack()
         {
             foreach(Enemy en in game.TheEnemies)
             {
@@ -166,19 +160,19 @@ namespace Game_development_1B_TASK_1
                 {
                     if(en.Vision[1].tiletype == Tile.Tiletype.Hero)
                     {
-                        game.TheHero.HP -= attackDamage;
+                        game.TheHero.HP -= 1;
                     }
                     else if(en.Vision[3].tiletype == Tile.Tiletype.Hero)
                     {
-                        game.TheHero.HP -= attackDamage;
+                        game.TheHero.HP -= 1;
                     }
                     else if(en.Vision[4].tiletype == Tile.Tiletype.Hero)
                     {
-                        game.TheHero.HP -= attackDamage;
+                        game.TheHero.HP -= 1;
                     }
                     else if(en.Vision[6].tiletype == Tile.Tiletype.Hero)
                     {
-                        game.TheHero.HP -= attackDamage;
+                        game.TheHero.HP -= 1;
                     }
                 }
                 else
@@ -187,17 +181,17 @@ namespace Game_development_1B_TASK_1
                     {
                         if (tile.tiletype == Tile.Tiletype.Hero)
                         {
-                            game.TheHero.HP -= attackDamage;
+                            game.TheHero.HP -= 10;
                         }
                     }
 
-                    if (en.Vision[0].tiletype == Tile.Tiletype.Enemy)
+                    if (en.Vision[0].tiletype == Tile.Tiletype.Enemy || en.Vision[0].tiletype == Tile.Tiletype.Hero)
                     {
                         foreach (Enemy e in game.TheEnemies)
                         {
                             if (e.X == en.Vision[0].X && e.Y == en.Vision[0].Y)
                             {
-                                e.HP -= attackDamage;
+                                e.HP -= 10;
                             }
                         }
                     }
@@ -207,7 +201,7 @@ namespace Game_development_1B_TASK_1
                         {
                             if (e.X == en.Vision[1].X && e.Y == en.Vision[1].Y)
                             {
-                                e.HP -= attackDamage;
+                                e.HP -= 10;
                             }
                         }
                     }
@@ -217,7 +211,7 @@ namespace Game_development_1B_TASK_1
                         {
                             if (e.X == en.Vision[2].X && e.Y == en.Vision[2].Y)
                             {
-                                e.HP -= attackDamage;
+                                e.HP -= 10;
                             }
                         }
                     }
@@ -228,7 +222,7 @@ namespace Game_development_1B_TASK_1
                         {
                             if (e.X == en.Vision[3].X && e.Y == en.Vision[3].Y)
                             {
-                                e.HP -= attackDamage;
+                                e.HP -= 10;
                             }
                         }
                     }
@@ -239,7 +233,7 @@ namespace Game_development_1B_TASK_1
                         {
                             if (e.X == en.Vision[4].X && e.Y == en.Vision[4].Y)
                             {
-                                e.HP -= attackDamage;
+                                e.HP -= 10;
                             }
                         }
                     }
@@ -250,7 +244,7 @@ namespace Game_development_1B_TASK_1
                         {
                             if (e.X == en.Vision[5].X && e.Y == en.Vision[5].Y)
                             {
-                                e.HP -= attackDamage;
+                                e.HP -= 10;
                             }
                         }
                     }
@@ -261,7 +255,7 @@ namespace Game_development_1B_TASK_1
                         {
                             if (e.X == en.Vision[6].X && e.Y == en.Vision[6].Y)
                             {
-                                e.HP -= attackDamage;
+                                e.HP -= 10;
                             }
                         }
                     }
@@ -270,9 +264,9 @@ namespace Game_development_1B_TASK_1
                     {
                         foreach (Enemy e in game.TheEnemies)
                         {
-                            if (e.X == en.Vision[1].X && e.Y == en.Vision[1].Y)
+                            if (e.X == en.Vision[7].X && e.Y == en.Vision[7].Y)
                             {
-                                e.HP -= attackDamage;
+                                e.HP -= 10;
                             }
                         }
                     }
