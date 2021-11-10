@@ -16,70 +16,49 @@ namespace Game_development_1B_TASK_1
 
         public override movement Returnmove(movement move = movement.noMovement)
         {
+            bool canMove;
+            canMove = enemyMove(move);
             switch (move)
             {
                 case movement.Up:
-                    foreach (Tile tile in Vision)
+                    if (canMove == false)
                     {
-                        if (tile.Y == Y + 1)
-                        {
-                            if (tile.tiletype == Tiletype.obstacle)
-                            {
-                                move = movement.noMovement;
-                            }
-                            else
-                            {
-                                move = movement.Up;
-                            }
-                        }
+                        move = movement.noMovement;
+                    }
+                    else
+                    {
+                        move = movement.Up;
                     }
                     break;
                 case movement.Down:
-                    foreach (Tile tile in Vision)
+                    if (canMove == false)
                     {
-                        if (tile.Y == Y - 1)
-                        {
-                            if (tile.tiletype == Tiletype.obstacle)
-                            {
-                                move = movement.noMovement;
-                            }
-                            else
-                            {
-                                move = movement.Down;
-                            }
-                        }
+                        move = movement.noMovement;
                     }
+                    else
+                    {
+                        move = movement.Down;
+                    }
+
                     break;
                 case movement.Left:
-                    foreach (Tile tile in Vision)
+                    if (canMove == false)
                     {
-                        if (tile.X == X - 1)
-                        {
-                            if (tile.tiletype == Tiletype.obstacle)
-                            {
-                                move = movement.noMovement;
-                            }
-                            else
-                            {
-                                move = movement.Left;
-                            }
-                        }
+                        move = movement.noMovement;
+                    }
+                    else
+                    {
+                        move = movement.Left;
                     }
                     break;
                 case movement.Right:
-                    foreach (Tile tile in Vision)
+                    if (canMove == false)
                     {
-                        if (tile.X == X + 1)
-                        {
-                            if (tile.tiletype == Tiletype.obstacle)
-                            {
-                                move = movement.noMovement;
-                            }
-                            else
-                            {
-                                move = movement.Right;
-                            }
-                        }
+                        move = movement.noMovement;
+                    }
+                    else
+                    {
+                        move = movement.Right;
                     }
                     break;
             }
@@ -158,6 +137,60 @@ namespace Game_development_1B_TASK_1
           {
               Random r = new Random();
               Xposition = r.Next();
-          }*/
-    }
+      
+        
+        }*/
+
+
+        public bool enemyMove(Character.movement movements)
+        {
+            bool playerMove = false;
+            if (movements == Character.movement.Up)
+            {
+                if (Vision[1].tiletype == Tile.Tiletype.obstacle)
+                {
+                    playerMove = false;
+                }
+                else
+                {
+                    playerMove = true;
+                }
+            }
+            else if (movements == Character.movement.Down)
+            {
+                if (Vision[6].tiletype == Tile.Tiletype.obstacle)
+                {
+                    playerMove = false;
+                }
+                else
+                {
+                    playerMove = true;
+                }
+            }
+            else if (movements == Character.movement.Left)
+            {
+                if (Vision[3].tiletype == Tile.Tiletype.obstacle)
+                {
+                    playerMove = false;
+                }
+                else
+                {
+                    playerMove = true;
+                }
+            }
+            else
+            {
+                if (Vision[4].tiletype == Tile.Tiletype.obstacle)
+                {
+                    playerMove = false;
+                }
+                else
+                {
+                    playerMove = true;
+                }
+            }
+            return playerMove;
+        }
+    
+}
 }

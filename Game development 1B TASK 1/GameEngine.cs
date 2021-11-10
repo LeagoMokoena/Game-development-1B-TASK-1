@@ -30,7 +30,6 @@ namespace Game_development_1B_TASK_1
         public bool MovePlayer(Character.movement direction)
         {
             bool move = false;
-            game.UpdateVision();
             if (game.TheHero.Returnmove(direction) == direction)
             {
                 game.mapCharacter[game.TheHero.X, game.TheHero.Y] = new EmptyTile(game.TheHero.X, game.TheHero.Y, Tile.Tiletype.empty, '.');
@@ -41,13 +40,12 @@ namespace Game_development_1B_TASK_1
                         game.TheHero.Pickup(i);
                     }
                 game.mapCharacter[game.TheHero.X, game.TheHero.Y] = game.TheHero;
-                move = true;
             }
             else
             {
                 move = false;
             }
-             
+            game.UpdateVision();
             return move;
         }
 
@@ -104,6 +102,7 @@ namespace Game_development_1B_TASK_1
 
         public void MoveEnemies()
         {
+            bool enemyMovement = false;
             int num;
             for(int i = 0; i < game.TheEnemies.Length; i++)
             {
@@ -112,31 +111,48 @@ namespace Game_development_1B_TASK_1
                 {
                     if (num == 1)
                     {
-                        game.TheEnemies[i].Returnmove(Character.movement.Up);
-                        game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = new EmptyTile(game.TheEnemies[i].X, game.TheEnemies[i].Y, Tile.Tiletype.empty, '.');
-                        game.TheEnemies[i].Move(Character.movement.Up);
+                        enemyMovement = enemyMove(Character.movement.Up,game.TheEnemies[i]);
+                        if (enemyMovement == true)
+                        {
+                            game.TheEnemies[i].Returnmove(Character.movement.Up);
+                            game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = new EmptyTile(game.TheEnemies[i].X, game.TheEnemies[i].Y, Tile.Tiletype.empty, '.');
+                            game.TheEnemies[i].Move(Character.movement.Up);
+
+                        }
                         game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = game.TheEnemies[i];
                     }
                     else if (num == 2)
                     {
-                        game.TheEnemies[i].Returnmove(Character.movement.Down);
-                        game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = new EmptyTile(game.TheEnemies[i].X, game.TheEnemies[i].Y, Tile.Tiletype.empty, '.');
-                        game.TheEnemies[i].Move(Character.movement.Down);
-                        game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = game.TheEnemies[i];
+                        enemyMovement = enemyMove(Character.movement.Down, game.TheEnemies[i]);
+                        if (enemyMovement == true)
+                        {
+                            game.TheEnemies[i].Returnmove(Character.movement.Down);
+                            game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = new EmptyTile(game.TheEnemies[i].X, game.TheEnemies[i].Y, Tile.Tiletype.empty, '.');
+                            game.TheEnemies[i].Move(Character.movement.Down);
+                            game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = game.TheEnemies[i];
+                        }
                     }
                     else if (num == 3)
                     {
-                        game.TheEnemies[i].Returnmove(Character.movement.Left);
-                        game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = new EmptyTile(game.TheEnemies[i].X, game.TheEnemies[i].Y, Tile.Tiletype.empty, '.');
-                        game.TheEnemies[i].Move(Character.movement.Left);
-                        game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = game.TheEnemies[i];
+                        enemyMovement = enemyMove(Character.movement.Left, game.TheEnemies[i]);
+                        if (enemyMovement == true)
+                        {
+                            game.TheEnemies[i].Returnmove(Character.movement.Left);
+                            game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = new EmptyTile(game.TheEnemies[i].X, game.TheEnemies[i].Y, Tile.Tiletype.empty, '.');
+                            game.TheEnemies[i].Move(Character.movement.Left);
+                            game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = game.TheEnemies[i];
+                        }
                     }
                     else
                     {
-                        game.TheEnemies[i].Returnmove(Character.movement.Right);
-                        game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = new EmptyTile(game.TheEnemies[i].X, game.TheEnemies[i].Y, Tile.Tiletype.empty, '.');
-                        game.TheEnemies[i].Move(Character.movement.Right);
-                        game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = game.TheEnemies[i];
+                        enemyMovement = enemyMove(Character.movement.Right, game.TheEnemies[i]);
+                        if (enemyMovement == true)
+                        {
+                            game.TheEnemies[i].Returnmove(Character.movement.Right);
+                            game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = new EmptyTile(game.TheEnemies[i].X, game.TheEnemies[i].Y, Tile.Tiletype.empty, '.');
+                            game.TheEnemies[i].Move(Character.movement.Right);
+                            game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = game.TheEnemies[i];
+                        }
                     }
                 }
             }
@@ -264,5 +280,104 @@ namespace Game_development_1B_TASK_1
             }
         }
 
+        /*public bool checkSurroundings(Character.movement movements, Hero theCharacter)
+        {
+            bool playerMove = false;
+            if (movements == Character.movement.Up)
+            {
+                if(game.mapCharacter[theCharacter.X - 1, theCharacter.Y].tiletype == Tile.Tiletype.obstacle)
+                {
+                    playerMove = false;
+                }
+                else
+                {
+                    playerMove = true;
+                }
+            }
+            else if(movements == Character.movement.Down)
+            {
+                if (game.mapCharacter[theCharacter.X + 1, theCharacter.Y].tiletype == Tile.Tiletype.obstacle)
+                {
+                    playerMove = false;
+                }
+                else
+                {
+                    playerMove = true;
+                }
+            }
+            else if(movements == Character.movement.Left)
+            {
+                if (game.mapCharacter[theCharacter.X, theCharacter.Y - 1].tiletype == Tile.Tiletype.obstacle)
+                {
+                    playerMove = false;
+                }
+                else
+                {
+                    playerMove = true;
+                }
+            }
+            else
+            {
+                if (game.mapCharacter[theCharacter.X, theCharacter.Y + 1].tiletype == Tile.Tiletype.obstacle)
+                {
+                    playerMove = false;
+                }
+                else
+                {
+                    playerMove = true;
+                }
+            }
+            return playerMove;
+        }*/
+
+        public bool enemyMove(Character.movement movements, Enemy theEnemy)
+        {
+            bool enemymove = false;
+            if (movements == Character.movement.Up)
+            {
+                if (game.mapCharacter[theEnemy.X - 1, theEnemy.Y].tiletype == Tile.Tiletype.obstacle)
+                {
+                    enemymove = false;
+                }
+                else
+                {
+                    enemymove = true;
+                }
+            }
+            else if (movements == Character.movement.Down)
+            {
+                if (game.mapCharacter[theEnemy.X + 1, theEnemy.Y].tiletype == Tile.Tiletype.obstacle)
+                {
+                    enemymove = false;
+                }
+                else
+                {
+                    enemymove = true;
+                }
+            }
+            else if (movements == Character.movement.Left)
+            {
+                if (game.mapCharacter[theEnemy.X, theEnemy.Y - 1].tiletype == Tile.Tiletype.obstacle)
+                {
+                    enemymove = false;
+                }
+                else
+                {
+                    enemymove = true;
+                }
+            }
+            else
+            {
+                if (game.mapCharacter[theEnemy.X, theEnemy.Y + 1].tiletype == Tile.Tiletype.obstacle)
+                {
+                    enemymove = false;
+                }
+                else
+                {
+                    enemymove = true;
+                }
+            }
+            return enemymove;
+        }
     }
 }
