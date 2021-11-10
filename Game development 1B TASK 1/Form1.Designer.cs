@@ -39,6 +39,8 @@ namespace Game_development_1B_TASK_1
             this.btnAttack = new System.Windows.Forms.Button();
             this.txtAttackStatus = new System.Windows.Forms.RichTextBox();
             this.enemyStatus = new System.Windows.Forms.RichTextBox();
+            this.btnSaveMap = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUp
@@ -136,11 +138,33 @@ namespace Game_development_1B_TASK_1
             this.enemyStatus.TabIndex = 9;
             this.enemyStatus.Text = "";
             // 
+            // btnSaveMap
+            // 
+            this.btnSaveMap.Location = new System.Drawing.Point(535, 56);
+            this.btnSaveMap.Name = "btnSaveMap";
+            this.btnSaveMap.Size = new System.Drawing.Size(219, 23);
+            this.btnSaveMap.TabIndex = 10;
+            this.btnSaveMap.Text = "Save";
+            this.btnSaveMap.UseVisualStyleBackColor = true;
+            this.btnSaveMap.Click += new System.EventHandler(this.btnSaveMap_Click);
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(535, 27);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(219, 23);
+            this.btnLoad.TabIndex = 11;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(773, 528);
+            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.btnSaveMap);
             this.Controls.Add(this.enemyStatus);
             this.Controls.Add(this.txtAttackStatus);
             this.Controls.Add(this.btnAttack);
@@ -171,6 +195,8 @@ namespace Game_development_1B_TASK_1
         private System.Windows.Forms.Button btnAttack;
         private System.Windows.Forms.RichTextBox txtAttackStatus;
         private System.Windows.Forms.RichTextBox enemyStatus;
+        private System.Windows.Forms.Button btnSaveMap;
+        private System.Windows.Forms.Button btnLoad;
     }
 }
 

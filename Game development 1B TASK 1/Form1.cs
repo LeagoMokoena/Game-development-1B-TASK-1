@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.IO;
 
 
 namespace Game_development_1B_TASK_1
@@ -211,6 +212,23 @@ namespace Game_development_1B_TASK_1
         private void txtPlayerStatus_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSaveMap_Click(object sender, EventArgs e)
+        {
+            using (StreamWriter sp = new StreamWriter("save map"))
+            {
+                sp.WriteLine(gameArea.save(10, 17, 10, 13, gameArea.Game.Enemynum, gameArea.Game.goldnum));
+            }
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            Mapdisplay.Text = "";
+            using (StreamReader sp = new StreamReader("load map"))
+            {
+                Mapdisplay.Text = sp.StreamReader();
+            }
         }
     }
 }
