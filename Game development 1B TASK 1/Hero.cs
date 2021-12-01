@@ -7,7 +7,7 @@ namespace Game_development_1B_TASK_1
 {
     public class Hero : Character
     {
-        public Hero(int _xPosition, int _yParameter, Tiletype symbol,int _hp,int _maxHp,int _damage, char characterSymbol) : base(_xPosition, _yParameter, symbol,characterSymbol)
+        public Hero(int _xPosition, int _yParameter, Tiletype symbol,int _hp,int _maxHp = 5,int _damage = 2, char characterSymbol = 'H') : base(_xPosition, _yParameter, symbol,characterSymbol)
         {
             MaxHp = _maxHp = 2;
             HP=_hp = 50;
