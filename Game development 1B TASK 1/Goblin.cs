@@ -9,6 +9,7 @@ namespace Game_development_1B_TASK_1
     {
         public Goblin(int _xPosition, int _yParameter, Tiletype symbol, char characterSymbol, int enemyDamage, int startHP, int maxHP) : base(_xPosition, _yParameter, symbol, characterSymbol, enemyDamage, startHP, maxHP)
         {
+            Vision = new Tile[4];
             startHP = 10;
             enemyDamage = 1;
             maxHP = 10;
@@ -147,7 +148,7 @@ namespace Game_development_1B_TASK_1
             bool playerMove = false;
             if (movements == Character.movement.Up)
             {
-                if (Vision[1].tiletype == Tile.Tiletype.obstacle)
+                if (Vision[0].tiletype == Tile.Tiletype.obstacle)
                 {
                     playerMove = false;
                 }
@@ -158,7 +159,7 @@ namespace Game_development_1B_TASK_1
             }
             else if (movements == Character.movement.Down)
             {
-                if (Vision[6].tiletype == Tile.Tiletype.obstacle)
+                if (Vision[3].tiletype == Tile.Tiletype.obstacle)
                 {
                     playerMove = false;
                 }
@@ -169,7 +170,7 @@ namespace Game_development_1B_TASK_1
             }
             else if (movements == Character.movement.Left)
             {
-                if (Vision[3].tiletype == Tile.Tiletype.obstacle)
+                if (Vision[1].tiletype == Tile.Tiletype.obstacle)
                 {
                     playerMove = false;
                 }
@@ -180,7 +181,7 @@ namespace Game_development_1B_TASK_1
             }
             else
             {
-                if (Vision[4].tiletype == Tile.Tiletype.obstacle)
+                if (Vision[2].tiletype == Tile.Tiletype.obstacle)
                 {
                     playerMove = false;
                 }

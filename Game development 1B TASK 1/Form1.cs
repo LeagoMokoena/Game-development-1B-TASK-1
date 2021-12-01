@@ -122,10 +122,20 @@ namespace Game_development_1B_TASK_1
                     }
                 gameArea.Game.mapCharacter[gameArea.Game.TheHero.X, gameArea.Game.TheHero.Y] = gameArea.Game.TheHero;
                 gameArea.MoveEnemies();
+                foreach(Enemy ene in gameArea.Game.TheEnemies)
+                {
+                    if(ene.Symbol == 'G')
+                    {
+                        gameArea.goblinAttack(ene);
+                    }
+                    else
+                    {
+                        gameArea.mageAttack(ene);
+                    }
+                }
                 createMap(GameArea);
                 playerStats(gameArea);
             }
-            gameArea.enemyAttack();
             gameArea.Game.UpdateVision();
         }
 
@@ -143,6 +153,17 @@ namespace Game_development_1B_TASK_1
                     }
                 gameArea.Game.mapCharacter[gameArea.Game.TheHero.X, gameArea.Game.TheHero.Y] = gameArea.Game.TheHero;
                 gameArea.MoveEnemies();
+                foreach (Enemy ene in gameArea.Game.TheEnemies)
+                {
+                    if (ene.Symbol == 'G')
+                    {
+                        gameArea.goblinAttack(ene);
+                    }
+                    else
+                    {
+                        gameArea.mageAttack(ene);
+                    }
+                }
                 createMap(GameArea);
                 playerStats(gameArea);
             }
@@ -163,6 +184,17 @@ namespace Game_development_1B_TASK_1
                     }
                 gameArea.Game.mapCharacter[gameArea.Game.TheHero.X, gameArea.Game.TheHero.Y] = gameArea.Game.TheHero;
                 gameArea.MoveEnemies();
+                foreach (Enemy ene in gameArea.Game.TheEnemies)
+                {
+                    if (ene.Symbol == 'G')
+                    {
+                        gameArea.goblinAttack(ene);
+                    }
+                    else
+                    {
+                        gameArea.mageAttack(ene);
+                    }
+                }
                 createMap(GameArea);
                 playerStats(gameArea);
             }
@@ -184,6 +216,17 @@ namespace Game_development_1B_TASK_1
                     }
                 gameArea.Game.mapCharacter[gameArea.Game.TheHero.X, gameArea.Game.TheHero.Y] = gameArea.Game.TheHero;
                 gameArea.MoveEnemies();
+                foreach (Enemy ene in gameArea.Game.TheEnemies)
+                {
+                    if (ene.Symbol == 'G')
+                    {
+                        gameArea.goblinAttack(ene);
+                    }
+                    else
+                    {
+                        gameArea.mageAttack(ene);
+                    }
+                }
                 createMap(GameArea);
                 playerStats(gameArea);
             }
@@ -227,7 +270,7 @@ namespace Game_development_1B_TASK_1
             Mapdisplay.Text = "";
             using (StreamReader sp = new StreamReader("load map"))
             {
-                Mapdisplay.Text = sp.StreamReader();
+                Mapdisplay.Text = gameArea.Load();
             }
         }
     }

@@ -12,7 +12,6 @@ namespace Game_development_1B_TASK_1
 
         protected Enemy(int _xPosition, int _yParameter, Tiletype symbol, char characterSymbol,int enemyDamage,int startHP, int maxHP) : base(_xPosition, _yParameter, symbol, characterSymbol)
         {
-            Vision = new Tile[8];
             enemyDamage = Damage;
             maxHP = MaxHp;
             startHP = HP;

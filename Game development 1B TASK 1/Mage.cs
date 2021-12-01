@@ -10,7 +10,8 @@ namespace Game_development_1B_TASK_1
         {
             startHP = 5;
             maxHP = 5;
-            enemyDamage = 10;
+            enemyDamage = 5;
+            Vision = new Tile[8];
         }
 
         public override void Attack(Character target)
@@ -37,7 +38,7 @@ namespace Game_development_1B_TASK_1
 
         public override movement Returnmove(movement move)
         {
-            return movement.noMovement;
+            return 0;
         }
 
         public override string ToString()

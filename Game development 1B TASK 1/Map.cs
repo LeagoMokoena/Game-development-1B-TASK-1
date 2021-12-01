@@ -93,24 +93,31 @@ namespace Game_development_1B_TASK_1
         {
             foreach(Enemy en in theEnemies)
             {
-                en.Vision[0] = mapCharacter[en.X - 1, en.Y - 1];
-                en.Vision[1] = mapCharacter[en.X - 1, en.Y];
-                en.Vision[2] = mapCharacter[en.X - 1, en.Y + 1];
-                en.Vision[3] = mapCharacter[en.X, en.Y - 1];
-                en.Vision[4] = mapCharacter[en.X, en.Y + 1];
-                en.Vision[5] = mapCharacter[en.X + 1, en.Y - 1];
-                en.Vision[6] = mapCharacter[en.X + 1, en.Y];
-                en.Vision[7] = mapCharacter[en.X + 1, en.Y + 1];
-            }
+                Array.Clear(en.Vision, 0, en.Vision.Length);
 
-            theHero.Vision[0] = mapCharacter[theHero.X - 1, theHero.Y - 1];
-            theHero.Vision[1] = mapCharacter[theHero.X - 1, theHero.Y];
-            theHero.Vision[2] = mapCharacter[theHero.X - 1, theHero.Y + 1];
-            theHero.Vision[3] = mapCharacter[theHero.X, theHero.Y - 1];
-            theHero.Vision[4] = mapCharacter[theHero.X, theHero.Y + 1];
-            theHero.Vision[5] = mapCharacter[theHero.X + 1, theHero.Y - 1];
-            theHero.Vision[6] = mapCharacter[theHero.X + 1, theHero.Y];
-            theHero.Vision[7] = mapCharacter[theHero.X + 1, theHero.Y + 1];
+                if(en.Symbol == 'G')
+                {
+                    en.Vision[0] = mapCharacter[en.X - 1, en.Y];
+                    en.Vision[1] = mapCharacter[en.X, en.Y - 1];
+                    en.Vision[2] = mapCharacter[en.X, en.Y + 1];
+                    en.Vision[3] = mapCharacter[en.X + 1, en.Y];
+                }
+                else
+                {
+                    en.Vision[0] = mapCharacter[en.X - 1, en.Y];
+                    en.Vision[1] = mapCharacter[en.X, en.Y - 1];
+                    en.Vision[2] = mapCharacter[en.X, en.Y + 1];
+                    en.Vision[3] = mapCharacter[en.X + 1, en.Y];
+                    en.Vision[4] = mapCharacter[en.X - 1, en.Y - 1];
+                    en.Vision[5] = mapCharacter[en.X + 1, en.Y - 1];
+                    en.Vision[6] = mapCharacter[en.X + 1, en.Y + 1];
+                    en.Vision[7] = mapCharacter[en.X - 1, en.Y + 1];
+                }
+            }
+            theHero.Vision[0] = mapCharacter[theHero.X - 1, theHero.Y];
+            theHero.Vision[1] = mapCharacter[theHero.X, theHero.Y - 1];
+            theHero.Vision[2] = mapCharacter[theHero.X, theHero.Y + 1];
+            theHero.Vision[3] = mapCharacter[theHero.X + 1, theHero.Y];
         }
 
         private Enemy newEnemy;

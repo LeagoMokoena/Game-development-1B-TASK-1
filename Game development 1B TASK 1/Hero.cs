@@ -13,7 +13,7 @@ namespace Game_development_1B_TASK_1
             HP=_hp = 50;
             Damage= _damage = 2;
             characterSymbol = 'H';
-            Vision = new Tile[8];
+            Vision = new Tile[4];
         }
 
     
@@ -86,7 +86,7 @@ namespace Game_development_1B_TASK_1
             bool playerMove = false;
             if (movements == Character.movement.Up)
             {
-                if (Vision[1].tiletype == Tile.Tiletype.obstacle || Vision[1].tiletype == Tiletype.Enemy)
+                if (Vision[0].tiletype == Tile.Tiletype.obstacle || Vision[0].tiletype == Tiletype.Enemy)
                 {
                     playerMove = false;
                 }
@@ -97,7 +97,7 @@ namespace Game_development_1B_TASK_1
             }
             else if (movements == Character.movement.Down)
             {
-                if (Vision[6].tiletype == Tile.Tiletype.obstacle || Vision[6].tiletype == Tiletype.Enemy)
+                if (Vision[3].tiletype == Tile.Tiletype.obstacle || Vision[3].tiletype == Tiletype.Enemy)
                 {
                     playerMove = false;
                 }
@@ -108,7 +108,7 @@ namespace Game_development_1B_TASK_1
             }
             else if (movements == Character.movement.Left)
             {
-                if (Vision[3].tiletype == Tile.Tiletype.obstacle || Vision[3].tiletype == Tiletype.Enemy)
+                if (Vision[1].tiletype == Tile.Tiletype.obstacle || Vision[1].tiletype == Tiletype.Enemy)
                 {
                     playerMove = false;
                 }
@@ -119,7 +119,7 @@ namespace Game_development_1B_TASK_1
             }
             else
             {
-                if (Vision[4].tiletype == Tile.Tiletype.obstacle || Vision[4].tiletype == Tiletype.Enemy)
+                if (Vision[2].tiletype == Tile.Tiletype.obstacle || Vision[2].tiletype == Tiletype.Enemy)
                 {
                     playerMove = false;
                 }
