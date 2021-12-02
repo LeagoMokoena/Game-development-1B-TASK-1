@@ -66,9 +66,12 @@ namespace Game_development_1B_TASK_1
         /*        public Character(Tiletype Symbol) : this(Symbol,Symbol)
                 {
                 }*/
-        protected Character(int _xPosition, int _yPosition, Tiletype type,char characterSymbol) : base(_xPosition, _yPosition, type,characterSymbol)
+        protected Character(int _xPosition, int _yPosition, Tiletype type,char characterSymbol,int starthp, int Maximimuhp,int daMage) : base(_xPosition, _yPosition, type,characterSymbol)
         {
-            characterSymbol = Symbol;
+            Symbol = characterSymbol;
+            HP = starthp;
+            MaxHp = Maximimuhp;
+            Damage = daMage;
             goldPurse = new List<Item>();
             Vision = new Tile[8];
         }

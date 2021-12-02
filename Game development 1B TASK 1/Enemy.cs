@@ -10,11 +10,11 @@ namespace Game_development_1B_TASK_1
 
         private Random objectNum = new Random();
 
-        protected Enemy(int _xPosition, int _yParameter, Tiletype symbol, char characterSymbol,int enemyDamage,int startHP, int maxHP) : base(_xPosition, _yParameter, symbol, characterSymbol)
+        protected Enemy(int _xPosition, int _yPosition, Tiletype type, char characterSymbol, int starthp, int Maximimuhp, int daMage) : base(_xPosition, _yPosition, type, characterSymbol, starthp, Maximimuhp, daMage)
         {
-            enemyDamage = Damage;
-            maxHP = MaxHp;
-            startHP = HP;
+            Damage = daMage;
+            MaxHp = Maximimuhp;
+            HP = starthp;
         }
 
         public override string ToString()

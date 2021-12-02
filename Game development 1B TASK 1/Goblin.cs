@@ -7,7 +7,7 @@ namespace Game_development_1B_TASK_1
 {
     public class Goblin : Enemy
     {
-        public Goblin(int _xPosition, int _yParameter, Tiletype symbol, char characterSymbol, int enemyDamage = 1, int startHP = 10, int maxHP = 10) : base(_xPosition, _yParameter, symbol, characterSymbol, enemyDamage, startHP, maxHP)
+        public Goblin(int _xPosition, int _yParameter, Tiletype symbol, char characterSymbol = 'G', int enemyDamage = 1, int startHP = 10, int maxHP = 10) : base(_xPosition, _yParameter, symbol, characterSymbol, enemyDamage, startHP, maxHP)
         {
             Vision = new Tile[4];
         }

@@ -84,6 +84,26 @@ namespace Game_development_1B_TASK_1
                 goldnum = j;
                 Create(Tile.Tiletype.Gold);
             }
+            foreach(Enemy en in theEnemies)
+            {
+                if(en.HP <= 0)
+                {
+                    for(int it = 0; it < width; it++)
+                    {
+                        for(int ut = 0; ut < height; ut++)
+                        {
+                            if(mapCharacter[it,ut] == en)
+                            {
+                                checkIfDead(mapCharacter[it, ut]);
+                            }
+                            else
+                            {
+                                mapCharacter[it, ut] = mapCharacter[it, ut];
+                            }
+                        }
+                    }
+                }
+            }
             UpdateVision();
         }
 
@@ -152,7 +172,7 @@ namespace Game_development_1B_TASK_1
                         }
                         else
                         {
-                            theHero = new Hero(xpoint, ypoint, Tile.Tiletype.Hero, 100, 100, 10, 'H');
+                            theHero = new Hero(xpoint, ypoint, Tile.Tiletype.Hero, 'H', 100, 100,10);
                             mapCharacter[xpoint, ypoint] = theHero;
                             found = true;
                         }
@@ -174,7 +194,7 @@ namespace Game_development_1B_TASK_1
                         }
                         else if (enemyDigit == 1)
                         {
-                            theEnemies[Enemynum] = new Goblin(xpoint, ypoint, Tile.Tiletype.Enemy, 'G', 1, 10, 10);
+                            theEnemies[Enemynum] = new Goblin(xpoint, ypoint, Tile.Tiletype.Enemy, 'G', 100, 100, 10);
                             mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
                             found = true;
                         }
@@ -320,6 +340,11 @@ namespace Game_development_1B_TASK_1
             {
                 return null;
             }
+        }
+
+        public void checkIfDead(Tile character)
+        {
+            character = new EmptyTile(character.X, character.Y, Tile.Tiletype.empty, '.');
         }
     }
 }

@@ -7,16 +7,14 @@ namespace Game_development_1B_TASK_1
 {
     public class Hero : Character
     {
-        public Hero(int _xPosition, int _yParameter, Tiletype symbol,int _hp,int _maxHp = 5,int _damage = 2, char characterSymbol = 'H') : base(_xPosition, _yParameter, symbol,characterSymbol)
+        public Hero(int _xPosition, int _yPosition, Tiletype type, char characterSymbol, int starthp, int Maximimuhp, int daMage) : base(_xPosition, _yPosition, type, characterSymbol, starthp, Maximimuhp, daMage)
         {
-            MaxHp = _maxHp = 2;
-            HP=_hp = 50;
-            Damage= _damage = 2;
+            MaxHp = 2;
+            HP = 50;
+            Damage = 2;
             characterSymbol = 'H';
             Vision = new Tile[4];
         }
-
-    
 
         public override movement Returnmove(movement move = movement.noMovement)
         {
