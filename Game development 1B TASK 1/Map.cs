@@ -84,26 +84,6 @@ namespace Game_development_1B_TASK_1
                 goldnum = j;
                 Create(Tile.Tiletype.Gold);
             }
-            foreach(Enemy en in theEnemies)
-            {
-                if(en.HP <= 0)
-                {
-                    for(int it = 0; it < width; it++)
-                    {
-                        for(int ut = 0; ut < height; ut++)
-                        {
-                            if(mapCharacter[it,ut] == en)
-                            {
-                                checkIfDead(mapCharacter[it, ut]);
-                            }
-                            else
-                            {
-                                mapCharacter[it, ut] = mapCharacter[it, ut];
-                            }
-                        }
-                    }
-                }
-            }
             UpdateVision();
         }
 
@@ -172,7 +152,7 @@ namespace Game_development_1B_TASK_1
                         }
                         else
                         {
-                            theHero = new Hero(xpoint, ypoint, Tile.Tiletype.Hero, 'H', 100, 100,10);
+                            theHero = new Hero(xpoint, ypoint, Tile.Tiletype.Hero, 'H', 50, 2,10);
                             mapCharacter[xpoint, ypoint] = theHero;
                             found = true;
                         }
@@ -194,13 +174,15 @@ namespace Game_development_1B_TASK_1
                         }
                         else if (enemyDigit == 1)
                         {
-                            theEnemies[Enemynum] = new Goblin(xpoint, ypoint, Tile.Tiletype.Enemy, 'G', 100, 100, 10);
+                            Goblin newGoblin = new Goblin(xpoint, ypoint, Tile.Tiletype.Enemy, 'G', 100, 100, 10);
+                            theEnemies[Enemynum] = newGoblin;
                             mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
                             found = true;
                         }
                         else
                         {
-                            theEnemies[Enemynum] = new Mage(xpoint, ypoint, Tile.Tiletype.Enemy, 'M', 10, 5, 5);
+                            Mage newMage = new Mage(xpoint, ypoint, Tile.Tiletype.Enemy, 'M', 10, 5, 5);
+                            theEnemies[Enemynum] = newMage;
                             mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
                             found = true;
                         }
@@ -344,7 +326,13 @@ namespace Game_development_1B_TASK_1
 
         public void checkIfDead(Tile character)
         {
-            character = new EmptyTile(character.X, character.Y, Tile.Tiletype.empty, '.');
+            foreach(Tile ch in mapCharacter)
+            {
+                if(ch == character)
+                {
+                    mapCharacter[character.X,character.Y] = new EmptyTile(character.X, character.Y, Tile.Tiletype.empty, '.');
+                }
+            }
         }
     }
 }

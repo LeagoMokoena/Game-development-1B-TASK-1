@@ -167,7 +167,7 @@ namespace Game_development_1B_TASK_1
             {
                 if (goblin.Vision[i] == game.TheHero)
                 {
-                    game.TheHero.HP -= 1;
+                    game.TheHero.HP = game.TheHero.HP - goblin.Damage;
                 }
             }
                 
@@ -181,7 +181,7 @@ namespace Game_development_1B_TASK_1
                 {
                     if(mage.Vision[nu] == e)
                     {
-                        e.HP -= 5;
+                        e.HP = e.HP - mage.Damage;
                     }
                 }
             }

@@ -29,14 +29,6 @@ namespace Game_development_1B_TASK_1
         {
             int goldNumber = r.Next(0, 5);
             gameArea = new GameEngine(10, 17, 10, 13, 5, goldNumber);
-
-            foreach (Enemy g in gameArea.Game.TheEnemies)
-            {
-                btnSelectEnemy.Items.Add(g.ToString());
-            }
-
-            btnSelectEnemy.SelectedIndex = 0;
-            enemyStatus.Text = gameArea.Game.TheEnemies[btnSelectEnemy.SelectedIndex].ToString();
             this.Show();
             gameArea = new GameEngine(10, 17, 10, 13, 5,goldNumber);
             createMap(gameArea);
@@ -59,53 +51,37 @@ namespace Game_development_1B_TASK_1
         private void selectEnemy(GameEngine game)
         {
             btnAttack.Enabled = false;
-            for (int i = 0; i < game.Game.Enemynum; i++)
+            foreach (Enemy en in game.Game.TheEnemies)
             {
-                btnSelectEnemy.Items.Add(game.Game.TheEnemies[i].ToString() + "\n");
-            }
-        }
-
-        private bool attack(string selected)
-        {
-            int up = gameArea.Game.TheHero.X - 1;
-            int down = gameArea.Game.TheHero.X + 1;
-            int left = gameArea.Game.TheHero.Y - 1;
-            int right = gameArea.Game.TheHero.Y + 1;
-            bool dead = false;
-            foreach (Enemy e in gameArea.Game.TheEnemies)
-            {
-                if (selected == e.ToString())
+                if (en.HP <= 0)
                 {
-                    if ((e.X == up || e.X == down || e.Y == left || e.Y == right) || (e.X == up && e.Y == left || e.X == up && e.Y == right || e.X == down && e.Y == left || e.X == down && e.Y == right))
+                    for (int it = 0; it < game.Game.Width; it++)
                     {
-                        e.HP -= gameArea.Game.TheHero.Damage;
-                        if (e.HP <= 0)
+                        for (int ut = 0; ut < game.Game.Height; ut++)
                         {
-                            txtAttackStatus.Text += "----------------------------------------------------------------------------\n";
-                            txtAttackStatus.Text += "You have killed a goblin at [" + e.X + "," + e.Y + "]";
-                            txtAttackStatus.Text += "----------------------------------------------------------------------------\n";
-                            dead = true;
+                            if (game.Game.mapCharacter[it, ut] == en)
+                            {
+                                game.Game.checkIfDead(game.Game.mapCharacter[it, ut]);
+                            }
+                            else
+                            {
+                                game.Game.mapCharacter[it, ut] = game.Game.mapCharacter[it, ut];
+                            }
                         }
-                        else
-                        {
-                            txtAttackStatus.Text += "----------------------------------------------------------------------------\n";
-                            txtAttackStatus.Text += "You have attacked  the goblin at [" + e.X + "," + e.Y + "]" + " The goblin takes " + gameArea.Game.TheHero.Damage + " damage and is now at " + e.HP + " HP\n";
-                            txtAttackStatus.Text += "----------------------------------------------------------------------------\n";
-                            
-                        }
-                    }
-                    else
-                    {
-                        txtAttackStatus.Text += "----------------------------------------------------------------------------\n";
-                        txtAttackStatus.Text += "The goblin you are trying to attack is to far away";
-                        txtAttackStatus.Text += "----------------------------------------------------------------------------\n";
                     }
                 }
             }
-
-            return dead;
-
-
+            for (int i = 0; i < game.Game.Enemynum; i++)
+            {
+                if (game.Game.TheEnemies[i].Symbol == 'G')
+                {
+                    btnSelectEnemy.Items.Add("Goblin " + game.Game.TheEnemies[i].ToString() + "\n");
+                }
+                else
+                {
+                    btnSelectEnemy.Items.Add("Mage " + game.Game.TheEnemies[i].ToString() + "\n");
+                }
+            }
         }
 
         private void btnUp_Click(object sender, EventArgs e)
@@ -133,6 +109,7 @@ namespace Game_development_1B_TASK_1
                         gameArea.mageAttack(ene);
                     }
                 }
+                selectEnemy(gameArea);
                 createMap(GameArea);
                 playerStats(gameArea);
             }
@@ -164,6 +141,7 @@ namespace Game_development_1B_TASK_1
                         gameArea.mageAttack(ene);
                     }
                 }
+                selectEnemy(gameArea);
                 createMap(GameArea);
                 playerStats(gameArea);
             }
@@ -195,6 +173,7 @@ namespace Game_development_1B_TASK_1
                         gameArea.mageAttack(ene);
                     }
                 }
+                selectEnemy(gameArea);
                 createMap(GameArea);
                 playerStats(gameArea);
             }
@@ -227,6 +206,7 @@ namespace Game_development_1B_TASK_1
                         gameArea.mageAttack(ene);
                     }
                 }
+                selectEnemy(gameArea);
                 createMap(GameArea);
                 playerStats(gameArea);
             }
@@ -239,12 +219,15 @@ namespace Game_development_1B_TASK_1
             int selected = btnSelectEnemy.SelectedIndex;
             Selected = this.Text = btnSelectEnemy.Items[selected].ToString();
             btnAttack.Enabled = true;
+
         }
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
                 txtAttackStatus.Text += gameArea.heroAttack(btnSelectEnemy.SelectedIndex) + "\n \n";
                 enemyStatus.Text = gameArea.Game.TheEnemies[btnSelectEnemy.SelectedIndex].ToString();
+            selectEnemy(gameArea);
+            createMap(gameArea);
         }
 
         private void Mapdisplay_Click(object sender, EventArgs e)

@@ -6,7 +6,7 @@ namespace Game_development_1B_TASK_1
 {
     class Mage : Enemy
     {
-        public Mage(int _xPosition, int _yParameter, Tiletype symbol, char characterSymbol = 'M', int enemyDamage = 5, int startHP = 10, int maxHP = 10) : base(_xPosition, _yParameter, symbol, characterSymbol, enemyDamage, startHP, maxHP)
+        public Mage(int _xPosition, int _yParameter, Tiletype symbol, char characterSymbol, int enemyDamage, int startHP, int maxHP) : base(_xPosition, _yParameter, symbol, characterSymbol, enemyDamage, startHP, maxHP)
         {
             Vision = new Tile[8];
         }
