@@ -77,7 +77,7 @@ namespace Game_development_1B_TASK_1
 
         public bool checkSurroundings(Character.movement movements)
         {
-            bool playerMove = false;
+            bool playerMove;
             if (movements == Character.movement.Up)
             {
                 if (Vision[0].tiletype == Tile.Tiletype.obstacle || Vision[0].tiletype == Tiletype.Enemy)
