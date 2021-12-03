@@ -26,6 +26,16 @@ namespace Game_development_1B_TASK_1
         }
 
 
+        private Shop store;
+
+        public Shop Store
+        {
+            get { return store; }
+            set { store = value; }
+        }
+
+
+
         Random ramdomMove = new Random();
 
         public GameEngine(int minwidth, int maxwidth,int minheight,int maxheight,int enemynumber,int goldAmount)
