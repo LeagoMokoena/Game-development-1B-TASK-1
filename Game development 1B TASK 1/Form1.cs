@@ -27,10 +27,11 @@ namespace Game_development_1B_TASK_1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            int goldNumber = r.Next(0, 5);
-            gameArea = new GameEngine(10, 17, 10, 13, 5, goldNumber);
+            int goldNumber = r.Next(1, 5);
+            int weaponNumber = r.Next(4, 10);
+            gameArea = new GameEngine(10, 17, 10, 13, 5, goldNumber,weaponNumber);
             this.Show();
-            gameArea = new GameEngine(10, 17, 10, 13, 5,goldNumber);
+            gameArea = new GameEngine(10, 17, 10, 13, 5,goldNumber,weaponNumber);
             createMap(gameArea);
             playerStats(gameArea);
             selectEnemy(gameArea);
@@ -77,9 +78,13 @@ namespace Game_development_1B_TASK_1
                 {
                     btnSelectEnemy.Items.Add("Goblin " + game.Game.TheEnemies[i].ToString() + "\n");
                 }
-                else
+                else if(game.Game.TheEnemies[i].Symbol == 'M')
                 {
                     btnSelectEnemy.Items.Add("Mage " + game.Game.TheEnemies[i].ToString() + "\n");
+                }
+                else
+                {
+                    btnSelectEnemy.Items.Add("Leader " + game.Game.TheEnemies[i].ToString() + "\n");
                 }
             }
         }
@@ -244,7 +249,7 @@ namespace Game_development_1B_TASK_1
         {
             using (StreamWriter sp = new StreamWriter("save map"))
             {
-                sp.WriteLine(gameArea.save(10, 17, 10, 13, gameArea.Game.Enemynum, gameArea.Game.goldnum));
+                sp.WriteLine(gameArea.save(10, 17, 10, 13, gameArea.Game.Enemynum, gameArea.Game.Goldnum,gameArea.Game.Weaponnum));
             }
         }
 

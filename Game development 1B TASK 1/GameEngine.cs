@@ -9,6 +9,9 @@ namespace Game_development_1B_TASK_1
 {
     public class GameEngine
     {
+        private Shop store;
+
+        
         private Map game;
 
         public Map Game
@@ -25,22 +28,11 @@ namespace Game_development_1B_TASK_1
             set { gameMap = value; }
         }
 
-
-        private Shop store;
-
-        public Shop Store
-        {
-            get { return store; }
-            set { store = value; }
-        }
-
-
-
         Random ramdomMove = new Random();
 
-        public GameEngine(int minwidth, int maxwidth,int minheight,int maxheight,int enemynumber,int goldAmount)
+        public GameEngine(int minwidth, int maxwidth,int minheight,int maxheight,int enemynumber,int goldAmount,int weaponAmount)
         {
-            game = new Map(minwidth,maxwidth,minheight,maxheight,enemynumber,goldAmount);
+            game = new Map(minwidth, maxwidth, minheight, maxheight, enemynumber, goldAmount, weaponAmount);
 
         }
 
@@ -254,9 +246,9 @@ namespace Game_development_1B_TASK_1
             return enemymove;
         }
 
-        public string save(int minwidth, int maxwidth, int minheight, int maxheight, int enemynumber, int goldAmount)
+        public string save(int minwidth, int maxwidth, int minheight, int maxheight, int enemynumber, int goldAmount,int weaponAmount)
         {
-            gameMap = new Map(minwidth, maxwidth, minheight, maxheight, enemynumber, goldAmount);
+            gameMap = new Map(minwidth, maxwidth, minheight, maxheight, enemynumber, goldAmount,weaponAmount);
             return Convert.ToString(gameMap);
         }
 

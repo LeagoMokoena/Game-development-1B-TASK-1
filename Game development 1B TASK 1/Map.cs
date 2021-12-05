@@ -17,9 +17,13 @@ namespace Game_development_1B_TASK_1
             set { mapItems = value; }
         }
 
-        public int goldnum;
+        public int Weaponnum;
+
+        public int Goldnum;
 
         public int enemyDigit;
+
+        public int weaponDigit;
 
         private Hero theHero;
 
@@ -62,27 +66,33 @@ namespace Game_development_1B_TASK_1
             set { newItem = value; }
         }
 
-        public Map(int minWidth, int maxWidth, int minHeight, int maxHeight, int enemyNum, int goldDrops)
+        public Map(int minWidth, int maxWidth, int minHeight, int maxHeight, int enemyNum, int goldDrops, int weaponDrops)
         {
             newItem = new Random();
             width = newItem.Next(minWidth, maxWidth);
             height = newItem.Next(minHeight, maxHeight);
             mapCharacter = new Tile[width, height];
             theEnemies = new Enemy[enemyNum];
-            mapItems = new Item[goldDrops];
+            mapItems = new Item[goldDrops + weaponDrops];
             createEmptyTile();
             creatObstacle();
             Create(Tile.Tiletype.Hero);
             for (int i = 0; i < enemyNum; i++)
             {
-                enemyDigit = newItem.Next(0, 2);
+                enemyDigit = newItem.Next(0, 3);
                 Enemynum = i;
                 Create(Tile.Tiletype.Enemy);
             }
             for (int j = 0; j < goldDrops; j++)
             {
-                goldnum = j;
+                Goldnum = j;
                 Create(Tile.Tiletype.Gold);
+            }
+            for(int k = 0; k < weaponDrops; k++)
+            {
+                Weaponnum = k;
+                weaponDigit = newItem.Next(0, 4);
+                Create(Tile.Tiletype.Weapon);
             }
             UpdateVision();
         }
@@ -102,7 +112,7 @@ namespace Game_development_1B_TASK_1
                     en.Vision[2] = mapCharacter[en.X, en.Y + 1];
                     en.Vision[3] = mapCharacter[en.X + 1, en.Y];
                 }
-                else
+                else if(en.Symbol == 'M')
                 {
                     en.Vision[0] = mapCharacter[en.X - 1, en.Y];
                     en.Vision[1] = mapCharacter[en.X, en.Y - 1];
@@ -112,6 +122,13 @@ namespace Game_development_1B_TASK_1
                     en.Vision[5] = mapCharacter[en.X + 1, en.Y - 1];
                     en.Vision[6] = mapCharacter[en.X + 1, en.Y + 1];
                     en.Vision[7] = mapCharacter[en.X - 1, en.Y + 1];
+                }
+                else
+                {
+                    en.Vision[0] = mapCharacter[en.X - 1, en.Y];
+                    en.Vision[1] = mapCharacter[en.X, en.Y - 1];
+                    en.Vision[2] = mapCharacter[en.X, en.Y + 1];
+                    en.Vision[3] = mapCharacter[en.X + 1, en.Y];
                 }
             }
             theHero.Vision[0] = mapCharacter[theHero.X - 1, theHero.Y];
@@ -179,10 +196,17 @@ namespace Game_development_1B_TASK_1
                             mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
                             found = true;
                         }
+                        else if(enemyDigit == 2)
+                        {
+                            Mage newMage = new Mage(xpoint, ypoint, Tile.Tiletype.Enemy, 'M', 5, 5, 5);
+                            theEnemies[Enemynum] = newMage;
+                            mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
+                            found = true;
+                        }
                         else
                         {
-                            Mage newMage = new Mage(xpoint, ypoint, Tile.Tiletype.Enemy, 'M', 10, 5, 5);
-                            theEnemies[Enemynum] = newMage;
+                            Leader newLeader = new Leader(xpoint, ypoint, Tile.Tiletype.Enemy, 'L', 20, 20, 2);
+                            theEnemies[Enemynum] = newLeader;
                             mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
                             found = true;
                         }
@@ -198,8 +222,42 @@ namespace Game_development_1B_TASK_1
                         }
                         else
                         {
-                            mapItems[goldnum] = new Gold(xpoint, ypoint, Tile.Tiletype.Gold, 'A');
-                            mapCharacter[xpoint, ypoint] = mapItems[goldnum];
+                            mapItems[Goldnum] = new Gold(xpoint, ypoint, Tile.Tiletype.Gold, 'A');
+                            mapCharacter[xpoint, ypoint] = mapItems[Goldnum];
+                            found = true;
+                        }
+                    }
+                    break;
+                case Tile.Tiletype.Weapon:
+                    while (found == false)
+                    {
+                        if (mapCharacter[xpoint, ypoint].tiletype != Tile.Tiletype.empty)
+                        {
+                            xpoint = newItem.Next(0, width);
+                            ypoint = newItem.Next(0, height);
+                        }
+                        else if(weaponDigit == 1)
+                        {
+                            mapItems[Weaponnum] = new MeleeWeapon(xpoint, ypoint, Tile.Tiletype.Weapon, 'D',MeleeWeapon.Types.Dagger);
+                            mapCharacter[xpoint, ypoint] = mapItems[Weaponnum];
+                            found = true;
+                        }
+                        else if(weaponDigit == 2)
+                        {
+                            mapItems[Weaponnum] = new MeleeWeapon(xpoint, ypoint, Tile.Tiletype.Weapon, 'S', MeleeWeapon.Types.Longsword);
+                            mapCharacter[xpoint, ypoint] = mapItems[Weaponnum];
+                            found = true;
+                        }
+                        else if(weaponDigit == 3)
+                        {
+                            mapItems[Weaponnum] = new RangedWeapons(xpoint, ypoint, Tile.Tiletype.Weapon, 'R', RangedWeapons.Types.Rifle);
+                            mapCharacter[xpoint, ypoint] = mapItems[Weaponnum];
+                            found = true;
+                        }
+                        else
+                        {
+                            mapItems[Weaponnum] = new RangedWeapons(xpoint, ypoint, Tile.Tiletype.Weapon, 'B', RangedWeapons.Types.Longbow);
+                            mapCharacter[xpoint, ypoint] = mapItems[Weaponnum];
                             found = true;
                         }
                     }
