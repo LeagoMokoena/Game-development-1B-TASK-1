@@ -49,5 +49,10 @@ namespace Game_development_1B_TASK_1
             Damage = 4;
             Cost = 6;
         }
+
+        public override string ToString()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

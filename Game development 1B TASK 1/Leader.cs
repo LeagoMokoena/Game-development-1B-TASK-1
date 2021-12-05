@@ -28,15 +28,15 @@ namespace Game_development_1B_TASK_1
         {
             bool _move = false;
             int Num;
-            if(X == Hero.X - 1 && Y == Hero.Y)
+            if(X > Hero.X && Y == Hero.Y)
             {
                 move = movement.Up;
             }
-            else if(X == Hero.X && Hero.Y < Y)
+            else if(X == Hero.X && Y > Hero.Y)
             {
                 move = movement.Left;
             }
-            else if(X == Hero.X && Hero.Y > Y)
+            else if(X == Hero.X && Y < Hero.Y)
             {
                 move = movement.Right;
             }

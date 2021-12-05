@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Game_development_1B_TASK_1
 {
-    abstract class Weapon : Item
+    public abstract class Weapon : Item
     {
         private int damage;
 
@@ -15,10 +15,7 @@ namespace Game_development_1B_TASK_1
         }
 
 
-        public override string ToString()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract override string ToString();
 
         private int durability;
 

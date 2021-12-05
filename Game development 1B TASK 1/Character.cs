@@ -163,13 +163,9 @@ namespace Game_development_1B_TASK_1
                 {
                     Equip(new RangedWeapons(i.X, i.Y, Tiletype.Weapon, 'R', RangedWeapons.Types.Rifle));
                 }
-                else if(i.Symbol == 'B')
-                {
-                    Equip(new RangedWeapons(i.X, i.Y, Tiletype.Weapon, 'B', RangedWeapons.Types.Longbow));
-                }
                 else
                 {
-                    Equip(null);
+                    Equip(new RangedWeapons(i.X, i.Y, Tiletype.Weapon, 'B', RangedWeapons.Types.Longbow));
                 }
             }
         }

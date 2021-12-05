@@ -116,6 +116,7 @@ namespace Game_development_1B_TASK_1
         {
             bool enemyMovement = false;
             int num;
+            Character.movement mve;
             for(int i = 0; i < game.TheEnemies.Length; i++)
             {
                 num = ramdomMove.Next(1, 4);
@@ -167,15 +168,12 @@ namespace Game_development_1B_TASK_1
                         }
                     }
                 }
-                else if(game.TheEnemies[i].Symbol == 'L')
-                {
-                    game.mapCharacter[game.TheHero.X, game.TheHero.Y] = new EmptyTile(game.TheHero.X, game.TheHero.Y, Tile.Tiletype.empty, '.');
-                    game.TheEnemies[i].Move(game.TheEnemies[i].Returnmove(Character.movement.noMovement));
-                    game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = game.TheEnemies[i];
-                }
                 else
                 {
-                    game.TheEnemies[i].Returnmove(Character.movement.noMovement);
+                    mve = game.TheEnemies[i].Returnmove(Character.movement.noMovement);
+                    game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = new EmptyTile(game.TheEnemies[i].X, game.TheEnemies[i].Y, Tile.Tiletype.empty, '.');
+                    game.TheEnemies[i].Move(mve);
+                    game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = game.TheEnemies[i];
                 }
             }
         }
