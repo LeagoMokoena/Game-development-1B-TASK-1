@@ -6,16 +6,17 @@ namespace Game_development_1B_TASK_1
 {
     class Leader : Enemy
     {
-        private Tile hero
+        private Tile Hero
         {
-            get { return hero; }
-            set { hero = value; }
+            get { return Hero; }
+            set { Hero = value; }
         }
 
-        public Leader(int _xPosition, int _yPosition, Tiletype type, char characterSymbol, int starthp = 20, int Maximimuhp = 20, int daMage = 2) : base(_xPosition, _yPosition, type, characterSymbol, starthp, Maximimuhp, daMage)
+        public Leader(int _xPosition, int _yPosition, Tiletype type, char characterSymbol, Tile HERO,int starthp = 20, int Maximimuhp = 20, int daMage = 2) : base(_xPosition, _yPosition, type, characterSymbol, starthp, Maximimuhp, daMage)
         {
             HP = starthp;
             Damage = daMage;
+            Hero = HERO;
         }
 
 
@@ -23,15 +24,15 @@ namespace Game_development_1B_TASK_1
         {
             bool _move = false;
             int Num;
-            if(X == hero.X - 1 && Y == hero.Y)
+            if(X == Hero.X - 1 && Y == Hero.Y)
             {
                 move = movement.Up;
             }
-            else if(X == hero.X && hero.Y < Y)
+            else if(X == Hero.X && Hero.Y < Y)
             {
                 move = movement.Left;
             }
-            else if(X == hero.X && hero.Y > Y)
+            else if(X == Hero.X && Hero.Y > Y)
             {
                 move = movement.Right;
             }

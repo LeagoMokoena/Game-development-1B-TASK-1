@@ -205,7 +205,7 @@ namespace Game_development_1B_TASK_1
                         }
                         else
                         {
-                            Leader newLeader = new Leader(xpoint, ypoint, Tile.Tiletype.Enemy, 'L', 20, 20, 2);
+                            Leader newLeader = new Leader(xpoint, ypoint, Tile.Tiletype.Enemy, 'L', theHero, 20, 20,2);
                             theEnemies[Enemynum] = newLeader;
                             mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
                             found = true;
