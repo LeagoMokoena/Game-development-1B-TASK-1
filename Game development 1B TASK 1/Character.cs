@@ -31,6 +31,15 @@ namespace Game_development_1B_TASK_1
             set { damage = value; }
         }
 
+        protected private Weapon equipWeapon;
+
+        public Weapon EquipWeapon
+        {
+            get { return equipWeapon; }
+            set { equipWeapon = value; }
+        }
+
+
         private Tile [] vision;
 
         public Tile [] Vision
@@ -75,7 +84,6 @@ namespace Game_development_1B_TASK_1
             Damage = daMage;
             goldPurse = new List<Item>();
             Vision = new Tile[8];
- 
         }
 
         public virtual void Attack(Character target)
@@ -136,10 +144,39 @@ namespace Game_development_1B_TASK_1
 
         public void Pickup(Item i)
         {
-            if(i.Symbol == 'A')
+            if(i.tiletype == Tiletype.Gold)
             {
                 goldPurse.Add(i);
             }
+
+            if(i.tiletype == Tiletype.Weapon)
+            {
+                if(i.Symbol == 'D')
+                {
+                    Equip(new MeleeWeapon(i.X, i.Y, Tiletype.Weapon, 'D', MeleeWeapon.Types.Dagger));
+                }
+                else if(i.Symbol == 'S')
+                {
+                    Equip(new MeleeWeapon(i.X, i.Y, Tiletype.Weapon, 'S', MeleeWeapon.Types.Longsword));
+                }
+                else if(i.Symbol == 'R')
+                {
+                    Equip(new RangedWeapons(i.X, i.Y, Tiletype.Weapon, 'R', RangedWeapons.Types.Rifle));
+                }
+                else if(i.Symbol == 'B')
+                {
+                    Equip(new RangedWeapons(i.X, i.Y, Tiletype.Weapon, 'B', RangedWeapons.Types.Longbow));
+                }
+                else
+                {
+                    Equip(null);
+                }
+            }
+        }
+
+        private void Equip(Weapon w)
+        {
+            equipWeapon = w;
         }
 
         public abstract movement Returnmove(movement move);

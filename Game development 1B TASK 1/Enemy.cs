@@ -20,7 +20,7 @@ namespace Game_development_1B_TASK_1
         public override string ToString()
         {
             string EnemyInfo;
-            EnemyInfo = "at" + "[" + X.ToString() + "," + Y.ToString() + "] \n" + HP.ToString() + " HP \n" +"{" + Damage.ToString() + "}";
+            EnemyInfo = HP+"/"+MaxHp+"HP) at" + "[" + X.ToString() + "," + Y.ToString() + "]";
             return EnemyInfo;
    
 

@@ -6,17 +6,21 @@ namespace Game_development_1B_TASK_1
 {
     class Leader : Enemy
     {
-        private Tile Hero
+        private Tile hero;
+
+        public Tile Hero
         {
-            get { return Hero; }
-            set { Hero = value; }
+            get { return hero; }
+            set { hero = value; }
         }
+
 
         public Leader(int _xPosition, int _yPosition, Tiletype type, char characterSymbol, Tile HERO,int starthp = 20, int Maximimuhp = 20, int daMage = 2) : base(_xPosition, _yPosition, type, characterSymbol, starthp, Maximimuhp, daMage)
         {
             HP = starthp;
             Damage = daMage;
             Hero = HERO;
+            equipWeapon = new MeleeWeapon(1, 1, Tile.Tiletype.Weapon, 'S', MeleeWeapon.Types.Longsword);
         }
 
 

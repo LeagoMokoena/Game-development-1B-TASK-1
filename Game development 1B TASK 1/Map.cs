@@ -88,11 +88,12 @@ namespace Game_development_1B_TASK_1
                 Goldnum = j;
                 Create(Tile.Tiletype.Gold);
             }
+            Weaponnum = goldDrops;
             for(int k = 0; k < weaponDrops; k++)
             {
-                Weaponnum = k;
                 weaponDigit = newItem.Next(0, 4);
                 Create(Tile.Tiletype.Weapon);
+                Weaponnum++;
             }
             UpdateVision();
         }
@@ -169,7 +170,7 @@ namespace Game_development_1B_TASK_1
                         }
                         else
                         {
-                            theHero = new Hero(xpoint, ypoint, Tile.Tiletype.Hero, 'H', 50, 2,10);
+                            theHero = new Hero(xpoint, ypoint, Tile.Tiletype.Hero, 'H', 100, 100,10);
                             mapCharacter[xpoint, ypoint] = theHero;
                             found = true;
                         }

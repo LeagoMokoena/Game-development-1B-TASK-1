@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Game_development_1B_TASK_1
 {
-    class Shop
+    public class Shop
     {
         private Weapon [] defences;
 

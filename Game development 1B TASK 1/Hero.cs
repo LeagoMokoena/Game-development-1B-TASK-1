@@ -66,15 +66,27 @@ namespace Game_development_1B_TASK_1
         public override string ToString()
         {
             string playerInfo;
-            playerInfo = "Player Stats:\n" +
-                "HP:" + HP / MaxHp + "\n"+
-                "Current Weapon:" + "\n"+
-                "Weapon Range" + "\n"+
-                "Weapon Damage" + "\n"+
-                "Damage:" + Damage +"\n"+
-                "[" + X + "," + Y + "]\n"+
-                "Durability"+"\n" +
+            if (equipWeapon == null)
+            { 
+                playerInfo = "Player Stats:\n" +
+                "HP:" + HP +"/"+ MaxHp + "\n" +
+                "Current Weapon: Bare Hands" + "\n" +
+                "Weapon Range: 1" + "\n" +
+                "Weapon Damage: 2" + "\n" +
+                "[" + X + "," + Y + "]\n" +
                 " Amount of gold: " + GoldPurse.Count + "\n";
+            }
+            else
+            {
+                playerInfo = "Player Stats:\n" +
+                "HP:" + HP +"/"+ MaxHp + "\n" +
+                "Current Weapon: " + equipWeapon + "\n" +
+                "Weapon Range: " + equipWeapon.Range() +"\n" +
+                "Weapon Damage: " + equipWeapon.Damage +"\n" +
+                "[" + X + "," + Y + "]\n" +
+                "Durability: " + equipWeapon.Durability +"\n" +
+                " Amount of gold: " + GoldPurse.Count + "\n";
+            }
             return playerInfo;
             throw new NotImplementedException();
         }

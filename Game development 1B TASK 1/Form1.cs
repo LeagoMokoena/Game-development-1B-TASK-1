@@ -76,15 +76,15 @@ namespace Game_development_1B_TASK_1
             {
                 if (game.Game.TheEnemies[i].Symbol == 'G')
                 {
-                    btnSelectEnemy.Items.Add("Goblin " + game.Game.TheEnemies[i].ToString() + "\n");
+                    btnSelectEnemy.Items.Add("Equipped: Goblin (" + game.Game.TheEnemies[i].ToString() + "with Dagger" +"\n"+"(" + game.Game.TheEnemies[i].EquipWeapon.Durability * game.Game.TheEnemies[i].Damage + ")");
                 }
                 else if(game.Game.TheEnemies[i].Symbol == 'M')
                 {
-                    btnSelectEnemy.Items.Add("Mage " + game.Game.TheEnemies[i].ToString() + "\n");
+                    btnSelectEnemy.Items.Add("Barehanded: Mage " + game.Game.TheEnemies[i].ToString() + "(5)" + "\n");
                 }
                 else
                 {
-                    btnSelectEnemy.Items.Add("Leader " + game.Game.TheEnemies[i].ToString() + "\n");
+                    btnSelectEnemy.Items.Add("Equiped: Leader " + game.Game.TheEnemies[i].ToString() + "with Longsword" + "\n" + "(" + game.Game.TheEnemies[i].EquipWeapon.Durability * game.Game.TheEnemies[i].Damage + ")");
                 }
             }
         }
