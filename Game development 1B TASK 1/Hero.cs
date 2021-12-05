@@ -68,9 +68,13 @@ namespace Game_development_1B_TASK_1
             string playerInfo;
             playerInfo = "Player Stats:\n" +
                 "HP:" + HP / MaxHp + "\n"+
+                "Current Weapon:" + "\n"+
+                "Weapon Range" + "\n"+
+                "Weapon Damage" + "\n"+
                 "Damage:" + Damage +"\n"+
-                "[" + X + "," + Y + "]\n"
-                + " Amount of gold: " + GoldPurse.Count + "\n";
+                "[" + X + "," + Y + "]\n"+
+                "Durability"+"\n" +
+                " Amount of gold: " + GoldPurse.Count + "\n";
             return playerInfo;
             throw new NotImplementedException();
         }

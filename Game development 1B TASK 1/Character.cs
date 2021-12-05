@@ -39,6 +39,7 @@ namespace Game_development_1B_TASK_1
             set { vision = value; }
         }
 
+
         private List<Item> goldPurse;
 
         public List<Item> GoldPurse
@@ -74,6 +75,7 @@ namespace Game_development_1B_TASK_1
             Damage = daMage;
             goldPurse = new List<Item>();
             Vision = new Tile[8];
+ 
         }
 
         public virtual void Attack(Character target)

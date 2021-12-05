@@ -9,9 +9,7 @@ namespace Game_development_1B_TASK_1
 {
     public class GameEngine
     {
-        private Shop store;
 
-        
         private Map game;
 
         public Map Game
