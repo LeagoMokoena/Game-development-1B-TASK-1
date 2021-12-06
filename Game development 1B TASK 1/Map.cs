@@ -195,7 +195,7 @@ namespace Game_development_1B_TASK_1
                         {
                             List<Item> gOLDS = new List<Item>();
                             gOLDS.Add(new Gold(1, 1, Tile.Tiletype.Gold, 'A'));
-                            Goblin newGoblin = new Goblin(xpoint, ypoint, Tile.Tiletype.Enemy, 'G', 100, 100, 10,gOLDS);
+                            Goblin newGoblin = new Goblin(xpoint, ypoint, Tile.Tiletype.Enemy, 'G', 10, 10, 10,gOLDS);
                             theEnemies[Enemynum] = newGoblin;
                             mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
                             found = true;

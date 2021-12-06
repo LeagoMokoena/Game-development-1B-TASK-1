@@ -78,9 +78,9 @@ namespace Game_development_1B_TASK_1
             defences[num] = RandomWeapon();
         }
 
-        public string DisplayWeapon(int num)
+        public string DisplayWeapon(int numBER)
         {
-            return "Buy " + defences[num].WeaponType + " (" + defences[num].Cost + " Gold)";
+            return "Buy " + defences[numBER].WeaponType + " (" + defences[numBER].Cost + " Gold)";
         }
     }
 }

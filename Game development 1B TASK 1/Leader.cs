@@ -8,7 +8,7 @@ namespace Game_development_1B_TASK_1
     {
         private Tile hero;
 
-        public Leader(int _xPosition, int _yPosition, Tiletype type, char characterSymbol, Tile HERO,int starthp, int Maximimuhp, int daMage, List<Item> GOLD) : base(_xPosition, _yPosition, type, characterSymbol, starthp, Maximimuhp, daMage, GOLD)
+        public Leader(int _xPosition, int _yPosition, Tiletype type, char characterSymbol,Tile HERO, int starthp, int Maximimuhp, int daMage, List<Item> GOLD) : base(_xPosition, _yPosition, type, characterSymbol, starthp, Maximimuhp, daMage, GOLD)
         {
             HP = starthp;
             Damage = daMage;
@@ -23,60 +23,58 @@ namespace Game_development_1B_TASK_1
         }
 
 
-
-
-
         public override movement Returnmove(movement move)
         {
-            bool _move = false;
-            int Num;
-            int xSum;
-            int ySum;
-            xSum = X - hero.X;
-            ySum = Y - hero.Y;
-            if (xSum == 0 && ySum < 0)
-            {
-                move = movement.Right;
-            }
-            else if (xSum > 0 && ySum <= 0)
-            {
-                move = movement.Up;
-            }
-            else if (xSum < 0 && ySum >= 0)
-            {
-                move = movement.Down;
-            }
-            else
-            {
-                move = movement.Left;
-            }
-            while (_move == false)
-            {
-                _move = checkSurroundings(move);
-                if (_move == false)
+                bool _move = false;
+                int Num;
+                int xSum;
+                int ySum;
+                xSum = X - hero.X;
+                ySum = Y - hero.Y;
+                if (xSum == 0 && ySum < 0)
                 {
-                    Random r = new Random();
-                    Num = r.Next(1, 4);
-                    if(Num == 1)
-                    {
-                        move = movement.Up;
-                    }
-                    else if(Num == 2)
-                    {
-                        move = movement.Down;
-                    }
-                    else if(Num == 3)
-                    {
-                        move = movement.Left;
-                    }
-                    else
-                    {
-                        move = movement.Right;
-                    }
-
+                    move = movement.Right;
                 }
-                
-            }
+                else if (xSum > 0 && ySum <= 0)
+                {
+                           
+                    move = movement.Up;
+                }
+                      
+                else if (xSum < 0 && ySum >= 0)
+                {
+                    move = movement.Down;
+                }
+                else
+                {
+                    move = movement.Left;
+                }
+            while (_move == false)
+                while (_move == false)
+                {
+                    _move = checkSurroundings(move);
+                    if (_move == false)
+                    {
+                        Random r = new Random();
+                        Num = r.Next(1, 4);
+                        if (Num == 1)
+                        {
+                            move = movement.Up;
+                        }
+                        else if (Num == 2)
+                        {
+                            move = movement.Down;
+                        }
+                        else if (Num == 3)
+                        {
+                            move = movement.Left;
+                        }
+                        else
+                        {
+                            move = movement.Right;
+                        }
+                    }
+                }
             return move;
             throw new NotImplementedException();
         }

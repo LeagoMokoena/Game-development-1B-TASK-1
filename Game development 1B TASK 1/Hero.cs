@@ -91,6 +91,7 @@ namespace Game_development_1B_TASK_1
             throw new NotImplementedException();
         }
 
+
         public bool checkSurroundings(Character.movement movements)
         {
             bool playerMove;

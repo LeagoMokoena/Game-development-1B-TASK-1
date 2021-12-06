@@ -146,7 +146,7 @@ namespace Game_development_1B_TASK_1
             bool playerMove = false;
             if (movements == Character.movement.Up)
             {
-                if (Vision[0].tiletype == Tile.Tiletype.obstacle)
+                if (Vision[0].tiletype == Tile.Tiletype.obstacle || Vision[0].tiletype == Tile.Tiletype.Enemy || Vision[0].tiletype == Tile.Tiletype.Hero)
                 {
                     playerMove = false;
                 }
@@ -157,7 +157,7 @@ namespace Game_development_1B_TASK_1
             }
             else if (movements == Character.movement.Down)
             {
-                if (Vision[3].tiletype == Tile.Tiletype.obstacle)
+                if (Vision[3].tiletype == Tile.Tiletype.obstacle || Vision[3].tiletype == Tile.Tiletype.Enemy || Vision[3].tiletype == Tile.Tiletype.Hero)
                 {
                     playerMove = false;
                 }
@@ -168,7 +168,7 @@ namespace Game_development_1B_TASK_1
             }
             else if (movements == Character.movement.Left)
             {
-                if (Vision[1].tiletype == Tile.Tiletype.obstacle)
+                if (Vision[1].tiletype == Tile.Tiletype.obstacle || Vision[3].tiletype == Tile.Tiletype.Enemy || Vision[3].tiletype == Tile.Tiletype.Hero)
                 {
                     playerMove = false;
                 }
@@ -179,7 +179,7 @@ namespace Game_development_1B_TASK_1
             }
             else
             {
-                if (Vision[2].tiletype == Tile.Tiletype.obstacle)
+                if (Vision[2].tiletype == Tile.Tiletype.obstacle || Vision[2].tiletype == Tile.Tiletype.Enemy || Vision[2].tiletype == Tile.Tiletype.Hero)
                 {
                     playerMove = false;
                 }

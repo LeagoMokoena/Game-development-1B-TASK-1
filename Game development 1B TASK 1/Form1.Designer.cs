@@ -42,10 +42,10 @@ namespace Game_development_1B_TASK_1
             this.btnSaveMap = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnWeapon1 = new System.Windows.Forms.Button();
-            this.btnWeapon2 = new System.Windows.Forms.Button();
+            this.txBoughtItem = new System.Windows.Forms.RichTextBox();
             this.btnWeapon3 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.btnWeapon2 = new System.Windows.Forms.Button();
+            this.btnWeapon1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -166,7 +166,7 @@ namespace Game_development_1B_TASK_1
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.richTextBox1);
+            this.groupBox1.Controls.Add(this.txBoughtItem);
             this.groupBox1.Controls.Add(this.btnWeapon3);
             this.groupBox1.Controls.Add(this.btnWeapon2);
             this.groupBox1.Controls.Add(this.btnWeapon1);
@@ -177,25 +177,13 @@ namespace Game_development_1B_TASK_1
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "The shop";
             // 
-            // btnWeapon1
+            // txBoughtItem
             // 
-            this.btnWeapon1.Location = new System.Drawing.Point(6, 22);
-            this.btnWeapon1.Name = "btnWeapon1";
-            this.btnWeapon1.Size = new System.Drawing.Size(297, 74);
-            this.btnWeapon1.TabIndex = 0;
-            this.btnWeapon1.Text = "button1";
-            this.btnWeapon1.UseVisualStyleBackColor = true;
-            this.btnWeapon1.Click += new System.EventHandler(this.btnWeapon1_Click);
-            // 
-            // btnWeapon2
-            // 
-            this.btnWeapon2.Location = new System.Drawing.Point(6, 102);
-            this.btnWeapon2.Name = "btnWeapon2";
-            this.btnWeapon2.Size = new System.Drawing.Size(297, 74);
-            this.btnWeapon2.TabIndex = 1;
-            this.btnWeapon2.Text = "button2";
-            this.btnWeapon2.UseVisualStyleBackColor = true;
-            this.btnWeapon2.Click += new System.EventHandler(this.btnWeapon2_Click);
+            this.txBoughtItem.Location = new System.Drawing.Point(6, 345);
+            this.txBoughtItem.Name = "txBoughtItem";
+            this.txBoughtItem.Size = new System.Drawing.Size(297, 154);
+            this.txBoughtItem.TabIndex = 3;
+            this.txBoughtItem.Text = "";
             // 
             // btnWeapon3
             // 
@@ -207,13 +195,25 @@ namespace Game_development_1B_TASK_1
             this.btnWeapon3.UseVisualStyleBackColor = true;
             this.btnWeapon3.Click += new System.EventHandler(this.btnWeapon3_Click);
             // 
-            // richTextBox1
+            // btnWeapon2
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(6, 345);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(297, 154);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
+            this.btnWeapon2.Location = new System.Drawing.Point(6, 102);
+            this.btnWeapon2.Name = "btnWeapon2";
+            this.btnWeapon2.Size = new System.Drawing.Size(297, 74);
+            this.btnWeapon2.TabIndex = 1;
+            this.btnWeapon2.Text = "button2";
+            this.btnWeapon2.UseVisualStyleBackColor = true;
+            this.btnWeapon2.Click += new System.EventHandler(this.btnWeapon2_Click);
+            // 
+            // btnWeapon1
+            // 
+            this.btnWeapon1.Location = new System.Drawing.Point(6, 22);
+            this.btnWeapon1.Name = "btnWeapon1";
+            this.btnWeapon1.Size = new System.Drawing.Size(297, 74);
+            this.btnWeapon1.TabIndex = 0;
+            this.btnWeapon1.Text = "button1";
+            this.btnWeapon1.UseVisualStyleBackColor = true;
+            this.btnWeapon1.Click += new System.EventHandler(this.btnWeapon1_Click);
             // 
             // Form1
             // 
@@ -260,7 +260,7 @@ namespace Game_development_1B_TASK_1
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnWeapon2;
         private System.Windows.Forms.Button btnWeapon1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox txBoughtItem;
         private System.Windows.Forms.Button btnWeapon3;
     }
 }

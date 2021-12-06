@@ -26,11 +26,11 @@ namespace Game_development_1B_TASK_1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            int goldNumber = r.Next(5, 15);
+            int goldNumber = r.Next(10, 15);
             int weaponNumber = r.Next(4, 10);
-            gameArea = new GameEngine(10, 17, 10, 13, 5, goldNumber,weaponNumber);
+            gameArea = new GameEngine(15, 20, 15, 20, 5, goldNumber,weaponNumber);
             this.Show();
-            gameArea = new GameEngine(10, 17, 10, 13, 5,goldNumber,weaponNumber);
+            gameArea = new GameEngine(15, 20, 15, 20, 5,goldNumber,weaponNumber);
             createMap(gameArea);
             playerStats(gameArea);
             selectEnemy();
@@ -88,7 +88,7 @@ namespace Game_development_1B_TASK_1
                 {
                     if (en.Symbol == 'G')
                     {
-                        btnSelectEnemy.Items.Add("Equipped: Goblin (" + en.ToString() + "with Dagger" + "\n" + "(" + en.EquipWeapon.Durability * en.Damage + ")");
+                        btnSelectEnemy.Items.Add("Equipped: Goblin (" + en.ToString() + "with " + en.EquipWeapon.WeaponType + "\n" + "(" + en.EquipWeapon.Durability * en.Damage + ")");
                     }
                     else if (en.Symbol == 'M')
                     {
@@ -96,7 +96,7 @@ namespace Game_development_1B_TASK_1
                     }
                     else
                     {
-                        btnSelectEnemy.Items.Add("Equiped: Leader " + en.ToString() + "with Longsword" + "\n" + "(" + en.EquipWeapon.Durability * en.Damage + ")");
+                        btnSelectEnemy.Items.Add("Equiped: Leader " + en.ToString() + "with "+ en.EquipWeapon.WeaponType + "\n" + "(" + en.EquipWeapon.Durability * en.Damage + ")");
                     }
                 }
             }
@@ -126,6 +126,24 @@ namespace Game_development_1B_TASK_1
         }
 
 
+        public void checkAffordability()
+        {
+            if(gameArea.Game.TheHero.GoldPurse.Count == gameArea.Store.defences[0].Cost)
+            {
+                btnWeapon1.Enabled = true;
+            }
+
+            if (gameArea.Game.TheHero.GoldPurse.Count == gameArea.Store.defences[1].Cost)
+            {
+                btnWeapon1.Enabled = true;
+            }
+
+            if (gameArea.Game.TheHero.GoldPurse.Count == gameArea.Store.defences[2].Cost)
+            {
+                btnWeapon1.Enabled = true;
+            }
+        }
+
         private void btnUp_Click(object sender, EventArgs e)
         {
             bool move;
@@ -139,12 +157,13 @@ namespace Game_development_1B_TASK_1
                         gameArea.Game.TheHero.Pickup(i);
                     }
                 gameArea.Game.mapCharacter[gameArea.Game.TheHero.X, gameArea.Game.TheHero.Y] = gameArea.Game.TheHero;
-                gameArea.MoveEnemies();
                 foreach(Enemy ene in gameArea.Game.TheEnemies)
                 {
-                    if(ene.Symbol == 'G')
+                    if (ene.Symbol != 'M')
                     {
+                        gameArea.MoveEnemies(ene);
                         gameArea.goblinAttack(ene);
+                        gameArea.leaderAttack(ene);
                     }
                     else
                     {
@@ -156,7 +175,7 @@ namespace Game_development_1B_TASK_1
                 playerStats(gameArea);
             }
             gameArea.Game.UpdateVision();
-            stockShop();
+            checkAffordability();
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
@@ -172,12 +191,13 @@ namespace Game_development_1B_TASK_1
                         gameArea.Game.TheHero.Pickup(i);
                     }
                 gameArea.Game.mapCharacter[gameArea.Game.TheHero.X, gameArea.Game.TheHero.Y] = gameArea.Game.TheHero;
-                gameArea.MoveEnemies();
                 foreach (Enemy ene in gameArea.Game.TheEnemies)
                 {
-                    if (ene.Symbol == 'G')
+                    if (ene.Symbol != 'M')
                     {
+                        gameArea.MoveEnemies(ene);
                         gameArea.goblinAttack(ene);
+                        gameArea.leaderAttack(ene);
                     }
                     else
                     {
@@ -189,7 +209,7 @@ namespace Game_development_1B_TASK_1
                 playerStats(gameArea);
             }
             gameArea.Game.UpdateVision();
-            stockShop();
+            checkAffordability();
         }
 
         private void btnRight_Click(object sender, EventArgs e)
@@ -205,12 +225,13 @@ namespace Game_development_1B_TASK_1
                         gameArea.Game.TheHero.Pickup(i);
                     }
                 gameArea.Game.mapCharacter[gameArea.Game.TheHero.X, gameArea.Game.TheHero.Y] = gameArea.Game.TheHero;
-                gameArea.MoveEnemies();
                 foreach (Enemy ene in gameArea.Game.TheEnemies)
                 {
-                    if (ene.Symbol == 'G')
+                    if (ene.Symbol != 'M')
                     {
+                        gameArea.MoveEnemies(ene);
                         gameArea.goblinAttack(ene);
+                        gameArea.leaderAttack(ene);
                     }
                     else
                     {
@@ -222,7 +243,7 @@ namespace Game_development_1B_TASK_1
                 playerStats(gameArea);
             }
             gameArea.Game.UpdateVision();
-            stockShop();
+            checkAffordability();
         }
 
         private void btnDown_Click(object sender, EventArgs e)
@@ -238,12 +259,13 @@ namespace Game_development_1B_TASK_1
                         gameArea.Game.TheHero.Pickup(i);
                     }
                 gameArea.Game.mapCharacter[gameArea.Game.TheHero.X, gameArea.Game.TheHero.Y] = gameArea.Game.TheHero;
-                gameArea.MoveEnemies();
                 foreach (Enemy ene in gameArea.Game.TheEnemies)
                 {
-                    if (ene.Symbol == 'G')
+                    if (ene.Symbol != 'M')
                     {
+                        gameArea.MoveEnemies(ene);
                         gameArea.goblinAttack(ene);
+                        gameArea.leaderAttack(ene);
                     }
                     else
                     {
@@ -255,7 +277,39 @@ namespace Game_development_1B_TASK_1
                 playerStats(gameArea);
             }
             gameArea.Game.UpdateVision();
-            stockShop();
+            checkAffordability();
+        }
+
+        private string Kill(Character kill,Character victor)
+        {
+            string reward;
+            victor.Loot(kill);
+            if(victor.tiletype == Tile.Tiletype.Hero)
+            {
+                if (kill.Symbol != 'M') 
+                { 
+                    reward = "You looted a " + kill.EquipWeapon.WeaponType + " from " + kill.Symbol + " at[" + kill.X + "," + kill.Y + "]" + "\n"
+                       + "You also scored " + kill.GoldPurse.Count + " of gold";
+                }
+                else
+                {
+                    reward = "You looted " + kill.GoldPurse.Count + " of gold";
+                }
+            }
+            else
+            {
+                if (kill.Symbol != 'M')
+                {
+                    reward = victor.Symbol + " looted a " + kill.EquipWeapon.WeaponType + " from " + kill.Symbol + " at[" + kill.X + "," + kill.Y + "]" + "\n"
+ + victor.Symbol + " also scored " + kill.GoldPurse.Count + " of gold";
+                }
+                else
+                {
+                    reward = "You looted " + kill.GoldPurse.Count + " of its gold";
+                }
+            }
+
+            return reward;
         }
 
         private void btnSelectEnemy_SelectedIndexChanged(object sender, EventArgs e)
@@ -266,10 +320,16 @@ namespace Game_development_1B_TASK_1
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
-                txtAttackStatus.Text += gameArea.heroAttack(btnSelectEnemy.SelectedIndex) + "\n \n";
-                enemyStatus.Text = gameArea.Game.TheEnemies[btnSelectEnemy.SelectedIndex].ToString();
+            txtAttackStatus.Text += gameArea.heroAttack(btnSelectEnemy.SelectedIndex) + "\n \n";
+            enemyStatus.Text = gameArea.Game.TheEnemies[btnSelectEnemy.SelectedIndex].ToString();
+            if (gameArea.Game.TheEnemies[btnSelectEnemy.SelectedIndex].HP <= 0)
+            {
+                enemyStatus.Text = Kill(gameArea.Game.TheEnemies[btnSelectEnemy.SelectedIndex],gameArea.Game.TheHero);
+            }
             deadEnemies();
             createMap(gameArea);
+            playerStats(gameArea);
+            gameArea.Game.UpdateVision();
         }
 
         private void Mapdisplay_Click(object sender, EventArgs e)
@@ -284,7 +344,7 @@ namespace Game_development_1B_TASK_1
 
         private void btnSaveMap_Click(object sender, EventArgs e)
         {
-            StreamWriter wt = new StreamWriter(@"C: \Users\leago\source\repos\di");
+            StreamWriter wt = new StreamWriter(@"C:\Users\leago\OneDrive\Documents\Save-Game-Map-GADE1B");
             wt.Write(Mapdisplay.Text);
             wt.Close();
         }
@@ -306,6 +366,7 @@ namespace Game_development_1B_TASK_1
 
         private void btnWeapon1_Click(object sender, EventArgs e)
         {
+            txBoughtItem.Text = gameArea.Store.DisplayWeapon(0);
             gameArea.Store.Buy(0);
             playerStats(gameArea);
             restockShop(0);
@@ -313,6 +374,7 @@ namespace Game_development_1B_TASK_1
 
         private void btnWeapon2_Click(object sender, EventArgs e)
         {
+            txBoughtItem.Text = gameArea.Store.DisplayWeapon(1);
             gameArea.Store.Buy(1);
             playerStats(gameArea);
             restockShop(1);
@@ -320,6 +382,7 @@ namespace Game_development_1B_TASK_1
 
         private void btnWeapon3_Click(object sender, EventArgs e)
         {
+            txBoughtItem.Text = gameArea.Store.DisplayWeapon(2);
             gameArea.Store.Buy(2);
             playerStats(gameArea);
             restockShop(2);
