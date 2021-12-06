@@ -7,7 +7,6 @@ namespace Game_development_1B_TASK_1
 {
     public partial class Form1 : Form
     {
-        string Selected;
         public Form1()
         {
             InitializeComponent();
@@ -34,7 +33,7 @@ namespace Game_development_1B_TASK_1
             gameArea = new GameEngine(10, 17, 10, 13, 5,goldNumber,weaponNumber);
             createMap(gameArea);
             playerStats(gameArea);
-            selectEnemy(gameArea);
+            selectEnemy();
         }
 
         private void createMap(GameEngine game)
@@ -49,45 +48,56 @@ namespace Game_development_1B_TASK_1
         }
 
 
-        private void selectEnemy(GameEngine game)
+        private void selectEnemy()
         {
             btnAttack.Enabled = false;
-            foreach (Enemy en in game.Game.TheEnemies)
+            btnSelectEnemy.Items.Clear();
+            foreach (Enemy en in gameArea.Game.TheEnemies)
+            {
+                if (en.HP > 0)
+                {
+                    if (en.Symbol == 'G')
+                    {
+                        btnSelectEnemy.Items.Add("Equipped: Goblin (" + en.ToString() + "with Dagger" + "\n" + "(" + en.EquipWeapon.Durability * en.Damage + ")");
+                    }
+                    else if (en.Symbol == 'M')
+                    {
+                        btnSelectEnemy.Items.Add("Barehanded: Mage " + en.ToString() + "(5)" + "\n");
+                    }
+                    else
+                    {
+                        btnSelectEnemy.Items.Add("Equiped: Leader " + en.ToString() + "with Longsword" + "\n" + "(" + en.EquipWeapon.Durability * en.Damage + ")");
+                    }
+                }
+            }
+        }
+
+        public void deadEnemies()
+        {
+            foreach (Enemy en in gameArea.Game.TheEnemies)
             {
                 if (en.HP <= 0)
                 {
-                    for (int it = 0; it < game.Game.Width; it++)
+                    for (int it = 0; it < gameArea.Game.Width; it++)
                     {
-                        for (int ut = 0; ut < game.Game.Height; ut++)
+                        for (int ut = 0; ut < gameArea.Game.Height; ut++)
                         {
-                            if (game.Game.mapCharacter[it, ut] == en)
+                            if (gameArea.Game.mapCharacter[it, ut] == en)
                             {
-                                game.Game.checkIfDead(game.Game.mapCharacter[it, ut]);
+                                gameArea.Game.checkIfDead(gameArea.Game.mapCharacter[it, ut]);
+                                selectEnemy();
                             }
                             else
                             {
-                                game.Game.mapCharacter[it, ut] = game.Game.mapCharacter[it, ut];
+                                gameArea.Game.mapCharacter[it, ut] = gameArea.Game.mapCharacter[it, ut];
                             }
                         }
                     }
                 }
             }
-            for (int i = 0; i < game.Game.Enemynum; i++)
-            {
-                if (game.Game.TheEnemies[i].Symbol == 'G')
-                {
-                    btnSelectEnemy.Items.Add("Equipped: Goblin (" + game.Game.TheEnemies[i].ToString() + "with Dagger" +"\n"+"(" + game.Game.TheEnemies[i].EquipWeapon.Durability * game.Game.TheEnemies[i].Damage + ")");
-                }
-                else if(game.Game.TheEnemies[i].Symbol == 'M')
-                {
-                    btnSelectEnemy.Items.Add("Barehanded: Mage " + game.Game.TheEnemies[i].ToString() + "(5)" + "\n");
-                }
-                else
-                {
-                    btnSelectEnemy.Items.Add("Equiped: Leader " + game.Game.TheEnemies[i].ToString() + "with Longsword" + "\n" + "(" + game.Game.TheEnemies[i].EquipWeapon.Durability * game.Game.TheEnemies[i].Damage + ")");
-                }
-            }
+
         }
+
 
         private void btnUp_Click(object sender, EventArgs e)
         {
@@ -114,7 +124,7 @@ namespace Game_development_1B_TASK_1
                         gameArea.mageAttack(ene);
                     }
                 }
-                selectEnemy(gameArea);
+                deadEnemies();
                 createMap(GameArea);
                 playerStats(gameArea);
             }
@@ -146,7 +156,7 @@ namespace Game_development_1B_TASK_1
                         gameArea.mageAttack(ene);
                     }
                 }
-                selectEnemy(gameArea);
+                deadEnemies();
                 createMap(GameArea);
                 playerStats(gameArea);
             }
@@ -178,7 +188,7 @@ namespace Game_development_1B_TASK_1
                         gameArea.mageAttack(ene);
                     }
                 }
-                selectEnemy(gameArea);
+                deadEnemies();
                 createMap(GameArea);
                 playerStats(gameArea);
             }
@@ -211,7 +221,7 @@ namespace Game_development_1B_TASK_1
                         gameArea.mageAttack(ene);
                     }
                 }
-                selectEnemy(gameArea);
+                deadEnemies();
                 createMap(GameArea);
                 playerStats(gameArea);
             }
@@ -220,18 +230,15 @@ namespace Game_development_1B_TASK_1
 
         private void btnSelectEnemy_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            int selected = btnSelectEnemy.SelectedIndex;
-            Selected = this.Text = btnSelectEnemy.Items[selected].ToString();
+            btnSelectEnemy.Text = gameArea.Game.TheEnemies[btnSelectEnemy.SelectedIndex].ToString();
             btnAttack.Enabled = true;
-
         }
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
                 txtAttackStatus.Text += gameArea.heroAttack(btnSelectEnemy.SelectedIndex) + "\n \n";
                 enemyStatus.Text = gameArea.Game.TheEnemies[btnSelectEnemy.SelectedIndex].ToString();
-            selectEnemy(gameArea);
+            deadEnemies();
             createMap(gameArea);
         }
 
