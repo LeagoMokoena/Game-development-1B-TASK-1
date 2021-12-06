@@ -247,19 +247,24 @@ namespace Game_development_1B_TASK_1
 
         private void btnSaveMap_Click(object sender, EventArgs e)
         {
-            using (StreamWriter sp = new StreamWriter("save map"))
-            {
-                sp.WriteLine(gameArea.save(10, 17, 10, 13, gameArea.Game.Enemynum, gameArea.Game.Goldnum,gameArea.Game.Weaponnum));
-            }
+            /*StreamWriter wt = new StreamWriter();
+            wt.Write(Mapdisplay.Text);
+            wt.Close();*/
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            Mapdisplay.Text = "";
-            using (StreamReader sp = new StreamReader("load map"))
+            /*Stream ld;
+            OpenFileDialog di = new OpenFileDialog();
+            if(di.ShowDialog() == DialogResult.OK)
             {
-                Mapdisplay.Text = gameArea.Load();
-            }
+                if((ld = di.OpenFile()) ! = null)
+                {
+                    string map = di.FileName;
+                    string tr = File.ReadAllText(file);
+                    Mapdisplay.Text = tr;
+                }
+            }*/
         }
     }
 }
