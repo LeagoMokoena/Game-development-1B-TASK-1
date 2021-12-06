@@ -76,13 +76,13 @@ namespace Game_development_1B_TASK_1
         /*        public Character(Tiletype Symbol) : this(Symbol,Symbol)
                 {
                 }*/
-        protected Character(int _xPosition, int _yPosition, Tiletype type,char characterSymbol,int starthp, int Maximimuhp,int daMage) : base(_xPosition, _yPosition, type,characterSymbol)
+        protected Character(int _xPosition, int _yPosition, Tiletype type,char characterSymbol,int starthp, int Maximimuhp,int daMage,List<Item> GOLD) : base(_xPosition, _yPosition, type,characterSymbol)
         {
             Symbol = characterSymbol;
             HP = starthp;
             MaxHp = Maximimuhp;
             Damage = daMage;
-            goldPurse = new List<Item>();
+            goldPurse = GOLD;
             Vision = new Tile[8];
         }
 
@@ -187,9 +187,16 @@ namespace Game_development_1B_TASK_1
             equipWeapon = w;
         }
 
-        public void Loot()
+        public void Loot(Character victim)
         {
-
+            goldPurse.AddRange(victim.goldPurse);
+            if(victim.equipWeapon != null)
+            {
+                if(Symbol != 'M' && equipWeapon == null)
+                {
+                    equipWeapon = victim.equipWeapon;
+                }
+            }
         }
 
         public abstract movement Returnmove(movement move);

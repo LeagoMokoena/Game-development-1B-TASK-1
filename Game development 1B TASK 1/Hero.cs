@@ -7,7 +7,7 @@ namespace Game_development_1B_TASK_1
 {
     public class Hero : Character
     {
-        public Hero(int _xPosition, int _yPosition, Tiletype type, char characterSymbol, int starthp, int Maximimuhp, int daMage) : base(_xPosition, _yPosition, type, characterSymbol, starthp, Maximimuhp, daMage)
+        public Hero(int _xPosition, int _yPosition, Tiletype type, char characterSymbol, int starthp, int Maximimuhp, int daMage, List<Item> GOLD) : base(_xPosition, _yPosition, type, characterSymbol, starthp, Maximimuhp, daMage, GOLD)
         {
             Vision = new Tile[4];
         }

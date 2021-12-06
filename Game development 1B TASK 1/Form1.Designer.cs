@@ -41,13 +41,19 @@ namespace Game_development_1B_TASK_1
             this.enemyStatus = new System.Windows.Forms.RichTextBox();
             this.btnSaveMap = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnWeapon1 = new System.Windows.Forms.Button();
+            this.btnWeapon2 = new System.Windows.Forms.Button();
+            this.btnWeapon3 = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnUp
             // 
-            this.btnUp.Location = new System.Drawing.Point(608, 435);
+            this.btnUp.Location = new System.Drawing.Point(545, 431);
             this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(75, 23);
+            this.btnUp.Size = new System.Drawing.Size(100, 46);
             this.btnUp.TabIndex = 0;
             this.btnUp.Text = "^";
             this.btnUp.UseVisualStyleBackColor = true;
@@ -55,9 +61,9 @@ namespace Game_development_1B_TASK_1
             // 
             // btnLeft
             // 
-            this.btnLeft.Location = new System.Drawing.Point(535, 464);
+            this.btnLeft.Location = new System.Drawing.Point(435, 463);
             this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(75, 23);
+            this.btnLeft.Size = new System.Drawing.Size(100, 50);
             this.btnLeft.TabIndex = 1;
             this.btnLeft.Text = "<";
             this.btnLeft.UseVisualStyleBackColor = true;
@@ -65,9 +71,9 @@ namespace Game_development_1B_TASK_1
             // 
             // btnRight
             // 
-            this.btnRight.Location = new System.Drawing.Point(679, 464);
+            this.btnRight.Location = new System.Drawing.Point(654, 463);
             this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(75, 23);
+            this.btnRight.Size = new System.Drawing.Size(100, 50);
             this.btnRight.TabIndex = 2;
             this.btnRight.Text = ">";
             this.btnRight.UseVisualStyleBackColor = true;
@@ -75,9 +81,9 @@ namespace Game_development_1B_TASK_1
             // 
             // btnDown
             // 
-            this.btnDown.Location = new System.Drawing.Point(608, 493);
+            this.btnDown.Location = new System.Drawing.Point(545, 495);
             this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(75, 23);
+            this.btnDown.Size = new System.Drawing.Size(100, 50);
             this.btnDown.TabIndex = 3;
             this.btnDown.Text = "v";
             this.btnDown.UseVisualStyleBackColor = true;
@@ -96,9 +102,9 @@ namespace Game_development_1B_TASK_1
             // 
             // txtPlayerStatus
             // 
-            this.txtPlayerStatus.Location = new System.Drawing.Point(535, 95);
+            this.txtPlayerStatus.Location = new System.Drawing.Point(435, 95);
             this.txtPlayerStatus.Name = "txtPlayerStatus";
-            this.txtPlayerStatus.Size = new System.Drawing.Size(219, 96);
+            this.txtPlayerStatus.Size = new System.Drawing.Size(319, 96);
             this.txtPlayerStatus.TabIndex = 5;
             this.txtPlayerStatus.Text = "";
             this.txtPlayerStatus.TextChanged += new System.EventHandler(this.txtPlayerStatus_TextChanged);
@@ -106,17 +112,17 @@ namespace Game_development_1B_TASK_1
             // btnSelectEnemy
             // 
             this.btnSelectEnemy.FormattingEnabled = true;
-            this.btnSelectEnemy.Location = new System.Drawing.Point(535, 197);
+            this.btnSelectEnemy.Location = new System.Drawing.Point(435, 197);
             this.btnSelectEnemy.Name = "btnSelectEnemy";
-            this.btnSelectEnemy.Size = new System.Drawing.Size(219, 23);
+            this.btnSelectEnemy.Size = new System.Drawing.Size(319, 23);
             this.btnSelectEnemy.TabIndex = 6;
             this.btnSelectEnemy.SelectedIndexChanged += new System.EventHandler(this.btnSelectEnemy_SelectedIndexChanged);
             // 
             // btnAttack
             // 
-            this.btnAttack.Location = new System.Drawing.Point(535, 304);
+            this.btnAttack.Location = new System.Drawing.Point(435, 304);
             this.btnAttack.Name = "btnAttack";
-            this.btnAttack.Size = new System.Drawing.Size(219, 23);
+            this.btnAttack.Size = new System.Drawing.Size(319, 23);
             this.btnAttack.TabIndex = 7;
             this.btnAttack.Text = "Attack";
             this.btnAttack.UseVisualStyleBackColor = true;
@@ -124,25 +130,25 @@ namespace Game_development_1B_TASK_1
             // 
             // txtAttackStatus
             // 
-            this.txtAttackStatus.Location = new System.Drawing.Point(535, 333);
+            this.txtAttackStatus.Location = new System.Drawing.Point(435, 333);
             this.txtAttackStatus.Name = "txtAttackStatus";
-            this.txtAttackStatus.Size = new System.Drawing.Size(219, 96);
+            this.txtAttackStatus.Size = new System.Drawing.Size(319, 96);
             this.txtAttackStatus.TabIndex = 8;
             this.txtAttackStatus.Text = "";
             // 
             // enemyStatus
             // 
-            this.enemyStatus.Location = new System.Drawing.Point(535, 227);
+            this.enemyStatus.Location = new System.Drawing.Point(435, 227);
             this.enemyStatus.Name = "enemyStatus";
-            this.enemyStatus.Size = new System.Drawing.Size(219, 71);
+            this.enemyStatus.Size = new System.Drawing.Size(319, 71);
             this.enemyStatus.TabIndex = 9;
             this.enemyStatus.Text = "";
             // 
             // btnSaveMap
             // 
-            this.btnSaveMap.Location = new System.Drawing.Point(535, 56);
+            this.btnSaveMap.Location = new System.Drawing.Point(435, 56);
             this.btnSaveMap.Name = "btnSaveMap";
-            this.btnSaveMap.Size = new System.Drawing.Size(219, 23);
+            this.btnSaveMap.Size = new System.Drawing.Size(319, 23);
             this.btnSaveMap.TabIndex = 10;
             this.btnSaveMap.Text = "Save";
             this.btnSaveMap.UseVisualStyleBackColor = true;
@@ -150,19 +156,71 @@ namespace Game_development_1B_TASK_1
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(535, 27);
+            this.btnLoad.Location = new System.Drawing.Point(435, 27);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(219, 23);
+            this.btnLoad.Size = new System.Drawing.Size(319, 23);
             this.btnLoad.TabIndex = 11;
             this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.richTextBox1);
+            this.groupBox1.Controls.Add(this.btnWeapon3);
+            this.groupBox1.Controls.Add(this.btnWeapon2);
+            this.groupBox1.Controls.Add(this.btnWeapon1);
+            this.groupBox1.Location = new System.Drawing.Point(767, 27);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(309, 505);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "The shop";
+            // 
+            // btnWeapon1
+            // 
+            this.btnWeapon1.Location = new System.Drawing.Point(6, 22);
+            this.btnWeapon1.Name = "btnWeapon1";
+            this.btnWeapon1.Size = new System.Drawing.Size(297, 74);
+            this.btnWeapon1.TabIndex = 0;
+            this.btnWeapon1.Text = "button1";
+            this.btnWeapon1.UseVisualStyleBackColor = true;
+            this.btnWeapon1.Click += new System.EventHandler(this.btnWeapon1_Click);
+            // 
+            // btnWeapon2
+            // 
+            this.btnWeapon2.Location = new System.Drawing.Point(6, 102);
+            this.btnWeapon2.Name = "btnWeapon2";
+            this.btnWeapon2.Size = new System.Drawing.Size(297, 74);
+            this.btnWeapon2.TabIndex = 1;
+            this.btnWeapon2.Text = "button2";
+            this.btnWeapon2.UseVisualStyleBackColor = true;
+            this.btnWeapon2.Click += new System.EventHandler(this.btnWeapon2_Click);
+            // 
+            // btnWeapon3
+            // 
+            this.btnWeapon3.Location = new System.Drawing.Point(6, 182);
+            this.btnWeapon3.Name = "btnWeapon3";
+            this.btnWeapon3.Size = new System.Drawing.Size(297, 74);
+            this.btnWeapon3.TabIndex = 2;
+            this.btnWeapon3.Text = "button3";
+            this.btnWeapon3.UseVisualStyleBackColor = true;
+            this.btnWeapon3.Click += new System.EventHandler(this.btnWeapon3_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(6, 345);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(297, 154);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(773, 528);
+            this.ClientSize = new System.Drawing.Size(1088, 558);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSaveMap);
             this.Controls.Add(this.enemyStatus);
@@ -178,6 +236,7 @@ namespace Game_development_1B_TASK_1
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,6 +256,12 @@ namespace Game_development_1B_TASK_1
         private System.Windows.Forms.RichTextBox enemyStatus;
         private System.Windows.Forms.Button btnSaveMap;
         private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnWeapon2;
+        private System.Windows.Forms.Button btnWeapon1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button btnWeapon3;
     }
 }
 

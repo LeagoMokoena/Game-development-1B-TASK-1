@@ -26,7 +26,7 @@ namespace Game_development_1B_TASK_1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            int goldNumber = r.Next(1, 5);
+            int goldNumber = r.Next(5, 15);
             int weaponNumber = r.Next(4, 10);
             gameArea = new GameEngine(10, 17, 10, 13, 5, goldNumber,weaponNumber);
             this.Show();
@@ -34,12 +34,42 @@ namespace Game_development_1B_TASK_1
             createMap(gameArea);
             playerStats(gameArea);
             selectEnemy();
+            stockShop();
         }
 
         private void createMap(GameEngine game)
         {
             Mapdisplay.Text = "";
             Mapdisplay.Text = game.ToString();
+        }
+
+        public void stockShop()
+        {
+            btnWeapon1.Text = gameArea.Store.defences[0].WeaponType;
+            btnWeapon2.Text = gameArea.Store.defences[1].WeaponType;
+            btnWeapon3.Text = gameArea.Store.defences[2].WeaponType;
+            btnWeapon1.Enabled = gameArea.Store.CanBuy(0);
+            btnWeapon2.Enabled = gameArea.Store.CanBuy(1);
+            btnWeapon3.Enabled = gameArea.Store.CanBuy(2);
+        }
+
+        public void restockShop(int x)
+        {
+            if(x == 0)
+            {
+                btnWeapon1.Text = gameArea.Store.defences[0].WeaponType;
+                btnWeapon1.Enabled = gameArea.Store.CanBuy(0);
+            }
+            else if(x == 1)
+            {
+                btnWeapon2.Text = gameArea.Store.defences[1].WeaponType;
+                btnWeapon2.Enabled = gameArea.Store.CanBuy(1);
+            }
+            else
+            {
+                btnWeapon3.Text = gameArea.Store.defences[2].WeaponType;
+                btnWeapon3.Enabled = gameArea.Store.CanBuy(2);
+            }
         }
 
         private void playerStats(GameEngine game)
@@ -126,6 +156,7 @@ namespace Game_development_1B_TASK_1
                 playerStats(gameArea);
             }
             gameArea.Game.UpdateVision();
+            stockShop();
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
@@ -158,6 +189,7 @@ namespace Game_development_1B_TASK_1
                 playerStats(gameArea);
             }
             gameArea.Game.UpdateVision();
+            stockShop();
         }
 
         private void btnRight_Click(object sender, EventArgs e)
@@ -190,7 +222,7 @@ namespace Game_development_1B_TASK_1
                 playerStats(gameArea);
             }
             gameArea.Game.UpdateVision();
-
+            stockShop();
         }
 
         private void btnDown_Click(object sender, EventArgs e)
@@ -223,6 +255,7 @@ namespace Game_development_1B_TASK_1
                 playerStats(gameArea);
             }
             gameArea.Game.UpdateVision();
+            stockShop();
         }
 
         private void btnSelectEnemy_SelectedIndexChanged(object sender, EventArgs e)
@@ -251,24 +284,45 @@ namespace Game_development_1B_TASK_1
 
         private void btnSaveMap_Click(object sender, EventArgs e)
         {
-            /*StreamWriter wt = new StreamWriter();
+            StreamWriter wt = new StreamWriter(@"C: \Users\leago\source\repos\di");
             wt.Write(Mapdisplay.Text);
-            wt.Close();*/
+            wt.Close();
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            /*Stream ld;
+            Stream ld;
             OpenFileDialog di = new OpenFileDialog();
-            if(di.ShowDialog() == DialogResult.OK)
+            if (di.ShowDialog() == DialogResult.OK)
             {
-                if((ld = di.OpenFile()) ! = null)
+                if ((ld = di.OpenFile()) != null)
                 {
                     string map = di.FileName;
-                    string tr = File.ReadAllText(file);
+                    string tr = File.ReadAllText(map);
                     Mapdisplay.Text = tr;
                 }
-            }*/
+            }
+        }
+
+        private void btnWeapon1_Click(object sender, EventArgs e)
+        {
+            gameArea.Store.Buy(0);
+            playerStats(gameArea);
+            restockShop(0);
+        }
+
+        private void btnWeapon2_Click(object sender, EventArgs e)
+        {
+            gameArea.Store.Buy(1);
+            playerStats(gameArea);
+            restockShop(1);
+        }
+
+        private void btnWeapon3_Click(object sender, EventArgs e)
+        {
+            gameArea.Store.Buy(2);
+            playerStats(gameArea);
+            restockShop(2);
         }
     }
 }

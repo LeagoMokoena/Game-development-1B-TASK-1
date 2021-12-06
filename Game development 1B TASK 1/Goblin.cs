@@ -7,7 +7,7 @@ namespace Game_development_1B_TASK_1
 {
     public class Goblin : Enemy
     {
-        public Goblin(int _xPosition, int _yParameter, Tiletype symbol, char characterSymbol, int enemyDamage, int startHP, int maxHP) : base(_xPosition, _yParameter, symbol, characterSymbol, enemyDamage, startHP, maxHP)
+        public Goblin(int _xPosition, int _yPosition, Tiletype type, char characterSymbol, int starthp, int Maximimuhp, int daMage, List<Item> GOLD) : base(_xPosition, _yPosition, type, characterSymbol, starthp, Maximimuhp, daMage, GOLD)
         {
             Vision = new Tile[4];
             equipWeapon = new MeleeWeapon(1, 1, Tile.Tiletype.Weapon, 'D', MeleeWeapon.Types.Dagger);

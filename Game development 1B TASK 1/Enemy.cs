@@ -10,7 +10,7 @@ namespace Game_development_1B_TASK_1
 
         private Random objectNum = new Random();
 
-        protected Enemy(int _xPosition, int _yPosition, Tiletype type, char characterSymbol, int starthp, int Maximimuhp, int daMage) : base(_xPosition, _yPosition, type, characterSymbol, starthp, Maximimuhp, daMage)
+        protected Enemy(int _xPosition, int _yPosition, Tiletype type, char characterSymbol, int starthp, int Maximimuhp, int daMage, List<Item> GOLD) : base(_xPosition, _yPosition, type, characterSymbol, starthp, Maximimuhp, daMage, GOLD)
         {
             Damage = daMage;
             MaxHp = Maximimuhp;

@@ -9,7 +9,7 @@ namespace Game_development_1B_TASK_1
 {
     public class Shop
     {
-        private Weapon [] defences;
+        public Weapon [] defences;
 
         private Random ran;
 
@@ -70,8 +70,8 @@ namespace Game_development_1B_TASK_1
             int count = buyer.GoldPurse.Count;
             for(int i = 0; i < defences[num].Cost; i++)
             {
-                buyer.GoldPurse.RemoveAt(count);
                 count--;
+                buyer.GoldPurse.RemoveAt(count);
             }
 
             buyer.Pickup(defences[num]);

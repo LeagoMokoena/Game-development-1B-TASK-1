@@ -40,7 +40,7 @@ namespace Game_development_1B_TASK_1
         public GameEngine(int minwidth, int maxwidth,int minheight,int maxheight,int enemynumber,int goldAmount,int weaponAmount)
         {
             game = new Map(minwidth, maxwidth, minheight, maxheight, enemynumber, goldAmount, weaponAmount);
-
+            store = new Shop(game.TheHero);
         }
 
         public Character.movement Cmove;

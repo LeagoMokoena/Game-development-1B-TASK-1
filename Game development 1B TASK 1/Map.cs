@@ -170,7 +170,8 @@ namespace Game_development_1B_TASK_1
                         }
                         else
                         {
-                            theHero = new Hero(xpoint, ypoint, Tile.Tiletype.Hero, 'H', 100, 100,2);
+                            List<Item> golds = new List<Item>();
+                            theHero = new Hero(xpoint, ypoint, Tile.Tiletype.Hero, 'H', 100, 100,2,golds);
                             mapCharacter[xpoint, ypoint] = theHero;
                             found = true;
                         }
@@ -192,21 +193,33 @@ namespace Game_development_1B_TASK_1
                         }
                         else if (enemyDigit == 1)
                         {
-                            Goblin newGoblin = new Goblin(xpoint, ypoint, Tile.Tiletype.Enemy, 'G', 100, 100, 10);
+                            List<Item> gOLDS = new List<Item>();
+                            gOLDS.Add(new Gold(1, 1, Tile.Tiletype.Gold, 'A'));
+                            Goblin newGoblin = new Goblin(xpoint, ypoint, Tile.Tiletype.Enemy, 'G', 100, 100, 10,gOLDS);
                             theEnemies[Enemynum] = newGoblin;
                             mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
                             found = true;
                         }
                         else if(enemyDigit == 2)
                         {
-                            Mage newMage = new Mage(xpoint, ypoint, Tile.Tiletype.Enemy, 'M', 5, 5, 5);
+                            List<Item> _GOLDS = new List<Item>();
+                            for (int I = 0; I < 3; I++)
+                            {
+                                _GOLDS.Add(new Gold(1, 1, Tile.Tiletype.Gold, 'A'));
+                            }
+                            Mage newMage = new Mage(xpoint, ypoint, Tile.Tiletype.Enemy, 'M', 5, 5, 5,_GOLDS);
                             theEnemies[Enemynum] = newMage;
                             mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
                             found = true;
                         }
                         else
                         {
-                            Leader newLeader = new Leader(xpoint, ypoint, Tile.Tiletype.Enemy, 'L', theHero, 20, 20,2);
+                            List<Item> GOLDS = new List<Item>();
+                            for (int I = 0; I < 2; I++)
+                            {
+                                GOLDS.Add(new Gold(1, 1, Tile.Tiletype.Gold, 'A'));
+                            }
+                            Leader newLeader = new Leader(xpoint, ypoint, Tile.Tiletype.Enemy, 'L', theHero, 20, 20,2,GOLDS);
                             theEnemies[Enemynum] = newLeader;
                             mapCharacter[xpoint, ypoint] = theEnemies[Enemynum];
                             found = true;

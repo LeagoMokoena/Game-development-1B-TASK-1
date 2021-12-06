@@ -8,6 +8,14 @@ namespace Game_development_1B_TASK_1
     {
         private Tile hero;
 
+        public Leader(int _xPosition, int _yPosition, Tiletype type, char characterSymbol, Tile HERO,int starthp, int Maximimuhp, int daMage, List<Item> GOLD) : base(_xPosition, _yPosition, type, characterSymbol, starthp, Maximimuhp, daMage, GOLD)
+        {
+            HP = starthp;
+            Damage = daMage;
+            Hero = HERO;
+            equipWeapon = new MeleeWeapon(1, 1, Tile.Tiletype.Weapon, 'S', MeleeWeapon.Types.Longsword);
+        }
+
         public Tile Hero
         {
             get { return hero; }
@@ -15,13 +23,7 @@ namespace Game_development_1B_TASK_1
         }
 
 
-        public Leader(int _xPosition, int _yPosition, Tiletype type, char characterSymbol, Tile HERO,int starthp = 20, int Maximimuhp = 20, int daMage = 2) : base(_xPosition, _yPosition, type, characterSymbol, starthp, Maximimuhp, daMage)
-        {
-            HP = starthp;
-            Damage = daMage;
-            Hero = HERO;
-            equipWeapon = new MeleeWeapon(1, 1, Tile.Tiletype.Weapon, 'S', MeleeWeapon.Types.Longsword);
-        }
+
 
 
         public override movement Returnmove(movement move)
