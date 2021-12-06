@@ -170,7 +170,7 @@ namespace Game_development_1B_TASK_1
                         }
                         else
                         {
-                            theHero = new Hero(xpoint, ypoint, Tile.Tiletype.Hero, 'H', 100, 100,10);
+                            theHero = new Hero(xpoint, ypoint, Tile.Tiletype.Hero, 'H', 100, 100,2);
                             mapCharacter[xpoint, ypoint] = theHero;
                             found = true;
                         }

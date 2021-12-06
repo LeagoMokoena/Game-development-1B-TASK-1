@@ -88,7 +88,14 @@ namespace Game_development_1B_TASK_1
 
         public virtual void Attack(Character target)
         {
-            target.hP -= damage;
+            if (equipWeapon != null)
+            {
+                target.hP -= equipWeapon.Damage;
+            }
+            else
+            {
+                target.hP -= damage;
+            }
         }
 
         public bool IsDead()
@@ -151,6 +158,11 @@ namespace Game_development_1B_TASK_1
 
             if(i.tiletype == Tiletype.Weapon)
             {
+                if(equipWeapon != null)
+                {
+                    equipWeapon = null;
+                }
+
                 if(i.Symbol == 'D')
                 {
                     Equip(new MeleeWeapon(i.X, i.Y, Tiletype.Weapon, 'D', MeleeWeapon.Types.Dagger));

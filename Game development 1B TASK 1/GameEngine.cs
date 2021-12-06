@@ -130,9 +130,8 @@ namespace Game_development_1B_TASK_1
                             game.TheEnemies[i].Returnmove(Character.movement.Up);
                             game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = new EmptyTile(game.TheEnemies[i].X, game.TheEnemies[i].Y, Tile.Tiletype.empty, '.');
                             game.TheEnemies[i].Move(Character.movement.Up);
-
+                            game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = game.TheEnemies[i];
                         }
-                        game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = game.TheEnemies[i];
                     }
                     else if (num == 2)
                     {
@@ -175,6 +174,13 @@ namespace Game_development_1B_TASK_1
                     game.TheEnemies[i].Move(mve);
                     game.mapCharacter[game.TheEnemies[i].X, game.TheEnemies[i].Y] = game.TheEnemies[i];
                 }
+
+                foreach (Item j in Game.MapItems)
+                    if (j.X == Game.TheHero.X && j.Y == Game.TheHero.Y)
+                    {
+                        Game.TheEnemies[i].Pickup(j);
+                    }
+                game.mapCharacter[Game.TheEnemies[i].X, Game.TheEnemies[i].Y] = Game.TheEnemies[i];
             }
         }
 

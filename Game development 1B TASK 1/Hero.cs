@@ -80,7 +80,7 @@ namespace Game_development_1B_TASK_1
             {
                 playerInfo = "Player Stats:\n" +
                 "HP:" + HP +"/"+ MaxHp + "\n" +
-                "Current Weapon: " + equipWeapon + "\n" +
+                "Current Weapon: " + equipWeapon.WeaponType + "\n" +
                 "Weapon Range: " + equipWeapon.Range() +"\n" +
                 "Weapon Damage: " + equipWeapon.Damage +"\n" +
                 "[" + X + "," + Y + "]\n" +
