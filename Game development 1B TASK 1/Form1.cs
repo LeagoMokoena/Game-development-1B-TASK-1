@@ -85,15 +85,12 @@ namespace Game_development_1B_TASK_1
                             if (gameArea.Game.mapCharacter[it, ut] == en)
                             {
                                 gameArea.Game.checkIfDead(gameArea.Game.mapCharacter[it, ut]);
-                                selectEnemy();
-                            }
-                            else
-                            {
-                                gameArea.Game.mapCharacter[it, ut] = gameArea.Game.mapCharacter[it, ut];
                             }
                         }
                     }
                 }
+
+                selectEnemy();
             }
 
         }

@@ -28,23 +28,27 @@ namespace Game_development_1B_TASK_1
         {
             bool _move = false;
             int Num;
-            if(X > Hero.X && Y == Hero.Y)
-            {
-                move = movement.Up;
-            }
-            else if(X == Hero.X && Y > Hero.Y)
-            {
-                move = movement.Left;
-            }
-            else if(X == Hero.X && Y < Hero.Y)
+            int xSum;
+            int ySum;
+            xSum = X - hero.X;
+            ySum = Y - hero.Y;
+            if (xSum == 0 && ySum < 0)
             {
                 move = movement.Right;
             }
-            else
+            else if (xSum > 0 && ySum <= 0)
+            {
+                move = movement.Up;
+            }
+            else if (xSum < 0 && ySum >= 0)
             {
                 move = movement.Down;
             }
-            while(_move == false)
+            else
+            {
+                move = movement.Left;
+            }
+            while (_move == false)
             {
                 _move = checkSurroundings(move);
                 if (_move == false)
